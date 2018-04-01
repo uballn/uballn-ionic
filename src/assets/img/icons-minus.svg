@@ -3,8 +3,7 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#E6A000;}
+	.st0{fill:#76A5FF;}
 </style>
-<polygon class="st0" points="150,16.7 192.9,103.7 288.9,117.6 219.5,185.3 235.9,280.9 150,235.8 64.1,280.9 80.5,185.3 
-	11.1,117.6 107.1,103.7 "/>
+<rect x="130.7" y="5" transform="matrix(-3.197069e-07 -1 1 -3.197069e-07 2.5 300.5002)" class="st0" width="41.6" height="288"/>
 </svg>

@@ -1,14 +1,14 @@
 webpackJsonp([6],{
 
-/***/ 318:
+/***/ 320:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SchedulePageModule", function() { return SchedulePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TabsPageModule", function() { return TabsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__schedule_page__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_page__ = __webpack_require__(335);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SchedulePageModule = (function () {
-    function SchedulePageModule() {
+var TabsPageModule = (function () {
+    function TabsPageModule() {
     }
-    return SchedulePageModule;
+    return TabsPageModule;
 }());
-SchedulePageModule = __decorate([
+TabsPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__schedule_page__["a" /* SchedulePage */],
+            __WEBPACK_IMPORTED_MODULE_2__tabs_page__["a" /* TabsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__schedule_page__["a" /* SchedulePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tabs_page__["a" /* TabsPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__schedule_page__["a" /* SchedulePage */]
+            __WEBPACK_IMPORTED_MODULE_2__tabs_page__["a" /* TabsPage */]
         ]
     })
-], SchedulePageModule);
+], TabsPageModule);
 
-//# sourceMappingURL=schedule-page.module.js.map
+//# sourceMappingURL=tabs-page.module.js.map
 
 /***/ }),
 
-/***/ 332:
+/***/ 335:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchedulePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_providers__ = __webpack_require__(113);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,94 +61,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-/**
- * The Settings page is a simple form that syncs with a Settings provider
- * to enable the user to customize settings for the app.
- *
- */
-var SchedulePage = SchedulePage_1 = (function () {
-    function SchedulePage(navCtrl, settings, formBuilder, navParams) {
+var TabsPage = (function () {
+    function TabsPage(navCtrl, firebaseService) {
         this.navCtrl = navCtrl;
-        this.settings = settings;
-        this.formBuilder = formBuilder;
-        this.navParams = navParams;
-        this.settingsReady = false;
-        this.profileSettings = {
-            page: 'profile',
-            pageTitleKey: 'SETTINGS_PAGE_PROFILE'
-        };
-        this.page = 'main';
-        this.pageTitleKey = 'SETTINGS_TITLE';
-        this.subSettings = SchedulePage_1;
-        this.event = {
-            month: '1990-02-19',
-            timeStarts: '07:43',
-            timeEnds: '1990-02-20'
-        };
+        this.firebaseService = firebaseService;
+        this.tab1 = 'CourtsPage';
+        this.tab2 = 'QuickPlayPage';
+        this.tab3 = 'SchedulePage';
+        this.invitationCount = 0;
     }
-    SchedulePage.prototype._buildForm = function () {
+    TabsPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        var group = {
-            option1: [this.options.option1],
-            timeStarts: [],
-            timeEnds: []
-        };
-        switch (this.page) {
-            case 'main':
-                break;
-            case 'profile':
-                group = {
-                    option4: [this.options.option4]
-                };
-                break;
-        }
-        this.form = this.formBuilder.group(group);
-        // Watch the form for changes, and
-        this.form.valueChanges.subscribe(function (v) {
-            _this.settings.merge(_this.form.value);
+        this.firebaseService.authState.subscribe(function (user) {
+            if (user) {
+                _this.firebaseService.getUserInvitations().subscribe(function (data) {
+                    _this.invitationCount = data.length;
+                }, function (err) {
+                    console.log('error: ', err);
+                });
+            }
         });
     };
-    SchedulePage.prototype.ionViewDidLoad = function () {
-        // Build an empty form for the template to render
-        this.form = this.formBuilder.group({});
-    };
-    SchedulePage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        // Build an empty form for the template to render
-        this.form = this.formBuilder.group({});
-        this.page = this.navParams.get('page') || this.page;
-        this.pageTitleKey = this.navParams.get('pageTitleKey') || this.pageTitleKey;
-        // this.translate.get(this.pageTitleKey).subscribe((res) => {
-        //   this.pageTitle = res;
-        // })
-        this.settings.load().then(function () {
-            _this.settingsReady = true;
-            _this.options = _this.settings.allSettings;
-            _this._buildForm();
-        });
-    };
-    SchedulePage.prototype.ngOnChanges = function () {
-        console.log('Ng All Changes');
-    };
-    SchedulePage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
-    };
-    return SchedulePage;
+    return TabsPage;
 }());
-SchedulePage = SchedulePage_1 = __decorate([
+TabsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-schedule',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start (click)="goToProfile()">\n      <ion-icon name="contact"></ion-icon>\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end>\n        <img class="navIcon" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content block>\n  <div padding>\n    <p class="scheduleIntro">Take control of the court and schedule your next game.</p>\n  </div>\n\n  <form [formGroup]="form" *ngIf="settingsReady">\n    <ion-list *ngIf="page == \'main\'">\n      <ion-item>\n        <ion-label>when are you hoopin?</ion-label>\n        <ion-datetime displayFormat="MMM DD YYYY" formControlName="timeEnds"></ion-datetime>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>at what time?</ion-label>\n        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="timeStarts"></ion-datetime>\n      </ion-item>\n\n      <!-- <div padding>\n        <button ion-button block class="secondaryButton">Add a location</button>\n      </div> -->\n\n      <ion-item>\n        <ion-label>on what court?</ion-label>\n        <ion-input type="text"></ion-input>\n      </ion-item>\n\n      <ion-item class="noBG private">\n        <ion-label>Private Game?</ion-label>\n        <ion-toggle formControlName="option1"></ion-toggle>\n      </ion-item>\n\n      <div padding>\n        <button ion-button block class="secondaryButton">Invite Friends</button>\n      </div>\n\n      <div padding>\n        <button ion-button block class="primaryButton">Let\'s Do It</button>\n      </div>\n    </ion-list>\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
+        selector: 'page-tabs-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/'<ion-tabs tabsPlacement="top">\n      <ion-tab tabTitle="COURTS" [root]="tab1"></ion-tab>\n      <ion-tab tabTitle="QUICKPLAY" [root]="tab2"></ion-tab>\n      <ion-tab tabTitle="SCHEDULE" [tabBadge]="invitationCount" [root]="tab3"></ion-tab>\n    </ion-tabs>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_providers__["a" /* Settings */],
-        __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormBuilder */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]])
-], SchedulePage);
+        __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */]])
+], TabsPage);
 
-var SchedulePage_1;
-//# sourceMappingURL=schedule-page.js.map
+//# sourceMappingURL=tabs-page.js.map
 
 /***/ })
 

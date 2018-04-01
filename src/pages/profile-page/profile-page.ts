@@ -119,7 +119,6 @@ export class ProfilePage {
   }
 
   goToConnect(){
-    alert('Connect!');
     this.navCtrl.push('ConnectPage');
   }
 

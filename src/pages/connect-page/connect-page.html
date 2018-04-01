@@ -27,10 +27,11 @@
         </ion-list>
             
         <ion-list *ngSwitchCase="'squad'">
-          <div *ngFor="let friend of friends" >
-            <button ion-item *ngIf="friend.squad == 'true'" (click)="itemSelected(friend)">
+          <h5>Add up to 5 friends and get notified when each other hits the court.</h5>
+          <div *ngFor="let friend of friends" class="squad-{{friend.squad}}">
+            <button ion-item (click)="itemSelected(friend)">
                     {{ friend.username }}
-            </button> 
+            </button>
           </div>
         </ion-list>
 

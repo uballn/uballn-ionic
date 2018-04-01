@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 316:
+/***/ 319:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuickPlayPageModule", function() { return QuickPlayPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedPageModule", function() { return SharedPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__quickplay_page__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_page__ = __webpack_require__(334);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var QuickPlayPageModule = (function () {
-    function QuickPlayPageModule() {
+var SharedPageModule = (function () {
+    function SharedPageModule() {
     }
-    return QuickPlayPageModule;
+    return SharedPageModule;
 }());
-QuickPlayPageModule = __decorate([
+SharedPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */],
+            __WEBPACK_IMPORTED_MODULE_2__shared_page__["a" /* SharedPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__shared_page__["a" /* SharedPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */]
+            __WEBPACK_IMPORTED_MODULE_2__shared_page__["a" /* SharedPage */]
         ]
     })
-], QuickPlayPageModule);
+], SharedPageModule);
 
-//# sourceMappingURL=quickplay-page.module.js.map
+//# sourceMappingURL=shared-page.module.js.map
 
 /***/ }),
 
-/***/ 330:
+/***/ 334:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuickPlayPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(109);
@@ -61,52 +61,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var QuickPlayPage = (function () {
-    function QuickPlayPage(navCtrl, firebaseService, alertCtrl, toastCtrl) {
+var SharedPage = (function () {
+    function SharedPage(navCtrl, firebaseService, alertCtrl, toastCtrl) {
         this.navCtrl = navCtrl;
         this.firebaseService = firebaseService;
         this.alertCtrl = alertCtrl;
         this.toastCtrl = toastCtrl;
-        this.editMode = false;
     }
-    QuickPlayPage.prototype.ionViewDidLoad = function () {
-        this.gameLists = this.firebaseService.getGames();
-        console.log(this.gameLists);
-    };
-    QuickPlayPage.prototype.ionViewWillEnter = function () {
-        sessionStorage.clear();
-    };
-    QuickPlayPage.prototype.newList = function () {
+    SharedPage.prototype.ionViewWillEnter = function () {
         var _this = this;
-        var prompt = this.alertCtrl.create({
-            title: 'Create new game',
-            message: 'Enter a name for your new list',
-            inputs: [
-                {
-                    name: 'name',
-                    placeholder: 'Groceries'
-                },
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                },
-                {
-                    text: 'Create List',
-                    handler: function (data) {
-                        _this.firebaseService.createNewList(data.name).then(function (data) {
-                            _this.presentToast('New list created!');
-                        });
-                    }
-                }
-            ]
+        this.firebaseService.authState.subscribe(function (user) {
+            if (user) {
+                _this.sharedLists = _this.firebaseService.getSharedLists();
+            }
         });
-        prompt.present();
     };
-    QuickPlayPage.prototype.removeList = function (id) {
-        this.firebaseService.removeList(id);
-    };
-    QuickPlayPage.prototype.addItemToList = function (listId, listName) {
+    SharedPage.prototype.addItemToList = function (listId, listName) {
         var _this = this;
         var prompt = this.alertCtrl.create({
             title: 'New item for "' + listName + '"',
@@ -133,63 +103,24 @@ var QuickPlayPage = (function () {
         });
         prompt.present();
     };
-    QuickPlayPage.prototype.removeItem = function (itemId, listId) {
-        this.firebaseService.removegameItem(listId, itemId);
-    };
-    QuickPlayPage.prototype.shareList = function (listId, listName) {
-        var _this = this;
-        var prompt = this.alertCtrl.create({
-            title: 'Share your list "' + listName + '"',
-            message: 'Enter the Email of the person you want to share your list with',
-            inputs: [
-                {
-                    name: 'email',
-                    placeholder: 'john@doe.com'
-                },
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                },
-                {
-                    text: 'Share List',
-                    handler: function (data) {
-                        _this.firebaseService.shareList(listId, listName, data.email).then(function (res) {
-                            _this.presentToast('Invitation sent to ' + data.email);
-                        });
-                    }
-                }
-            ]
-        });
-        prompt.present();
-    };
-    QuickPlayPage.prototype.presentToast = function (msg) {
+    SharedPage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({
             message: msg,
             duration: 2000
         });
         toast.present();
     };
-    QuickPlayPage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
-    };
-    QuickPlayPage.prototype.openGame = function (game) {
-        this.navCtrl.push('GamePage', game);
-    };
-    return QuickPlayPage;
+    return SharedPage;
 }());
-QuickPlayPage = __decorate([
+SharedPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-quickplay-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/quickplay-page/quickPlay-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start (click)="goToProfile()">\n      <ion-icon name="contact"></ion-icon>\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end>\n        <img class="navIcon" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list class="gameContainer" *ngFor="let game of gameLists | async" (click)="openGame(game)">\n    <span class="gameBG" [style.backgroundImage]="\'url(\' + game.img + \')\'"></span>\n    <ion-list-header>\n      <h2>{{ game.name }}</h2>\n      <button ion-button item-left clear color="danger" icon-only (click)="removeList(game.$key)" *ngIf="editMode"><ion-icon name="remove-circle"></ion-icon></button>\n    </ion-list-header>\n    <ion-item>\n      <ul class="gameDetails">\n        <li><span><img [src]="game.creatorIMG" class="creator"/></span></li>\n        <li><span><img src="assets/img/icons-players.svg"/></span> {{ game.stats.playerTotal }}</li>\n        <li><span><img src="assets/img/icons-id.svg"/></span> {{ game.stats.avgAge }}</li>\n        <li><span><img src="assets/img/icons-chart.svg"/></span> {{ game.stats.avgExp }}</li>\n      </ul>\n    </ion-item>\n  </ion-list>\n\n  <!-- <ion-fab right bottom padding>\n    <button ion-fab (click)="newList()"><ion-icon name="add"></ion-icon></button>\n  </ion-fab> -->\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/quickplay-page/quickPlay-page.html"*/,
+        selector: 'page-shared-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/shared-page/shared-page.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Shared Lists</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <ion-list *ngFor="let list of sharedLists | async" padding-top>\n    <ion-list-header>\n      {{ list.name }}\n      <button ion-button item-right clear icon-only (click)="addItemToList(list.$key, list.name)"><ion-icon name="add"></ion-icon></button>\n    </ion-list-header>\n    <ion-item color="light">\n    Shared by: {{ list.creator }}</ion-item>\n  \n\n    <ion-item *ngFor="let shoppingItem of list.shoppingItems | async">\n      {{ shoppingItem.name }}\n    </ion-item>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/shared-page/shared-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* ToastController */]])
-], QuickPlayPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* ToastController */]])
+], SharedPage);
 
-//# sourceMappingURL=quickplay-page.js.map
+//# sourceMappingURL=shared-page.js.map
 
 /***/ })
 

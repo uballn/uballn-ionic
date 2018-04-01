@@ -1,3 +1,37 @@
 page-connect {
-
+    ion-segment.segment {
+        border-bottom: 1px solid #888;
+        .segment-button {
+            background: transparent !important;
+            border: none;
+            text-transform: uppercase;
+            color: #fff;
+            line-height: 1em;
+        }
+    }
+    ion-list {
+        h5 {
+            width:80%;
+            font-size: 1em;
+            text-align: center;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        div.squad-false  .item-inner {
+            background-image: url(/assets/img/icons-plus.svg) !important;
+        }
+        div.squad-true .item-inner {
+                background-image: url(/assets/img/icons-minus.svg) !important;
+        }
+        button.item-block {
+            background: transparent !important;
+            color:#fff;
+            &:first-child,&:last-child {
+                border: none !important;
+            }
+            .item-inner{
+                border-bottom: none !important;
+            }
+        }
+    }
 }

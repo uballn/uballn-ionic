@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 313:
+/***/ 314:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerPageModule", function() { return PlayerPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfilePageModule", function() { return ProfilePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__player_page__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_page__ = __webpack_require__(329);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,123 +18,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PlayerPageModule = (function () {
-    function PlayerPageModule() {
+var ProfilePageModule = (function () {
+    function ProfilePageModule() {
     }
-    return PlayerPageModule;
+    return ProfilePageModule;
 }());
-PlayerPageModule = __decorate([
+ProfilePageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */],
+            __WEBPACK_IMPORTED_MODULE_2__profile_page__["a" /* ProfilePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__profile_page__["a" /* ProfilePage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]
+            __WEBPACK_IMPORTED_MODULE_2__profile_page__["a" /* ProfilePage */]
         ]
     })
-], PlayerPageModule);
+], ProfilePageModule);
 
-//# sourceMappingURL=player-page.module.js.map
-
-/***/ }),
-
-/***/ 327:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayerPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var PlayerPage = (function () {
-    function PlayerPage(navCtrl, firebaseService, afd, navParams, storage) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.firebaseService = firebaseService;
-        this.afd = afd;
-        this.navParams = navParams;
-        this.storage = storage;
-        this.playerID = this.navParams.data;
-        this.playerIMG;
-        if (localStorage.getItem('gender') == 'male') {
-            this.playerGender = 'M';
-        }
-        else {
-            this.playerGender = 'F';
-        }
-        this.afd.list('/users/' + this.playerID, { preserveSnapshot: true })
-            .subscribe(function (snapshots) {
-            snapshots.forEach(function (snapshot) {
-                sessionStorage.setItem('CurrPlayer.' + snapshot.key, snapshot.val());
-            });
-            _this.playerName = sessionStorage.getItem('CurrPlayer.alias');
-            _this.playerExperience = sessionStorage.getItem('CurrPlayer.experience');
-            _this.playerHeight = sessionStorage.getItem('CurrPlayer.height');
-            _this.playerWeight = sessionStorage.getItem('CurrPlayer.weight');
-            _this.playerIMG = sessionStorage.getItem('CurrPlayer.img');
-            _this.playerAge = sessionStorage.getItem('CurrPlayer.ageCount');
-            _this.playerPlayed = sessionStorage.getItem('CurrPlayer.played');
-            _this.playerPoints = '300';
-        });
-    }
-    PlayerPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.storage.get('myFriends').then(function (val) {
-            var myFriends = val;
-            if (_this.playerID == localStorage.getItem('uid')) {
-                __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').css('display', 'none');
-            }
-            else {
-                for (var key in myFriends) {
-                    if (key === _this.playerID) {
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').addClass('trueFriends');
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').html('Unfriend');
-                    }
-                }
-            }
-        });
-    };
-    PlayerPage.prototype.ionViewDidLeave = function () {
-        sessionStorage.clear();
-    };
-    return PlayerPage;
-}());
-PlayerPage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-player',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/'\n<ion-header>\n    <ion-navbar>\n      <ion-title>\n        Player Profile\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding class="bgImage">\n    <div class="profileBG"></div>\n    <div class="imageContainer">\n        <img [src]="playerIMG" />\n      </div>\n        \n    <h2><ion-input class="playerName" [(ngModel)]="playerName" disabled></ion-input></h2>\n  \n      <ion-grid class="playerDetailPrimary">\n          <ion-row>\n              <ion-col col-4>\n                  <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                  <ion-input class="points" [(ngModel)]="playerPoints" disabled></ion-input>\n              </ion-col>\n              <ion-col col-4 class="middle">\n                <ion-input [(ngModel)]="playerPlayed" disabled></ion-input>\n              </ion-col>\n            <ion-col col-4>\n                <ion-input class="experience" [(ngModel)]="playerExperience" disabled></ion-input>\n                <img class="icon chart" src="assets/img/icons-chart.svg"/>\n              </ion-col>\n              </ion-row>\n        </ion-grid>\n  \n  \n      <ion-grid class="playerPageDetails">\n          <ion-row>\n              <ion-col col-3>\n                  Age\n                  <ion-input [(ngModel)]="playerAge" disabled></ion-input>\n              </ion-col>\n              <ion-col col-3>\n              Height\n                <ion-input [(ngModel)]="playerHeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3>\n              Weight\n                <ion-input [(ngModel)]="playerWeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3 class="sex">\n                Sex\n                  <ion-input [(ngModel)]="playerGender" disabled></ion-input>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n\n        <div class="buttonContainer">\n          <button ion-button id="friendButton" class="secondaryButton" full (click)="addFriend">Add Friend</button>\n        </div>\n  \n  </ion-content>          '/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/,
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
-], PlayerPage);
-
-var _a, _b, _c, _d, _e;
-//# sourceMappingURL=player-page.js.map
+//# sourceMappingURL=profile-page.module.js.map
 
 /***/ }),
 
-/***/ 335:
+/***/ 321:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10503,6 +10410,128 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+
+/***/ 329:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ProfilePage = (function () {
+    function ProfilePage(navCtrl, firebaseService, storage, toastCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.firebaseService = firebaseService;
+        this.storage = storage;
+        this.toastCtrl = toastCtrl;
+        this.storage.get('myFriends').then(function (val) {
+            _this.friends = val;
+            _this.friendData = [];
+            for (var key in _this.friends) {
+                _this.friendData.push(_this.friends[key]);
+            }
+            _this.friendNum = _this.friendData.length;
+            _this.storage.set('friendData', _this.friendData);
+            if (_this.friendNum < 4) {
+                __WEBPACK_IMPORTED_MODULE_4_jquery__('.playerContainer.more').hide();
+            }
+        });
+    }
+    ProfilePage.prototype.ionViewWillEnter = function () {
+        if (localStorage.getItem('gender') === 'male') {
+            this.gender = 'M';
+        }
+        else {
+            this.gender = 'F';
+        }
+        this.name = localStorage.getItem('name');
+        this.birthday = localStorage.getItem('birthday');
+        this.experience = localStorage.getItem('experience');
+        this.height = localStorage.getItem('height');
+        this.weight = localStorage.getItem('weight');
+        this.updateUserIMG = localStorage.getItem('img');
+        this.age = localStorage.getItem('ageCount');
+        this.played = localStorage.getItem('played');
+        this.experienceNumber = localStorage.getItem('experience');
+        this.points = '300';
+    };
+    ProfilePage.prototype.updateUser = function () {
+        var _this = this;
+        localStorage.setItem('name', this.name);
+        localStorage.setItem('height', this.height);
+        localStorage.setItem('weight', this.weight);
+        localStorage.setItem('experience', this.experience);
+        localStorage.setItem('gender', this.gender);
+        localStorage.setItem('birthday', this.birthday);
+        this.firebaseService.updateUserProfile().then(function () {
+            _this.presentToast('Profile Updated!');
+        });
+    };
+    ProfilePage.prototype.presentToast = function (msg) {
+        var toast = this.toastCtrl.create({
+            message: msg,
+            duration: 2000
+        });
+        toast.present();
+    };
+    ProfilePage.prototype.accepInvitation = function (invitation) {
+        var _this = this;
+        this.firebaseService.acceptInvitation(invitation).then(function () {
+            _this.presentToast('Invitation accepted!');
+        });
+    };
+    ProfilePage.prototype.discardInvitation = function (invitationId) {
+        this.firebaseService.discardInvitation(invitationId);
+    };
+    ProfilePage.prototype.logOut = function () {
+        var _this = this;
+        this.firebaseService.logoutUser().then(function () {
+            localStorage.clear();
+            _this.navCtrl.setRoot('LoginPage');
+        });
+    };
+    ProfilePage.prototype.goToSettings = function () {
+        this.navCtrl.push('ProfileSettingsPage');
+    };
+    ProfilePage.prototype.goToProfile = function (uid) {
+        this.navCtrl.push('PlayerPage', uid);
+    };
+    ProfilePage.prototype.goToConnect = function () {
+        this.navCtrl.push('ConnectPage');
+    };
+    return ProfilePage;
+}());
+ProfilePage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
+        selector: 'page-profile-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-page/profile-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      My Profile\n    </ion-title>\n    <button class="score" ion-button end (click)="goToSettings()">\n     <img class="navIcon" src="assets/img/icons-gear.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="bgImage">\n  <div class="profileBG"></div>\n  <div class="imageContainer">\n    <img src="{{updateUserIMG}}" />\n  </div>\n\n  <h2><ion-input class="playerName" [(ngModel)]="name" disabled></ion-input></h2>\n\n    <ion-grid class="playerDetailPrimary">\n        <ion-row>\n            <ion-col col-4>\n                <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                <ion-input class="points" [(ngModel)]="points" disabled></ion-input>\n            </ion-col>\n            <ion-col col-4 class="middle">\n              <ion-input [(ngModel)]="played" disabled></ion-input>\n            </ion-col>\n          <ion-col col-4>\n              <ion-input class="experience" [(ngModel)]="experience" disabled></ion-input>\n              <img class="icon chart" src="assets/img/icons-chart.svg"/>\n            </ion-col>\n            </ion-row>\n      </ion-grid>\n\n\n    <ion-grid class="playerPageDetails">\n        <ion-row>\n            <ion-col col-3>\n                Age <ion-input [(ngModel)]="age" disabled></ion-input>\n            </ion-col>\n            <ion-col col-3>\n            Height <ion-input [(ngModel)]="height" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3>\n            Weight <ion-input [(ngModel)]="weight" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3 class="sex">\n              Sex <ion-input [(ngModel)]="gender" disabled></ion-input>\n            </ion-col>\n          </ion-row>\n      </ion-grid>\n    \n      <ion-list class="players" style="background-color: none;">\n        <h5 (click)="goToConnect()">Friends ({{friendNum}})</h5>\n        <div class="playerContainer">\n          <div class="player" *ngFor="let friend of friendData| slice:0:4" id="squad-{{friend.squad}}">\n            <ion-icon name="contact" (click)="goToProfile(friend.uid)"></ion-icon>\n          </div>\n          <div class="player more" id="squad-false" (click)="goToConnect()">\n            <img src="assets/img/icons-more.svg"/>\n          </div>\n        </div>\n      </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-page/profile-page.html"*/,
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* ToastController */]) === "function" && _d || Object])
+], ProfilePage);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=profile-page.js.map
 
 /***/ })
 
