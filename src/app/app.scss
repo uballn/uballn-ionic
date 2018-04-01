@@ -1,0 +1,169 @@
+// App Global Sass
+// --------------------------------------------------
+ion-app{
+  ion-navbar.toolbar {
+    min-height:75px;
+  }
+  ion-icon[name="contact"] {
+    margin-top: 10px;
+  }
+  ion-list {
+    position:relative;
+  }
+  .toolbar-title {
+    color:#fff;
+  }
+  .back-button.show-back-button {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  button.score ion-icon {
+    font-size: 1.25em !important;
+  }
+  ion-title.title {
+    padding: 10px 90px 1px
+  }
+  ion-navbar .toolbar-background {
+    background: #000;
+  }
+  button[end] {
+        float: right;
+    }
+  .noBG {
+    background-color: transparent !important;
+  }
+  a {
+    color:#fff;
+    text-decoration: none;
+    font-weight:bold;
+  }
+  &.ios [padding],
+  &.md [padding] {
+    padding: 16px 0;
+  }
+  .scroll-content,
+  .tabbar.show-tabbar,
+  ion-title .title.title-ios{
+    background: #000;
+    color: #fff !important;
+  }
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default,
+  .bar-button-clear-ios-default {
+    color:#fff;
+  }
+  .tabs-ios .tab-button[aria-selected=true] {
+    border-bottom: 1px solid #fff;
+    color:#fff;
+  }
+  .header-ios .toolbar-background-ios,
+  .footer-ios .toolbar-background-ios {
+    background: #000;
+    color: #fff;
+  }
+  .primaryButton,
+  .secondaryButton,
+  .facebookButton,
+  .twitterButton {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .primaryButton {
+    color: #fff;
+    background: -moz-linear-gradient(-45deg, #5c0a5f 0%, #8d0338 42%, #c50000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #5c0a5f 0%,#8d0338 42%,#c50000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #5c0a5f 0%,#8d0338 42%,#c50000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+  .secondaryButton {
+    background: #fff;
+    color:#000;
+  }
+  .facebookButton {
+    color: #fff;
+    background: -moz-linear-gradient(-45deg, #101f47 0%, #2d4998 42%, #4060b8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #101f47 0%,#2d4998 42%,#4060b8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #101f47 0%,#2d4998 42%,#4060b8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+  .twitterButton {
+    color: #fff;
+    background: -moz-linear-gradient(-45deg, #005d9b 0%, #007dcb 42%, #009cf9 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #005d9b 0%,#007dcb 42%,#009cf9 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #005d9b 0%,#007dcb 42%,#009cf9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+  .toggle-ios.toggle-checked .toggle-icon {
+    background-color: #242424;
+  }
+  .toggle-ios .toggle-icon{
+    background-color: transparent;
+      &:before {
+      background-color: #242424;
+      border: none;
+    }
+  }
+  .logout {
+    margin: 60px 0 0;
+  }
+  form, input, optgroup, select, .logout {
+    padding: 10px 20px;
+  }
+  ion-item {
+    &.item.item-block {
+      background-color: #242424;
+      margin-bottom: 10px;
+      color: #a0a0a0;
+      border: none!important;
+    }
+    .item-inner {
+      border: none!important;
+    }
+  }
+  .navIcon {
+    width:30px;
+    margin-top: 15px;
+  }
+  .formText {
+    text-align: center;
+    font-size: 1.25em;
+    margin: 30px auto;
+      &.small {
+        font-size: 0.9em;
+      }
+  }
+  .imageContainer {
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+    border-radius: 250px;
+    margin: 10px auto 10px;
+    background: #000;
+    z-index: 10;
+    position: relative;
+  }
+  ion-navbar button[ion-button] {
+    background: none;
+    &.activated {
+      background: none;
+    }
+    ion-icon{
+      font-size: 2em;
+    }
+  }
+  ion-grid.grid {
+    padding: 0;
+    margin: 0;
+    ion-row{
+    width:100%;
+      ion-col.col[col-6] {
+        padding: 0;
+        flex: none;
+        width: calc(50% - 5px);
+        &:first-child {
+          margin-right: 10px;
+        }
+        &:last-child {
+          // margin-left: 15px;
+        }
+      }
+    }
+  }
+}

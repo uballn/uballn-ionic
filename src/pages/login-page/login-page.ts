@@ -1,0 +1,132 @@
+import { FirebaseService } from './../../providers/firebase-service';
+import { Component } from '@angular/core';
+import { IonicPage, Loading, LoadingController, NavController, AlertController } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { EmailValidator } from '../../validators/email';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+import { Storage } from '@ionic/storage';
+import 'rxjs/add/operator/map';
+
+
+@IonicPage()
+@Component({
+  selector: 'page-login-page',
+  templateUrl: 'login-page.html',
+})
+export class LoginPage {
+  public loginForm: FormGroup;
+  loading: Loading;
+  public allUsers: any[];
+  userData: any;
+  currUserFriends: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public firebaseService: FirebaseService,
+    public afd: AngularFireDatabase,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public formBuilder: FormBuilder,
+    private storage: Storage) {
+    this.loginForm = formBuilder.group({
+      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
+      password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+    });
+  }
+
+  loginUser(): void {
+    if (this.loginForm.valid) {
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
+
+      let currUserFriends;
+
+      this.firebaseService.loginUser(this.loginForm.value.email, this.loginForm.value.password)
+        .then(authData => {
+          localStorage.setItem('currUserEmail', authData.email);
+          localStorage.setItem('currUserName', authData.displayName);
+          localStorage.setItem('emailVerified', authData.emailVerified);
+          localStorage.setItem('userID', authData.uid);
+
+          this.afd.list('/users/'+authData.uid, { preserveSnapshot: true})
+          .subscribe(snapshots=>{
+              snapshots.forEach(snapshot => {
+                localStorage.setItem(snapshot.key, snapshot.val());
+                if (snapshot.key === 'friends'){
+                  this.storage.set('myFriends', snapshot.val());
+                }
+              });
+          })
+
+          if (localStorage.getItem('img') == null){
+            localStorage.setItem('img',null);
+          };
+          
+          this.loading.dismiss().then(() => {
+            this.navCtrl.setRoot('TabsPage', currUserFriends);
+          });
+        }, error => {
+          this.loading.dismiss().then(() => {
+            let alert = this.alertCtrl.create({
+              title: 'Error',
+              message: error.message,
+              buttons: [
+                {
+                  text: "Ok",
+                  role: 'cancel'
+                }
+              ]
+            });
+            alert.present();
+          });
+        });
+    }
+  }
+
+  goToSignup() {
+    this.navCtrl.push('RegisterPage');
+  }
+
+  resetPassword() {
+    let prompt = this.alertCtrl.create({
+      title: 'Reset Password',
+      message: 'Enter your email below',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'My Email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'Reset',
+          handler: data => {
+            this.firebaseService.resetPassword(data.email).then(data => {
+              console.log('reset: ', data);
+              this.showBasicAlert('Success', 'Check your email for further instructions.');
+            })
+              .catch(err => {
+                this.showBasicAlert('Error', err.message);
+              })
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  showBasicAlert(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+}

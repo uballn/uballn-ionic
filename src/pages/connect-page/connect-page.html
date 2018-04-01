@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Connect</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div padding>
+        <ion-segment [(ngModel)]="connect">
+          <ion-segment-button value="friends">
+            Friends
+          </ion-segment-button>
+          <ion-segment-button value="squad">
+            Squad
+          </ion-segment-button>
+          <ion-segment-button value="suggested">
+            Suggested
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="connect">
+        <ion-list *ngSwitchCase="'friends'">
+            <button ion-item *ngFor="let friend of friends" (click)="itemSelected(friend)">
+                {{ friend.username }}
+              </button>  
+        </ion-list>
+            
+        <ion-list *ngSwitchCase="'squad'">
+          <div *ngFor="let friend of friends" >
+            <button ion-item *ngIf="friend.squad == 'true'" (click)="itemSelected(friend)">
+                    {{ friend.username }}
+            </button> 
+          </div>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'suggested'">
+          <button ion-item *ngFor="let friend of friends" (click)="itemSelected(friend)">
+              {{ friend.username }}
+          </button>  
+        </ion-list>
+      </div>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/img/uballn-logo.png" />
+    </ion-title>
+    <button ion-button end>
+        <img class="navIcon" src="assets/img/icons-share.svg"/>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="gameBG" [style.backgroundImage]="'url(' + gameData.data.img + ')'"></div>
+    <div class="btmGradient"></div>
+    <div class="gameDetails">
+      <h3>{{gameData.data.name}}</h3>
+      <h5>{{gameData.data.address}}</h5>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players
+            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col>
+          <ion-col col-4><span><img src="assets/img/icons-id.svg"/></span>Average <br>Age
+            <span class="data">{{gameData.data.stats.avgAge}}</span></ion-col>
+          <ion-col col-4><span><img src="assets/img/icons-chart.svg"/></span>Level of <br>Play
+            <span class="data">{{gameData.data.stats.avgExp}}</span></ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-list class="players" style="background-color: none;">
+        <h5>Active Players</h5>
+        <div class="player" *ngFor="let player of playerData" (click)="goToProfile(player.uid)">
+          <!-- <ion-icon name="contact"></ion-icon> -->
+          <img class="gameAvatar" src="{{player.img}}" />
+        </div>
+      </ion-list>
+    </div>
+    <button ion-button block id="joinGame" class="primaryButton" (click)="joinGame()">Join Game</button>
+    <button ion-button block id="leaveGame" class="secondaryButton" (click)="leaveGame()">Leave Game</button>
+</ion-content>

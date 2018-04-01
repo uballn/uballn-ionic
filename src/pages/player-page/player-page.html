@@ -1,0 +1,60 @@
+
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Player Profile
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding class="bgImage">
+    <div class="profileBG"></div>
+    <div class="imageContainer">
+        <img [src]="playerIMG" />
+      </div>
+        
+    <h2><ion-input class="playerName" [(ngModel)]="playerName" disabled></ion-input></h2>
+  
+      <ion-grid class="playerDetailPrimary">
+          <ion-row>
+              <ion-col col-4>
+                  <img class="icon lightning" src="assets/img/icons-lightning.svg"/>
+                  <ion-input class="points" [(ngModel)]="playerPoints" disabled></ion-input>
+              </ion-col>
+              <ion-col col-4 class="middle">
+                <ion-input [(ngModel)]="playerPlayed" disabled></ion-input>
+              </ion-col>
+            <ion-col col-4>
+                <ion-input class="experience" [(ngModel)]="playerExperience" disabled></ion-input>
+                <img class="icon chart" src="assets/img/icons-chart.svg"/>
+              </ion-col>
+              </ion-row>
+        </ion-grid>
+  
+  
+      <ion-grid class="playerPageDetails">
+          <ion-row>
+              <ion-col col-3>
+                  Age
+                  <ion-input [(ngModel)]="playerAge" disabled></ion-input>
+              </ion-col>
+              <ion-col col-3>
+              Height
+                <ion-input [(ngModel)]="playerHeight" disabled></ion-input>
+              </ion-col>
+            <ion-col col-3>
+              Weight
+                <ion-input [(ngModel)]="playerWeight" disabled></ion-input>
+              </ion-col>
+            <ion-col col-3 class="sex">
+                Sex
+                  <ion-input [(ngModel)]="playerGender" disabled></ion-input>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <div class="buttonContainer">
+          <button ion-button id="friendButton" class="secondaryButton" full (click)="addFriend">Add Friend</button>
+        </div>
+  
+  </ion-content>          

@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      My Profile
+    </ion-title>
+    <button class="score" ion-button end (click)="goToSettings()">
+     <img class="navIcon" src="assets/img/icons-gear.svg"/>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="bgImage">
+  <div class="profileBG"></div>
+  <div class="imageContainer">
+    <img src="{{updateUserIMG}}" />
+  </div>
+
+  <h2><ion-input class="playerName" [(ngModel)]="name" disabled></ion-input></h2>
+
+    <ion-grid class="playerDetailPrimary">
+        <ion-row>
+            <ion-col col-4>
+                <img class="icon lightning" src="assets/img/icons-lightning.svg"/>
+                <ion-input class="points" [(ngModel)]="points" disabled></ion-input>
+            </ion-col>
+            <ion-col col-4 class="middle">
+              <ion-input [(ngModel)]="played" disabled></ion-input>
+            </ion-col>
+          <ion-col col-4>
+              <ion-input class="experience" [(ngModel)]="experience" disabled></ion-input>
+              <img class="icon chart" src="assets/img/icons-chart.svg"/>
+            </ion-col>
+            </ion-row>
+      </ion-grid>
+
+
+    <ion-grid class="playerPageDetails">
+        <ion-row>
+            <ion-col col-3>
+                Age <ion-input [(ngModel)]="age" disabled></ion-input>
+            </ion-col>
+            <ion-col col-3>
+            Height <ion-input [(ngModel)]="height" disabled></ion-input>
+            </ion-col>
+          <ion-col col-3>
+            Weight <ion-input [(ngModel)]="weight" disabled></ion-input>
+            </ion-col>
+          <ion-col col-3 class="sex">
+              Sex <ion-input [(ngModel)]="gender" disabled></ion-input>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+    
+      <ion-list class="players" style="background-color: none;">
+        <h5 (click)="goToConnect()">Friends ({{friendNum}})</h5>
+        <div class="playerContainer">
+          <div class="player" *ngFor="let friend of friendData| slice:0:4" id="squad-{{friend.squad}}">
+            <ion-icon name="contact" (click)="goToProfile(friend.uid)"></ion-icon>
+          </div>
+          <div class="player more" id="squad-false" (click)="goToConnect()">
+            <img src="assets/img/icons-more.svg"/>
+          </div>
+        </div>
+      </ion-list>
+
+</ion-content>

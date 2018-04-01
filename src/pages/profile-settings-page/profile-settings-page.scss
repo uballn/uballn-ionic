@@ -1,0 +1,35 @@
+page-profile-settings {
+  .disabled {
+    ion-item.item.item-block {
+      background: #111 !important;
+    }
+  }
+
+  .invalid {
+      border-bottom: 1px solid #ff0000;
+    }
+  .error-message {
+      margin-top: -15px;
+    }
+    .tabbar {
+      display: none;
+    }
+    ion-input.weight input,
+    ion-input.name input {
+      text-align: right;
+    }
+    ion-label {
+      opacity:0.5;
+    }
+    ion-select {
+      max-width: 80%;      
+      &.level{
+      max-width: none;
+      clear:both;
+      display:block;
+        ion-select {
+          max-width: 70%;
+        }
+    }
+  }
+}

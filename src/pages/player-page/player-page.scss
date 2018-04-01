@@ -1,0 +1,108 @@
+page-player {
+  input.text-input {
+    text-align:center;
+    font-size: 1.2em;
+}
+.experience {
+  width: 2em;
+  text-align:left;
+  max-width: 80px;
+  input {
+    text-align: left !important;
+  }
+}
+
+.profileBG {
+    background-image: url(/assets/img/profileBG.png);
+    background-position: 0 -200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    width:100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+  }
+.playerDetailPrimary {
+  ion-col {
+    height: 2em !important;
+    margin-bottom: 2em !important;
+    input {
+      text-align:center;
+    }
+    ion-input.playerName {
+      margin: -20px auto;
+    }
+    .playerName input.text-input {
+      text-align: center;
+      color:#fff;
+      opacity: 1 !important;
+    }
+  }
+  .icon {
+    width:30px;
+    margin-top: 10px;
+    &.lightning {
+      float: left;
+      margin-left: -10px;
+    }
+    &.chart {
+      float: left;
+    }
+  }
+  .points input, .icon.lightning {
+    float: right !important;
+    }
+    .experience input, .icon.chart {
+        float:right !important;
+    }
+  
+    .points, .experience {
+    width: calc(100% - 10px);
+      input.text-input {
+      width:2em;
+      float:left;
+    }
+    .points {
+      text-align: right;
+    }
+  }
+    font-size: 1.2em;
+  }
+  .playerPageDetails {
+    ion-col, ion-col input {
+      text-align: center;
+    }
+      ion-col input {
+        font-size: 2em;
+        color: #76a5ff;
+      }
+      .sex input:first-letter {
+          color:red;
+        }
+  }
+  .invalid {
+      border-bottom: 1px solid #ff0000;
+    }
+  .error-message {
+      margin-top: -15px;
+    }
+    ion-input.weight input,
+    ion-input.name input {
+      text-align: right;
+    }
+    ion-label {
+      opacity:0.5;
+    }
+    ion-select {
+      max-width: 80%;      
+      &.level{
+      max-width: none;
+      clear:both;
+      display:block;
+        ion-select {
+          max-width: 70%;
+        }
+    }
+  }
+    }

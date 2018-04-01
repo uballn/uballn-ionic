@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button start (click)="goToProfile()">
+      <ion-icon name="contact"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/img/uballn-logo.png" />
+    </ion-title>
+    <button ion-button end>
+        <img class="navIcon" src="assets/img/icons-message.svg"/>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content block>
+  <div padding>
+    <p class="scheduleIntro">Take control of the court and schedule your next game.</p>
+  </div>
+
+  <form [formGroup]="form" *ngIf="settingsReady">
+    <ion-list *ngIf="page == 'main'">
+      <ion-item>
+        <ion-label>when are you hoopin?</ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" formControlName="timeEnds"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>at what time?</ion-label>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="timeStarts"></ion-datetime>
+      </ion-item>
+
+      <!-- <div padding>
+        <button ion-button block class="secondaryButton">Add a location</button>
+      </div> -->
+
+      <ion-item>
+        <ion-label>on what court?</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item class="noBG private">
+        <ion-label>Private Game?</ion-label>
+        <ion-toggle formControlName="option1"></ion-toggle>
+      </ion-item>
+
+      <div padding>
+        <button ion-button block class="secondaryButton">Invite Friends</button>
+      </div>
+
+      <div padding>
+        <button ion-button block class="primaryButton">Let's Do It</button>
+      </div>
+    </ion-list>
+  </form>
+
+</ion-content>

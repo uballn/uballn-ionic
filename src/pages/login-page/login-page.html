@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/img/uballn-logo.png" />
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+    <div padding>
+      <button ion-button full class="facebookButton" block>Log In With Facebook</button>
+    <br>
+      <button ion-button full class="twitterButton" block>Log In With Twitter</button>
+    </div>
+
+    <p class="formText">or with your email</p>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input formControlName="email" type="email"
+        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message"
+      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines>
+      <p>Please enter a valid email.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input formControlName="password" type="password"
+        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message"
+      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines>
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>
+
+    <p class="formText small" (click)="resetPassword()">forgot password?</p>
+
+    <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">
+      Login
+    </button>
+
+    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+
+  </form>
+
+</ion-content>
