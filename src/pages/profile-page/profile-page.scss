@@ -19,28 +19,35 @@ ion-list.players {
   border-top: 1px solid #888;
   padding-top: 20px;
 }
+.imgWrapper {
+  width:50px;
+  height:50px;
+  img {
+    width:60px;
+    height:auto !important;
+  }
+}
 .player {
   float:left;
   font-size: 3em;
   width: calc(20% - 10px);
   margin-right:10px;
   position: relative;
+  max-width: 65px;
   &#squad-true:after {
     content:'';
     width:25px;
     height:25px;
     border-radius: 10px;
-    // background: #e6a000;
     background-image: url(/assets/img/icons-star.svg);
     display: block;
-    bottom:5px;
-    right:15px;
+    bottom:0;
+    right:5px;
     z-index: 10;
     position: absolute;
   }
   img {
-    height: 45px;
-    margin-top: 12px;
+    height: 50px;
   }
 }
 .profileBG {

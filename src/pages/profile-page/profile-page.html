@@ -55,7 +55,7 @@
         <h5 (click)="goToConnect()">Friends ({{friendNum}})</h5>
         <div class="playerContainer">
           <div class="player" *ngFor="let friend of friendData| slice:0:4" id="squad-{{friend.squad}}">
-            <ion-icon name="contact" (click)="goToProfile(friend.uid)"></ion-icon>
+            <span class="imgWrapper"><img [src]="friend.img" (click)="goToProfile(friend.uid)"></span>
           </div>
           <div class="player more" id="squad-false" (click)="goToConnect()">
             <img src="assets/img/icons-more.svg"/>

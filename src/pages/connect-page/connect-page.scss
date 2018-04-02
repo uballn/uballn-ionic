@@ -7,6 +7,9 @@ page-connect {
             text-transform: uppercase;
             color: #fff;
             line-height: 1em;
+            &.segment-activated{
+                border-bottom: 3px solid #fff;
+            }
         }
     }
     ion-list {
@@ -16,6 +19,10 @@ page-connect {
             text-align: center;
             margin: 0 auto;
             padding: 20px 0;
+        }
+        img {
+            width:40px;
+            height:auto;
         }
         div.squad-false  .item-inner {
             background-image: url(/assets/img/icons-plus.svg) !important;
@@ -28,6 +35,12 @@ page-connect {
             color:#fff;
             &:first-child,&:last-child {
                 border: none !important;
+            }
+            &.friends .item-inner {
+                background-image: none;
+            }
+            &.suggested .item-inner {
+                background-image: url(/assets/img/icons-plus.svg) !important;
             }
             .item-inner{
                 border-bottom: none !important;

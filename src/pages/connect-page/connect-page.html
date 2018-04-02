@@ -21,23 +21,23 @@
       
       <div [ngSwitch]="connect">
         <ion-list *ngSwitchCase="'friends'">
-            <button ion-item *ngFor="let friend of friends" (click)="itemSelected(friend)">
-                {{ friend.username }}
+            <button ion-item *ngFor="let friend of friends" class="friends" (click)="goToProfile(friend.uid)">
+                <span class="imgWrapper"><img [src]="friend.img" /></span> {{ friend.username }}
               </button>  
         </ion-list>
             
         <ion-list *ngSwitchCase="'squad'">
           <h5>Add up to 5 friends and get notified when each other hits the court.</h5>
           <div *ngFor="let friend of friends" class="squad-{{friend.squad}}">
-            <button ion-item (click)="itemSelected(friend)">
-                    {{ friend.username }}
+            <button ion-item (click)="goToProfile(friend.uid)">
+                <span class="imgWrapper"><img [src]="friend.img" /></span>  {{ friend.username }}
             </button>
           </div>
         </ion-list>
 
         <ion-list *ngSwitchCase="'suggested'">
-          <button ion-item *ngFor="let friend of friends" (click)="itemSelected(friend)">
-              {{ friend.username }}
+          <button ion-item *ngFor="let user of users" class="suggested" (click)="goToProfile(user.uid)">
+              <span class="imgWrapper"><img [src]="user.img" /></span>  {{ user.username }}
           </button>  
         </ion-list>
       </div>

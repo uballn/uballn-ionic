@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import * as $ from 'jquery';
 
 @IonicPage()
@@ -31,10 +32,14 @@ export class ProfilePage {
   friends: any;
   friendData: any[];
   friendNum:any;
+  users: any;
+  userData: any;
+  allUsers: any;
 
   constructor(
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
+    public afd: AngularFireDatabase,
     public storage: Storage,
     public toastCtrl: ToastController) {
 
@@ -53,9 +58,42 @@ export class ProfilePage {
       }
     })
 
+    this.storage.get('allUsers').then((val) => {
+      this.users = val;
+
+      this.userData = [];
+      for (var key in this.users) {
+        this.userData.push(this.users[key]);
+      }
+      this.storage.set('userData',this.userData);
+  })
+
+
   }
 
   ionViewWillEnter() {
+
+    this.uid = localStorage.getItem('uid');
+
+    this.afd.list('/users/'+this.uid, { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          localStorage.setItem(snapshot.key, snapshot.val());
+          if (snapshot.key === 'friends'){
+            this.storage.set('myFriends', snapshot.val());
+          }
+        });
+    })
+
+    this.allUsers = [];
+    this.afd.list('/users', { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+            this.allUsers.push(snapshot.val());
+        });
+        this.storage.set('allUsers',this.allUsers);
+      })
+
     if (localStorage.getItem('gender') === 'male'){
       this.gender = 'M';
     }else {
