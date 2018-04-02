@@ -3,6 +3,7 @@ import { FirebaseService } from './../../providers/firebase-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 
@@ -31,10 +32,13 @@ export class ProfilePage {
   friends: any;
   friendData: any[];
   friendNum:any;
+  userData: any;
+  users: any;
 
   constructor(
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
+    public afd: AngularFireDatabase,
     public storage: Storage,
     public toastCtrl: ToastController) {
 
@@ -52,6 +56,15 @@ export class ProfilePage {
         $('.playerContainer.more').hide();
       }
     })
+
+    this.afd.list('/users', { preserveSnapshot: true})
+          .subscribe(snapshots=>{
+            this.userData = [];
+              snapshots.forEach(snapshot => {
+                this.userData.push(snapshot.val());
+              });
+              this.storage.set('userData',this.userData);
+          })
 
   }
 

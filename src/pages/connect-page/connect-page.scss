@@ -7,6 +7,9 @@ page-connect {
             text-transform: uppercase;
             color: #fff;
             line-height: 1em;
+            &.segment-activated {
+                border-bottom: 3px solid #fff;
+            }
         }
     }
     ion-list {
@@ -29,7 +32,13 @@ page-connect {
             &:first-child,&:last-child {
                 border: none !important;
             }
-            .item-inner{
+            &.friends .item-inner {
+                background-image: none;
+            }
+            &.suggested .item-inner {
+                background-image: url(../assets/img/icons-plus.svg);
+            }
+            .item-inner {
                 border-bottom: none !important;
             }
         }

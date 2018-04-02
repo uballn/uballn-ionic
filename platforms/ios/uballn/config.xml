@@ -36,7 +36,7 @@
     <name>uballn</name>
     <description>Pickup basketball.</description>
     <author email="info@uballn.co" href="http://ionicframework.com/">uballn Team</author>
-    <content original-src="index.html" src="http://10.153.226.122:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

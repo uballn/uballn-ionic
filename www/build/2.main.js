@@ -10461,7 +10461,7 @@ var PlayerPage = (function () {
             snapshots.forEach(function (snapshot) {
                 sessionStorage.setItem('CurrPlayer.' + snapshot.key, snapshot.val());
             });
-            _this.playerName = sessionStorage.getItem('CurrPlayer.alias');
+            _this.playerName = sessionStorage.getItem('CurrPlayer.username');
             _this.playerExperience = sessionStorage.getItem('CurrPlayer.experience');
             _this.playerHeight = sessionStorage.getItem('CurrPlayer.height');
             _this.playerWeight = sessionStorage.getItem('CurrPlayer.weight');
@@ -10498,13 +10498,10 @@ PlayerPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-player',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/'\n<ion-header>\n    <ion-navbar>\n      <ion-title>\n        Player Profile\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding class="bgImage">\n    <div class="profileBG"></div>\n    <div class="imageContainer">\n        <img [src]="playerIMG" />\n      </div>\n        \n    <h2><ion-input class="playerName" [(ngModel)]="playerName" disabled></ion-input></h2>\n  \n      <ion-grid class="playerDetailPrimary">\n          <ion-row>\n              <ion-col col-4>\n                  <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                  <ion-input class="points" [(ngModel)]="playerPoints" disabled></ion-input>\n              </ion-col>\n              <ion-col col-4 class="middle">\n                <ion-input [(ngModel)]="playerPlayed" disabled></ion-input>\n              </ion-col>\n            <ion-col col-4>\n                <ion-input class="experience" [(ngModel)]="playerExperience" disabled></ion-input>\n                <img class="icon chart" src="assets/img/icons-chart.svg"/>\n              </ion-col>\n              </ion-row>\n        </ion-grid>\n  \n  \n      <ion-grid class="playerPageDetails">\n          <ion-row>\n              <ion-col col-3>\n                  Age\n                  <ion-input [(ngModel)]="playerAge" disabled></ion-input>\n              </ion-col>\n              <ion-col col-3>\n              Height\n                <ion-input [(ngModel)]="playerHeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3>\n              Weight\n                <ion-input [(ngModel)]="playerWeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3 class="sex">\n                Sex\n                  <ion-input [(ngModel)]="playerGender" disabled></ion-input>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n\n        <div class="buttonContainer">\n          <button ion-button id="friendButton" class="secondaryButton" full (click)="addFriend">Add Friend</button>\n        </div>\n  \n  </ion-content>          '/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
 ], PlayerPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=player-page.js.map
 
 /***/ })

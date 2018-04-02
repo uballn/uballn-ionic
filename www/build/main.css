@@ -25134,6 +25134,22 @@ ion-navbar.toolbar {
   }
 }
 
+ion-app .imgContainer {
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+  border-radius: 30px;
+  float: left;
+  margin-right: 20px;
+  border-radius: 30px;
+  border: 1px solid #fff;
+}
+
+ion-app .imgContainer .imgContainer img {
+  height: 30px;
+  width: auto;
+}
+
 ion-app ion-navbar.toolbar {
   min-height: 75px;
 }
@@ -25352,6 +25368,10 @@ page-connect ion-segment.segment .segment-button {
   line-height: 1em;
 }
 
+page-connect ion-segment.segment .segment-button.segment-activated {
+  border-bottom: 3px solid #fff;
+}
+
 page-connect ion-list h5 {
   width: 80%;
   font-size: 1em;
@@ -25361,11 +25381,11 @@ page-connect ion-list h5 {
 }
 
 page-connect ion-list div.squad-false .item-inner {
-  background-image: url(/assets/img/icons-plus.svg) !important;
+  background-image: url(../assets/img/icons-plus.svg) !important;
 }
 
 page-connect ion-list div.squad-true .item-inner {
-  background-image: url(/assets/img/icons-minus.svg) !important;
+  background-image: url(../assets/img/icons-minus.svg) !important;
 }
 
 page-connect ion-list button.item-block {
@@ -25375,6 +25395,14 @@ page-connect ion-list button.item-block {
 
 page-connect ion-list button.item-block:first-child, page-connect ion-list button.item-block:last-child {
   border: none !important;
+}
+
+page-connect ion-list button.item-block.friends .item-inner {
+  background-image: none;
+}
+
+page-connect ion-list button.item-block.suggested .item-inner {
+  background-image: url(../assets/img/icons-plus.svg);
 }
 
 page-connect ion-list button.item-block .item-inner {
@@ -25513,7 +25541,7 @@ page-player .experience input {
 }
 
 page-player .profileBG {
-  background-image: url(/assets/img/profileBG.png);
+  background-image: url(../assets/img/profileBG.png);
   background-position: 0 -200px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -25664,7 +25692,7 @@ page-profile-page .player#squad-true:after {
   width: 25px;
   height: 25px;
   border-radius: 10px;
-  background-image: url(/assets/img/icons-star.svg);
+  background-image: url(../assets/img/icons-star.svg);
   display: block;
   bottom: 5px;
   right: 15px;
@@ -25674,11 +25702,20 @@ page-profile-page .player#squad-true:after {
 
 page-profile-page .player img {
   height: 45px;
-  margin-top: 12px;
+}
+
+page-profile-page .imgContainer {
+  width: 45px;
+  height: 45px;
+}
+
+page-profile-page .imgContainer img {
+  height: auto;
+  width: auto;
 }
 
 page-profile-page .profileBG {
-  background-image: url(/assets/img/profileBG.png);
+  background-image: url(../assets/img/profileBG.png);
   background-position: 0 -200px;
   background-repeat: no-repeat;
   background-size: cover;

@@ -40,8 +40,15 @@ ion-list.players {
   }
   img {
     height: 45px;
-    margin-top: 12px;
   }
+}
+.imgContainer {
+  width: 45px;
+  height:45px;
+    img {
+      height:auto;
+      width: auto;
+    }
 }
 .profileBG {
     background-image: url(../assets/img/profileBG.png);

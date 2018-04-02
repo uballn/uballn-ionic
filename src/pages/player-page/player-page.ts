@@ -50,7 +50,7 @@ export class PlayerPage {
           snapshots.forEach(snapshot => {
             sessionStorage.setItem('CurrPlayer.'+snapshot.key, snapshot.val());
           });
-          this.playerName = sessionStorage.getItem('CurrPlayer.alias');
+          this.playerName = sessionStorage.getItem('CurrPlayer.username');
           this.playerExperience = sessionStorage.getItem('CurrPlayer.experience');
           this.playerHeight = sessionStorage.getItem('CurrPlayer.height');
           this.playerWeight = sessionStorage.getItem('CurrPlayer.weight');
