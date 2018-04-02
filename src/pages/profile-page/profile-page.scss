@@ -31,7 +31,7 @@ ion-list.players {
     height:25px;
     border-radius: 10px;
     // background: #e6a000;
-    background-image: url(/assets/img/icons-star.svg);
+    background-image: url(../assets/img/icons-star.svg);
     display: block;
     bottom:5px;
     right:15px;
@@ -44,7 +44,7 @@ ion-list.players {
   }
 }
 .profileBG {
-    background-image: url(/assets/img/profileBG.png);
+    background-image: url(../assets/img/profileBG.png);
     background-position: 0 -200px;
     background-repeat: no-repeat;
     background-size: cover;
