@@ -79,6 +79,13 @@ export class PlayerPage {
     }
 
     ionViewDidLeave() {
+      let uid = localStorage.getItem('uid');
       sessionStorage.clear();
+      this.firebaseService.updateFriends(uid);
+    }
+
+    addRemoveFriend(){
+      let uid = sessionStorage.getItem('CurrPlayer.uid');
+      this.firebaseService.addRemoveFriend(uid);
     }
 }

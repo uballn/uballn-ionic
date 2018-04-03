@@ -18,7 +18,6 @@ import 'rxjs/add/operator/map';
 export class LoginPage {
   public loginForm: FormGroup;
   loading: Loading;
-  public allUsers: any[];
   userData: any;
   currUserFriends: any;
 
@@ -58,6 +57,15 @@ export class LoginPage {
                   this.storage.set('myFriends', snapshot.val());
                 }
               });
+          })
+
+          this.afd.list('/users', { preserveSnapshot: true})
+          .subscribe(snapshots=>{
+            this.userData = [];
+              snapshots.forEach(snapshot => {
+                  this.userData.push(snapshot.val());
+              });
+              this.storage.set('allUsers',this.userData);
           })
 
           if (localStorage.getItem('img') == null){

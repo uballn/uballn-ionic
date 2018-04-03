@@ -25,6 +25,7 @@ ion-list.players {
   width: calc(20% - 10px);
   margin-right:10px;
   position: relative;
+  max-width: 70px;
   &#squad-true:after {
     content:'';
     width:25px;

@@ -3,7 +3,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
+import * as $ from 'jquery';
 
 @Injectable()
 export class FirebaseService {
@@ -20,7 +22,8 @@ export class FirebaseService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    public afd: AngularFireDatabase) {
+    public afd: AngularFireDatabase,
+    private storage: Storage) {
     this.authState = afAuth.authState;
 
     this.authState.subscribe(user => {
@@ -123,6 +126,28 @@ export class FirebaseService {
     });
   }
 
+  addRemoveFriend(uid) {
+    if ($(event.target).hasClass('trueFriends')){
+      $('#friendButton').removeClass('trueFriends');
+      $('#friendButton').html('Add Friend');
+      return this.afd.object('/users/' + this.user.uid+'/friends/'+uid).update({
+        img: null,
+        squad: null,
+        uid: null,
+        username: null
+      })
+    } else {
+      $('#friendButton').addClass('trueFriends');
+      $('#friendButton').html('Unfriend');
+      return this.afd.object('/users/' + this.user.uid+'/friends/'+uid).update({
+        img: sessionStorage.getItem('CurrPlayer.img'),
+        squad: 'false',
+        uid: sessionStorage.getItem('CurrPlayer.uid'),
+        username: sessionStorage.getItem('CurrPlayer.username')
+      })
+    }
+  }
+
   joinGame(gameID) {
     this.playerID = localStorage.getItem('uid');
     this.gameID = sessionStorage.getItem('gameID');
@@ -147,6 +172,18 @@ export class FirebaseService {
       experience: null,
       img: null
     });
+  }
+
+  updateFriends(uid){
+    this.afd.list('/users/'+uid, { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          localStorage.setItem(snapshot.key, snapshot.val());
+          if (snapshot.key === 'friends'){
+            this.storage.set('myFriends', snapshot.val());
+          }
+        });
+    })
   }
 
 }

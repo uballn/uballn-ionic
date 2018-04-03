@@ -10,9 +10,9 @@
           <ion-segment-button value="friends">
             Friends
           </ion-segment-button>
-          <ion-segment-button value="squad">
+          <!-- <ion-segment-button value="squad">
             Squad
-          </ion-segment-button>
+          </ion-segment-button> -->
           <ion-segment-button value="suggested">
             Suggested
           </ion-segment-button>
@@ -20,16 +20,16 @@
       </div>
       
       <div [ngSwitch]="connect">
-        <ion-list *ngSwitchCase="'friends'">
+       <!--  <ion-list *ngSwitchCase="'friends'">
             <button ion-item class="friends" *ngFor="let friend of friends" (click)="goToProfile(friend.uid)">
               <span class="imgContainer"><img [src]="friend.img"/></span>{{ friend.username }}
               </button>  
-        </ion-list>
+        </ion-list> -->
             
-        <ion-list *ngSwitchCase="'squad'">
-          <h5>Add up to 5 friends and get notified when each other hits the court.</h5>
+        <ion-list *ngSwitchCase="'friends'">
+          <!-- <h5>Add up to 5 friends and get notified when each other hits the court.</h5> -->
           <div *ngFor="let friend of friends" class="squad-{{friend.squad}}">
-            <button ion-item class="squad" (click)="itemSelected(friend.uid)">
+            <button ion-item class="squad" (click)="goToProfile(friend.uid)">
               <span class="imgContainer"><img [src]="friend.img"/></span>{{ friend.username }}
             </button>
           </div>

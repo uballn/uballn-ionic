@@ -25685,6 +25685,7 @@ page-profile-page .player {
   width: calc(20% - 10px);
   margin-right: 10px;
   position: relative;
+  max-width: 70px;
 }
 
 page-profile-page .player#squad-true:after {
