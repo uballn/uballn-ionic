@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,7 @@ export class ConnectPage {
   constructor(
     public navCtrl: NavController,
     public storage: Storage,
+    public afd: AngularFireDatabase,
     public navParams: NavParams) {
 
       this.connect = 'friends';
@@ -24,7 +26,6 @@ export class ConnectPage {
       this.storage.get('friendData').then((val) => {
         this.friends = val;
       })
-
       this.storage.get('allUsers').then((val) => {
         this.users = val;
   

@@ -87,6 +87,7 @@ var ProfilePage = (function () {
             if (_this.friendNum < 4) {
                 __WEBPACK_IMPORTED_MODULE_5_jquery__('.playerContainer.more').hide();
             }
+            _this.storage.set('userData', _this.userData);
         });
         this.afd.list('/users', { preserveSnapshot: true })
             .subscribe(function (snapshots) {
@@ -98,6 +99,25 @@ var ProfilePage = (function () {
         });
     }
     ProfilePage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.uid = localStorage.getItem('uid');
+        this.afd.list('/users/' + this.uid, { preserveSnapshot: true })
+            .subscribe(function (snapshots) {
+            snapshots.forEach(function (snapshot) {
+                localStorage.setItem(snapshot.key, snapshot.val());
+                if (snapshot.key === 'friends') {
+                    _this.storage.set('myFriends', snapshot.val());
+                }
+            });
+        });
+        this.allUsers = [];
+        this.afd.list('/users', { preserveSnapshot: true })
+            .subscribe(function (snapshots) {
+            snapshots.forEach(function (snapshot) {
+                _this.allUsers.push(snapshot.val());
+            });
+            _this.storage.set('allUsers', _this.allUsers);
+        });
         if (localStorage.getItem('gender') === 'male') {
             this.gender = 'M';
         }

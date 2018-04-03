@@ -24,6 +24,16 @@ ion-app{
   ion-list {
     position:relative;
   }
+  .imgWrapper {
+    width:30px;
+    height:30px;
+    overflow: hidden;
+    border-radius: 30px;
+    float: left;
+    margin-right: 20px;
+    border: 1px solid #fff;
+}
+
   .toolbar-title {
     color:#fff;
     text-transform: uppercase;
@@ -174,9 +184,6 @@ ion-app{
         width: calc(50% - 5px);
         &:first-child {
           margin-right: 10px;
-        }
-        &:last-child {
-          // margin-left: 15px;
         }
       }
     }

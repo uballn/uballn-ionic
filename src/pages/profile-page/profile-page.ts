@@ -34,6 +34,7 @@ export class ProfilePage {
   friendNum:any;
   userData: any;
   users: any;
+  allUsers: any;
 
   constructor(
     public navCtrl: NavController,
@@ -69,6 +70,28 @@ export class ProfilePage {
   }
 
   ionViewWillEnter() {
+
+    this.uid = localStorage.getItem('uid');
+
+    this.afd.list('/users/'+this.uid, { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          localStorage.setItem(snapshot.key, snapshot.val());
+          if (snapshot.key === 'friends'){
+            this.storage.set('myFriends', snapshot.val());
+          }
+        });
+    })
+
+    this.allUsers = [];
+    this.afd.list('/users', { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+            this.allUsers.push(snapshot.val());
+        });
+        this.storage.set('allUsers',this.allUsers);
+      })
+
     if (localStorage.getItem('gender') === 'male'){
       this.gender = 'M';
     }else {

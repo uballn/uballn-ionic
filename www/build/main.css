@@ -25162,6 +25162,16 @@ ion-app ion-list {
   position: relative;
 }
 
+ion-app .imgWrapper {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 30px;
+  float: left;
+  margin-right: 20px;
+  border: 1px solid #fff;
+}
+
 ion-app .toolbar-title {
   color: #fff;
   text-transform: uppercase;
@@ -25378,6 +25388,11 @@ page-connect ion-list h5 {
   text-align: center;
   margin: 0 auto;
   padding: 20px 0;
+}
+
+page-connect ion-list img {
+  width: 40px;
+  height: auto;
 }
 
 page-connect ion-list div.squad-false .item-inner {
@@ -25679,6 +25694,16 @@ page-profile-page ion-list.players {
   padding-top: 20px;
 }
 
+page-profile-page .imgWrapper {
+  width: 50px;
+  height: 50px;
+}
+
+page-profile-page .imgWrapper img {
+  width: 60px;
+  height: auto !important;
+}
+
 page-profile-page .player {
   float: left;
   font-size: 3em;
@@ -25695,8 +25720,8 @@ page-profile-page .player#squad-true:after {
   border-radius: 10px;
   background-image: url(../assets/img/icons-star.svg);
   display: block;
-  bottom: 5px;
-  right: 15px;
+  bottom: 0;
+  right: 5px;
   z-index: 10;
   position: absolute;
 }
