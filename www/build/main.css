@@ -25641,10 +25641,13 @@ page-player .playerDetailPrimary {
 page-player .playerDetailPrimary ion-col {
   height: 2em !important;
   margin-bottom: 2em !important;
+  padding: 0;
 }
 
 page-player .playerDetailPrimary ion-col input {
   text-align: center;
+  text-transform: capitalize;
+  font-size: 1.15em;
 }
 
 page-player .playerDetailPrimary ion-col ion-input.playerName {
@@ -25698,11 +25701,6 @@ page-player .playerPageDetails ion-col, page-player .playerPageDetails ion-col i
 
 page-player .playerPageDetails ion-col input {
   font-size: 2em;
-  color: #76a5ff;
-}
-
-page-player .playerPageDetails .sex input:first-letter {
-  color: red;
 }
 
 page-player .invalid {
@@ -25838,6 +25836,7 @@ page-profile-page .playerDetailPrimary {
 page-profile-page .playerDetailPrimary ion-col {
   height: 2em !important;
   margin: 0 auto 2em !important;
+  padding: 0;
 }
 
 page-profile-page .playerDetailPrimary ion-col input {
@@ -25897,10 +25896,6 @@ page-profile-page .playerPageDetails ion-col, page-profile-page .playerPageDetai
 
 page-profile-page .playerPageDetails ion-col input {
   font-size: 2em;
-}
-
-page-profile-page .playerPageDetails .sex input:first-letter {
-  color: red;
 }
 
 page-profile-page .invalid {

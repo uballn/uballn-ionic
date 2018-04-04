@@ -27,8 +27,11 @@ page-player {
   ion-col {
     height: 2em !important;
     margin-bottom: 2em !important;
+    padding:0;
     input {
       text-align:center;
+      text-transform: capitalize;
+      font-size: 1.15em;
     }
     ion-input.playerName {
       margin: -20px auto;
@@ -75,11 +78,7 @@ page-player {
     }
       ion-col input {
         font-size: 2em;
-        color: #76a5ff;
       }
-      .sex input:first-letter {
-          color:red;
-        }
   }
   .invalid {
       border-bottom: 1px solid #ff0000;
