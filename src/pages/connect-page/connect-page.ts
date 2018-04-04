@@ -23,7 +23,7 @@ export class ConnectPage {
     public storage: Storage,
     public afd: AngularFireDatabase,
     public navParams: NavParams) {
-
+  
       this.connect = 'friends';
 
       this.storage.get('friendData').then((val) => {
@@ -43,11 +43,15 @@ export class ConnectPage {
   }
 
   ionViewDidLoad() {
-    
   }
 
   goToProfile(uid){
     this.navCtrl.push('PlayerPage', uid);
+  }
+
+  showContacts(){
+    $('.secondaryButton').hide();
+    $('.contactList').show();
   }
 
 }

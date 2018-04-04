@@ -64,7 +64,8 @@
         </ion-list>
 
          <ion-list *ngSwitchCase="'contacts'">
-            <div *ngFor="let user of userData">
+           <button ion-button class="secondaryButton" (click)="showContacts()">Allow Access to Contacts</button>
+            <div *ngFor="let user of userData" class="contactList" style="display:none;">
                 <ion-grid>
                     <ion-row>
                       <ion-col col-11>

@@ -25382,6 +25382,11 @@ page-connect .item-inner {
   background-image: none !important;
 }
 
+page-connect .secondaryButton {
+  margin: 0 auto;
+  display: block;
+}
+
 page-connect ion-segment.segment {
   border-bottom: 1px solid #888;
 }
@@ -25837,6 +25842,8 @@ page-profile-page .playerDetailPrimary ion-col {
 
 page-profile-page .playerDetailPrimary ion-col input {
   text-align: center;
+  text-transform: capitalize;
+  font-size: 1.15em;
 }
 
 page-profile-page .playerDetailPrimary ion-col ion-input.playerName {

@@ -86,6 +86,8 @@ ion-list.players {
     margin: 0 auto 2em !important;
     input {
       text-align:center;
+      text-transform: capitalize;
+      font-size: 1.15em;
     }
     ion-input.playerName {
       margin: -20px auto;

@@ -2,6 +2,10 @@ page-connect {
     .item-inner {
         background-image: none !important;
     }
+    .secondaryButton {
+        margin: 0 auto;
+        display: block;
+    }
 
     ion-segment.segment {
         border-bottom: 1px solid #888;
