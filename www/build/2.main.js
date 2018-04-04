@@ -50,6 +50,8 @@ CourtsPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mapStyle__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,42 +65,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var CourtsPage = (function () {
-    function CourtsPage(navCtrl, geo) {
+    // myPlaces = [
+    //     {'name':'24HrFitness - Little Elm',
+    //       'lat': '33.175896',
+    //       'lng': '-96.8911934'
+    //     },
+    //     {'name': '24HrFitness - Frisco',
+    //       'lat': '33.1113431',
+    //       'lng': '-96.8095955'
+    //     },
+    //     {'name':'2424HrFitness - Carrollton',
+    //       'lat': '32.9856774',
+    //       'lng': '-96.8581071'
+    //     },
+    //     {'name':'24HrFitness - Plano',
+    //       'lat': '33.0259727',
+    //       'lng': '-96.7875141'
+    //     },
+    //     {'name':'24HrFitness - North Richland Hills',
+    //       'lat': '32.8420716',
+    //       'lng': '-97.24122919999999'
+    //     },
+    //     {'name':'24Fitness - Lewisville',
+    //       'lat':'33.0650424',
+    //       'lng': '-96.8844226'
+    //     },
+    //     {'name':'24HrFitness - Grapevine',
+    //       'lat':'32.9412612',
+    //       'lng':'-97.1106216'
+    //     }
+    //   ]
+    function CourtsPage(navCtrl, geo, storage, afd) {
         this.navCtrl = navCtrl;
         this.geo = geo;
-        this.myPlaces = [
-            { 'name': '24HrFitness - Little Elm',
-                'lat': '33.175896',
-                'lng': '-96.8911934'
-            },
-            { 'name': '24HrFitness - Frisco',
-                'lat': '33.1113431',
-                'lng': '-96.8095955'
-            },
-            { 'name': '2424HrFitness - Carrollton',
-                'lat': '32.9856774',
-                'lng': '-96.8581071'
-            },
-            { 'name': '24HrFitness - Plano',
-                'lat': '33.0259727',
-                'lng': '-96.7875141'
-            },
-            { 'name': '24HrFitness - North Richland Hills',
-                'lat': '32.8420716',
-                'lng': '-97.24122919999999'
-            },
-            { 'name': '24Fitness - Lewisville',
-                'lat': '33.0650424',
-                'lng': '-96.8844226'
-            },
-            { 'name': '24HrFitness - Grapevine',
-                'lat': '32.9412612',
-                'lng': '-97.1106216'
-            }
-        ];
+        this.storage = storage;
+        this.afd = afd;
     }
-    CourtsPage.prototype.ionViewDidEnter = function () {
+    CourtsPage.prototype.ionViewWillEnter = function () {
         this.loadMap();
     };
     CourtsPage.prototype.goToProfile = function () {
@@ -108,31 +114,32 @@ var CourtsPage = (function () {
         // this.geo.getCurrentPosition().then((resp) => {
         // let lat = JSON.stringify(resp.coords.latitude);
         // let lng = JSON.stringify(resp.coords.longitude);
+        var _this = this;
         // let watch = this.geo.watchPosition();
         // watch.subscribe((data) => {
         // data can be a set of coordinates, or an error (if an error occurred).
         // data.coords.latitude
         // data.coords.longitude
         // });
-        var latLng = new google.maps.LatLng('33.2083057', '-96.8940848');
-        var mapOptions = {
-            center: latLng,
-            zoom: 10,
-            scroll: true,
-            rotate: true,
-            mapTypeControl: false,
-            fullscreenControl: false,
-            styles: __WEBPACK_IMPORTED_MODULE_1__mapStyle__["a" /* mapStyle */],
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        for (var _i = 0, _a = this.myPlaces; _i < _a.length; _i++) {
-            var place = _a[_i];
-            this.addMarker(place);
-        }
-        // }).catch((error) => {
-        //   console.log('Error getting location', error);
-        // });
+        this.storage.get('courts').then(function (val) {
+            _this.myPlaces = val;
+            var latLng = new google.maps.LatLng('33.2083057', '-96.8940848');
+            var mapOptions = {
+                center: latLng,
+                zoom: 10,
+                scroll: true,
+                rotate: true,
+                mapTypeControl: false,
+                fullscreenControl: false,
+                styles: __WEBPACK_IMPORTED_MODULE_1__mapStyle__["a" /* mapStyle */],
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            _this.map = new google.maps.Map(_this.mapElement.nativeElement, mapOptions);
+            for (var _i = 0, _a = _this.myPlaces; _i < _a.length; _i++) {
+                var place = _a[_i];
+                _this.addMarker(place);
+            }
+        });
     };
     CourtsPage.prototype.addMarker = function (place) {
         var position = new google.maps.LatLng(place.lat, place.lng);
@@ -147,7 +154,7 @@ var CourtsPage = (function () {
             icon: markerIcon,
             position: position
         });
-        var markerInfo = '<b style="color:#333">' + place.name + '</b>';
+        var markerInfo = '<img class="mapImage" src="' + place.img + '" /><b>' + place.name + '</b><p>' + place.address + '</p>';
         this.addInfoWindow(marker, markerInfo);
     };
     CourtsPage.prototype.addInfoWindow = function (marker, markerInfo) {
@@ -163,17 +170,17 @@ var CourtsPage = (function () {
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('map'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* ElementRef */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* ElementRef */]) === "function" && _a || Object)
 ], CourtsPage.prototype, "mapElement", void 0);
 CourtsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'courts-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start (click)="goToProfile()">\n      <ion-icon name="contact"></ion-icon>\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end>\n        <img class="navIcon" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _e || Object])
 ], CourtsPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=courts-page.js.map
 
 /***/ }),

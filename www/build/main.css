@@ -25481,6 +25481,20 @@ page-connect ion-list button.item-block .item-inner {
   height: 100%;
 }
 
+.ios courts-page .mapImage, .md courts-page .mapImage {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.ios courts-page b, .ios courts-page p, .md courts-page b, .md courts-page p {
+  max-width: 200px;
+  color: #333;
+  margin: 0;
+}
+
 page-game .gameBG {
   position: absolute;
   top: 0;

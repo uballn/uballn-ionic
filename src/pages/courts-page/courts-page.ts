@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { mapStyle } from './mapStyle';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { Storage } from '@ionic/storage';
 declare var google;
 
 @IonicPage()
@@ -15,47 +17,51 @@ export class CourtsPage {
   map: any;
   myLocation: any;
   google: any;
+  myPlaces: any;
 
-  myPlaces = [
-      {'name':'24HrFitness - Little Elm',
-        'lat': '33.175896',
-        'lng': '-96.8911934'
-      },
-      {'name': '24HrFitness - Frisco',
-        'lat': '33.1113431',
-        'lng': '-96.8095955'
-      },
-      {'name':'2424HrFitness - Carrollton',
-        'lat': '32.9856774',
-        'lng': '-96.8581071'
-      },
-      {'name':'24HrFitness - Plano',
-        'lat': '33.0259727',
-        'lng': '-96.7875141'
-      },
-      {'name':'24HrFitness - North Richland Hills',
-        'lat': '32.8420716',
-        'lng': '-97.24122919999999'
-      },
-      {'name':'24Fitness - Lewisville',
-        'lat':'33.0650424',
-        'lng': '-96.8844226'
-      },
-      {'name':'24HrFitness - Grapevine',
-        'lat':'32.9412612',
-        'lng':'-97.1106216'
-      }
-    ]
+  // myPlaces = [
+  //     {'name':'24HrFitness - Little Elm',
+  //       'lat': '33.175896',
+  //       'lng': '-96.8911934'
+  //     },
+  //     {'name': '24HrFitness - Frisco',
+  //       'lat': '33.1113431',
+  //       'lng': '-96.8095955'
+  //     },
+  //     {'name':'2424HrFitness - Carrollton',
+  //       'lat': '32.9856774',
+  //       'lng': '-96.8581071'
+  //     },
+  //     {'name':'24HrFitness - Plano',
+  //       'lat': '33.0259727',
+  //       'lng': '-96.7875141'
+  //     },
+  //     {'name':'24HrFitness - North Richland Hills',
+  //       'lat': '32.8420716',
+  //       'lng': '-97.24122919999999'
+  //     },
+  //     {'name':'24Fitness - Lewisville',
+  //       'lat':'33.0650424',
+  //       'lng': '-96.8844226'
+  //     },
+  //     {'name':'24HrFitness - Grapevine',
+  //       'lat':'32.9412612',
+  //       'lng':'-97.1106216'
+  //     }
+  //   ]
 
 
   constructor(
     public navCtrl: NavController,
-    public geo: Geolocation) {
-  }
+    public geo: Geolocation,
+    public storage: Storage,
+    public afd: AngularFireDatabase) {
+ 
+    }
 
-  ionViewDidEnter(){
-    this.loadMap();
-  }
+    ionViewWillEnter(){
+        this.loadMap();
+    }
 
   goToProfile() {
     this.navCtrl.push('ProfilePage');
@@ -72,6 +78,9 @@ export class CourtsPage {
      // data.coords.latitude
      // data.coords.longitude
     // });
+
+    this.storage.get('courts').then((val) => {
+      this.myPlaces = val;
 
     let latLng = new google.maps.LatLng('33.2083057','-96.8940848');
 
@@ -91,10 +100,7 @@ export class CourtsPage {
     for (let place of this.myPlaces) {
       this.addMarker(place);
     }
-
-    // }).catch((error) => {
-    //   console.log('Error getting location', error);
-    // });
+  })
   }
 
 
@@ -114,7 +120,7 @@ export class CourtsPage {
       position: position
     });
 
-    let markerInfo = '<b style="color:#333">' + place.name + '</b>';
+    let markerInfo = '<img class="mapImage" src="'+place.img+'" /><b>' + place.name + '</b><p>'+place.address+'</p>';
     this.addInfoWindow(marker, markerInfo);
   }
 

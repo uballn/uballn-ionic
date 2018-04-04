@@ -20,6 +20,7 @@ export class LoginPage {
   loading: Loading;
   userData: any;
   currUserFriends: any;
+  myPlaces: any;
 
   constructor(
     public navCtrl: NavController,
@@ -57,6 +58,15 @@ export class LoginPage {
                   this.storage.set('myFriends', snapshot.val());
                 }
               });
+          })
+
+          this.afd.list('/courts', { preserveSnapshot: true})
+          .subscribe(snapshots=>{
+            this.myPlaces = [];
+              snapshots.forEach(snapshot => {
+                  this.myPlaces.push(snapshot.val());
+              });
+              this.storage.set('courts',this.myPlaces);
           })
 
           this.afd.list('/users', { preserveSnapshot: true})

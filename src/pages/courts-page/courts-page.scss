@@ -8,5 +8,17 @@
        width: 100%;
        height: 100%;
      }
+     .mapImage {
+      max-width:200px;
+      width: 100%;
+      height: auto;
+      margin:0 auto 10px;
+      display: block;
+     }
+     b,p {
+      max-width:200px;
+      color:#333;
+      margin:0;
+     }
    }
 }
