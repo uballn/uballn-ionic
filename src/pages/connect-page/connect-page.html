@@ -21,25 +21,63 @@
       
       <div [ngSwitch]="connect">            
         <ion-list *ngSwitchCase="'friends'">
-          <!-- <h5>Add up to 5 friends and get notified when each other hits the court.</h5> -->
-          <div *ngFor="let friend of friends" class="squad-{{friend.squad}}">
-            <button ion-item class="squad" (click)="goToProfile(friend.uid)">
-              <span class="imgContainer"><img [src]="friend.img"/></span>{{ friend.username }}
-            </button>
+            <div class="playerContainer">
+              <p>Your Squad</p>
+              <div *ngFor="let friend of friends" class="playerLoop">
+                <div class="player" *ngIf="friend.squad == 'true'">
+                  <span class="imgContainer squad" (click)="goToProfile(friend.uid)"><img [src]="friend.img" /></span>
+                </div>
+                </div>
+              </div> 
+
+          <div *ngFor="let friend of friends">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-11>
+                  <button ion-item class="squad" (click)="goToProfile(friend.uid)">
+                    <span class="imgContainer"><img [src]="friend.img"/></span>{{ friend.username }}
+                  </button>
+                </ion-col>
+                <ion-col col-1>
+                    <div class="status squadStatus {{friend.squad}}"> </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </div>
         </ion-list>
 
         <ion-list *ngSwitchCase="'suggested'">
-          <button ion-item class="suggested" *ngFor="let user of userData" (click)="goToProfile(user.uid)">
-              <span class="imgContainer"><img [src]="user.img"/></span>{{ user.username }}
-          </button>  
+          <div *ngFor="let user of userData">
+            <ion-grid>
+                <ion-row>
+                  <ion-col col-11>
+                    <button ion-item class="suggested" (click)="goToProfile(user.uid)">
+                      <span class="imgContainer"><img [src]="user.img"/></span>{{ user.username }}
+                    </button> 
+                  </ion-col>
+                  <ion-col col-1>
+                      <div class="status friendStatus"></div>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+          </div>
         </ion-list>
 
          <ion-list *ngSwitchCase="'contacts'">
-            <button ion-item class="friends" *ngFor="let friend of friends" (click)="goToProfile(friend.uid)">
-              <span class="imgContainer"><img [src]="friend.img"/></span>{{ friend.username }}
-              </button>  
-        </ion-list>
-
+            <div *ngFor="let user of userData">
+                <ion-grid>
+                    <ion-row>
+                      <ion-col col-11>
+                        <button ion-item class="suggested" (click)="goToProfile(user.uid)">
+                          <span class="imgContainer"><img [src]="user.img"/></span>{{ user.username }}
+                        </button> 
+                      </ion-col>
+                      <ion-col col-1>
+                          <div class="status friendStatus"></div>
+                      </ion-col>
+                    </ion-row>
+                </ion-grid>
+              </div>
+            </ion-list>
       </div>
 </ion-content>

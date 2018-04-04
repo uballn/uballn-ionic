@@ -1,4 +1,8 @@
 page-connect {
+    .item-inner {
+        background-image: none !important;
+    }
+
     ion-segment.segment {
         border-bottom: 1px solid #888;
         .segment-button {
@@ -12,6 +16,19 @@ page-connect {
             }
         }
     }
+    .playerContainer {
+        margin-top: -10px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #888;
+    }
+    .playerLoop:last-child:after {
+        clear: both;
+        width:100%;
+        height:10px;
+        display: block;
+        content:'';
+    }
     ion-list {
         h5 {
             width:80%;
@@ -24,14 +41,27 @@ page-connect {
             width:40px;
             height:auto;
         }
-        div.squad-false  .item-inner {
-            background-image: url(../assets/img/icons-star-empty.svg) !important;
-            background-size: 24px 24px !important;
-        }
-        div.squad-true .item-inner {
+        div.status {
+            background-size: 27px 27px !important;
+            background-repeat: no-repeat;
+            width: 2em;
+            height: 2em;
+            margin-top: 10px;
+            &.friendStatus {
+                background-size: 17px 17px !important;
+                background-image: url(../assets/img/icons-plus.svg) !important;
+                &.friends {
+                   opacity: 0.5; 
+                }
+            }
+            &.squadStatus{
+                background-image: url(../assets/img/icons-star-empty.svg) !important;
+              &.true {
                 background-image: url(../assets/img/icons-star.svg) !important;
-                background-size: 24px 24px !important;
+              }
+            }
         }
+
         button.item-block {
             background: transparent !important;
             color:#fff;

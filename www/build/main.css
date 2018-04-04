@@ -25150,6 +25150,11 @@ ion-app .imgContainer .imgContainer img {
   width: auto;
 }
 
+ion-app .imgContainer.squad {
+  width: 50px;
+  height: 50px;
+}
+
 ion-app ion-navbar.toolbar {
   min-height: 75px;
 }
@@ -25373,6 +25378,10 @@ ion-app ion-grid.grid ion-row ion-col.col[col-6]:first-child {
   margin-right: 10px;
 }
 
+page-connect .item-inner {
+  background-image: none !important;
+}
+
 page-connect ion-segment.segment {
   border-bottom: 1px solid #888;
 }
@@ -25389,6 +25398,21 @@ page-connect ion-segment.segment .segment-button.segment-activated {
   border-bottom: 3px solid #fff;
 }
 
+page-connect .playerContainer {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #888;
+}
+
+page-connect .playerLoop:last-child:after {
+  clear: both;
+  width: 100%;
+  height: 10px;
+  display: block;
+  content: '';
+}
+
 page-connect ion-list h5 {
   width: 80%;
   font-size: 1em;
@@ -25402,14 +25426,29 @@ page-connect ion-list img {
   height: auto;
 }
 
-page-connect ion-list div.squad-false .item-inner {
-  background-image: url(../assets/img/icons-star-empty.svg) !important;
-  background-size: 24px 24px !important;
+page-connect ion-list div.status {
+  background-size: 27px 27px !important;
+  background-repeat: no-repeat;
+  width: 2em;
+  height: 2em;
+  margin-top: 10px;
 }
 
-page-connect ion-list div.squad-true .item-inner {
+page-connect ion-list div.status.friendStatus {
+  background-size: 17px 17px !important;
+  background-image: url(../assets/img/icons-plus.svg) !important;
+}
+
+page-connect ion-list div.status.friendStatus.friends {
+  opacity: 0.5;
+}
+
+page-connect ion-list div.status.squadStatus {
+  background-image: url(../assets/img/icons-star-empty.svg) !important;
+}
+
+page-connect ion-list div.status.squadStatus.true {
   background-image: url(../assets/img/icons-star.svg) !important;
-  background-size: 24px 24px !important;
 }
 
 page-connect ion-list button.item-block {

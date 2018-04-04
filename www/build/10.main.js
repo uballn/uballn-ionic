@@ -1,14 +1,14 @@
 webpackJsonp([10],{
 
-/***/ 315:
+/***/ 316:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerPageModule", function() { return PlayerPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PolicyPageModule", function() { return PolicyPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__player_page__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__policy_page__ = __webpack_require__(333);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,41 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PlayerPageModule = (function () {
-    function PlayerPageModule() {
+var PolicyPageModule = (function () {
+    function PolicyPageModule() {
     }
-    return PlayerPageModule;
+    return PolicyPageModule;
 }());
-PlayerPageModule = __decorate([
+PolicyPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */],
+            __WEBPACK_IMPORTED_MODULE_2__policy_page__["a" /* PolicyPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__policy_page__["a" /* PolicyPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]
+            __WEBPACK_IMPORTED_MODULE_2__policy_page__["a" /* PolicyPage */]
         ]
     })
-], PlayerPageModule);
+], PolicyPageModule);
 
-//# sourceMappingURL=player-page.module.js.map
+//# sourceMappingURL=policy-page.module.js.map
 
 /***/ }),
 
-/***/ 332:
+/***/ 333:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayerPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PolicyPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -64,82 +59,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-var PlayerPage = (function () {
-    function PlayerPage(navCtrl, firebaseService, afd, navParams, storage) {
-        var _this = this;
+var PolicyPage = (function () {
+    function PolicyPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
-        this.firebaseService = firebaseService;
-        this.afd = afd;
         this.navParams = navParams;
-        this.storage = storage;
-        this.playerID = this.navParams.data;
-        this.playerIMG;
-        if (localStorage.getItem('gender') == 'male') {
-            this.playerGender = 'M';
-        }
-        else {
-            this.playerGender = 'F';
-        }
-        this.afd.list('/users/' + this.playerID, { preserveSnapshot: true })
-            .subscribe(function (snapshots) {
-            snapshots.forEach(function (snapshot) {
-                sessionStorage.setItem('CurrPlayer.' + snapshot.key, snapshot.val());
-            });
-            _this.playerName = sessionStorage.getItem('CurrPlayer.username');
-            _this.playerExperience = sessionStorage.getItem('CurrPlayer.experience');
-            _this.playerHeight = sessionStorage.getItem('CurrPlayer.height');
-            _this.playerWeight = sessionStorage.getItem('CurrPlayer.weight');
-            _this.playerIMG = sessionStorage.getItem('CurrPlayer.img');
-            _this.playerAge = sessionStorage.getItem('CurrPlayer.ageCount');
-            _this.playerPlayed = sessionStorage.getItem('CurrPlayer.played');
-            _this.playerPoints = '300';
-        });
     }
-    PlayerPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.storage.get('myFriends').then(function (val) {
-            var myFriends = val;
-            if (_this.playerID == localStorage.getItem('uid')) {
-                __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').css('display', 'none');
-            }
-            else {
-                for (var key in myFriends) {
-                    if (key === _this.playerID) {
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').addClass('trueFriends');
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').html('Unfriend');
-                    }
-                }
-            }
-        });
+    PolicyPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PolicyPage');
     };
-    PlayerPage.prototype.ionViewDidLeave = function () {
-        var uid = localStorage.getItem('uid');
-        sessionStorage.clear();
-        this.firebaseService.updateFriends(uid);
+    PolicyPage.prototype.close = function () {
+        this.navCtrl.pop();
     };
-    PlayerPage.prototype.addRemoveFriend = function () {
-        var uid = sessionStorage.getItem('CurrPlayer.uid');
-        this.firebaseService.addRemoveFriend(uid);
-    };
-    return PlayerPage;
+    return PolicyPage;
 }());
-PlayerPage = __decorate([
+PolicyPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-player',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/'\n<ion-header>\n    <ion-navbar>\n      <ion-title>\n        Player Profile\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding class="bgImage">\n    <div class="profileBG"></div>\n    <div class="imageContainer">\n        <img [src]="playerIMG" />\n      </div>\n        \n    <h2><ion-input class="playerName" [(ngModel)]="playerName" disabled></ion-input></h2>\n  \n      <ion-grid class="playerDetailPrimary">\n          <ion-row>\n              <ion-col col-4>\n                  <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                  <ion-input class="points" [(ngModel)]="playerPoints" disabled></ion-input>\n              </ion-col>\n              <ion-col col-4 class="middle">\n                <ion-input [(ngModel)]="playerPlayed" disabled></ion-input>\n              </ion-col>\n            <ion-col col-4>\n                <ion-input class="experience" [(ngModel)]="playerExperience" disabled></ion-input>\n                <img class="icon chart" src="assets/img/icons-chart.svg"/>\n              </ion-col>\n              </ion-row>\n        </ion-grid>\n  \n  \n      <ion-grid class="playerPageDetails">\n          <ion-row>\n              <ion-col col-3>\n                  Age\n                  <ion-input [(ngModel)]="playerAge" disabled></ion-input>\n              </ion-col>\n              <ion-col col-3>\n              Height\n                <ion-input [(ngModel)]="playerHeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3>\n              Weight\n                <ion-input [(ngModel)]="playerWeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3 class="sex">\n                Sex\n                  <ion-input [(ngModel)]="playerGender" disabled></ion-input>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n\n        <div class="buttonContainer">\n          <button ion-button id="friendButton" class="secondaryButton" full (click)="addRemoveFriend()">Add Friend</button>\n        </div>\n  \n  </ion-content>          '/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/,
+        selector: 'page-policy',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/policy-page/policy-page.html"*/'<ion-header>\n\n  <ion-navbar>\n    <button ion-button start (click)="close()">Close</button>\n    <ion-title>Privacy Policy</ion-title>\n  </ion-navbar>\n  </ion-header>\n\n<ion-content padding>\n<div class="modalContent">\n        <h3>Your privacy is critically important to us.</h3>\n\n        <p>It is Uballn’s policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to <a href="http://uballn.com">uballn.com</a> (hereinafter, "us", "we", or "uballn.com"). We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources.</p>\n        <p>This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>\n        \n                    <h2>Gathering of Personally-Identifying Information</h2>\n        <p>Certain visitors to Uballn’s websites choose to interact with Uballn in ways that require Uballn to gather personally-identifying information. The amount and type of information that Uballn gathers depends on the nature of the interaction. For example, we ask visitors who sign up for a blog at http://uballn.com to provide a username and email address.</p>\n        \n                    <h2>Security</h2>\n        <p>The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.</p>\n        \n                    <h2>Advertisements</h2>\n        <p>Ads appearing on our website may be delivered to users by advertising partners, who may set cookies. These cookies allow the ad server to recognize your computer each time they send you an online advertisement to compile information about you or others who use your computer. This information allows ad networks to, among other things, deliver targeted advertisements that they believe will be of most interest to you. This Privacy Policy covers the use of cookies by Uballn and does not cover the use of cookies by any advertisers.</p>\n\n                    <h2>Links To External Sites</h2>\n        <p>Our Service may contain links to external sites that are not operated by us. If you click on a third party link, you will be directed to that third party\'s site. We strongly advise you to review the Privacy Policy and terms and conditions of every site you visit.</p>\n        <p>We have no control over, and assume no responsibility for the content, privacy policies or practices of any third party sites, products or services.</p>\n        \n                    <h2>Aggregated Statistics</h2>\n        <p>Uballn may collect statistics about the behavior of visitors to its website. Uballn may display this information publicly or provide it to others. However, Uballn does not disclose your personally-identifying information.</p>\n        \n                    <h2>Cookies</h2>\n        <p>To enrich and perfect your online experience, Uballn uses "Cookies", similar technologies and services provided by others to display personalized content, appropriate advertising and store your preferences on your computer.</p>\n        <p>A cookie is a string of information that a website stores on a visitor’s computer, and that the visitor’s browser provides to the website each time the visitor returns. Uballn uses cookies to help Uballn identify and track visitors, their usage of http://uballn.com, and their website access preferences. Uballn visitors who do not wish to have cookies placed on their computers should set their browsers to refuse cookies before using Uballn’s websites, with the drawback that certain features of Uballn’s websites may not function properly without the aid of cookies.</p>\n        <p>By continuing to navigate our website without changing your cookie settings, you hereby acknowledge and agree to Uballn\'s use of cookies.</p>\n        \n                    <h2>Privacy Policy Changes</h2>\n        <p>Although most changes are likely to be minor, Uballn may change its Privacy Policy from time to time, and in Uballn’s sole discretion. Uballn encourages visitors to frequently check this page for any changes to its Privacy Policy. Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change.</p>\n                 \n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/policy-page/policy-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
-], PlayerPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], PolicyPage);
 
-//# sourceMappingURL=player-page.js.map
+//# sourceMappingURL=policy-page.js.map
 
 /***/ })
 

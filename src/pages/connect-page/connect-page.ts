@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import * as $ from 'jquery';
 
 @IonicPage()
 @Component({
@@ -14,6 +15,8 @@ export class ConnectPage {
   connect: any;
   users: any;
   userData: any;
+  userID: any;
+  key:any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,9 +29,10 @@ export class ConnectPage {
       this.storage.get('friendData').then((val) => {
         this.friends = val;
       })
+
       this.storage.get('allUsers').then((val) => {
         this.users = val;
-  
+
         this.userData = [];
         for (var key in this.users) {
           this.userData.push(this.users[key]);

@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 317:
+/***/ 318:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfilePageModule", function() { return ProfilePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileSettingsPageModule", function() { return ProfileSettingsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_page__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_settings_page__ = __webpack_require__(335);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,41 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ProfilePageModule = (function () {
-    function ProfilePageModule() {
+var ProfileSettingsPageModule = (function () {
+    function ProfileSettingsPageModule() {
     }
-    return ProfilePageModule;
+    return ProfileSettingsPageModule;
 }());
-ProfilePageModule = __decorate([
+ProfileSettingsPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__profile_page__["a" /* ProfilePage */],
+            __WEBPACK_IMPORTED_MODULE_2__profile_settings_page__["a" /* ProfileSettingsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__profile_page__["a" /* ProfilePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__profile_settings_page__["a" /* ProfileSettingsPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__profile_page__["a" /* ProfilePage */]
+            __WEBPACK_IMPORTED_MODULE_2__profile_settings_page__["a" /* ProfileSettingsPage */]
         ]
     })
-], ProfilePageModule);
+], ProfileSettingsPageModule);
 
-//# sourceMappingURL=profile-page.module.js.map
+//# sourceMappingURL=profile-settings-page.module.js.map
 
 /***/ }),
 
-/***/ 334:
+/***/ 335:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileSettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,79 +62,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var ProfilePage = (function () {
-    function ProfilePage(navCtrl, firebaseService, afd, storage, toastCtrl) {
-        var _this = this;
+var ProfileSettingsPage = (function () {
+    function ProfileSettingsPage(navCtrl, firebaseService, toastCtrl, modalCtrl) {
         this.navCtrl = navCtrl;
         this.firebaseService = firebaseService;
-        this.afd = afd;
-        this.storage = storage;
         this.toastCtrl = toastCtrl;
-        this.afd.list('/users', { preserveSnapshot: true })
-            .subscribe(function (snapshots) {
-            _this.userData = [];
-            snapshots.forEach(function (snapshot) {
-                _this.userData.push(snapshot.val());
-            });
-            _this.storage.set('userData', _this.userData);
-        });
-    }
-    ProfilePage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        this.storage.get('myFriends').then(function (val) {
-            _this.friends = val;
-            _this.friendData = [];
-            for (var key in _this.friends) {
-                _this.friendData.push(_this.friends[key]);
-            }
-            _this.friendNum = _this.friendData.length;
-            _this.moreFriends = _this.friendNum - 4;
-            _this.storage.set('friendData', _this.friendData);
-            if (_this.friendNum <= 4) {
-                __WEBPACK_IMPORTED_MODULE_5_jquery__('.player.more').hide();
-            }
-            else {
-                __WEBPACK_IMPORTED_MODULE_5_jquery__('.player.more').show();
-            }
-        });
-        this.uid = localStorage.getItem('uid');
-        this.afd.list('/users/' + this.uid, { preserveSnapshot: true })
-            .subscribe(function (snapshots) {
-            snapshots.forEach(function (snapshot) {
-                localStorage.setItem(snapshot.key, snapshot.val());
-                if (snapshot.key === 'friends') {
-                    _this.storage.set('myFriends', snapshot.val());
-                }
-            });
-        });
-        this.afd.list('/users', { preserveSnapshot: true })
-            .subscribe(function (snapshots) {
-            _this.allUsers = [];
-            snapshots.forEach(function (snapshot) {
-                _this.allUsers.push(snapshot.val());
-            });
-            _this.storage.set('allUsers', _this.allUsers);
-        });
-        if (localStorage.getItem('gender') === 'male') {
-            this.gender = 'M';
-        }
-        else {
-            this.gender = 'F';
-        }
+        this.modalCtrl = modalCtrl;
         this.name = localStorage.getItem('name');
         this.birthday = localStorage.getItem('birthday');
         this.experience = localStorage.getItem('experience');
+        this.gender = localStorage.getItem('gender');
         this.height = localStorage.getItem('height');
         this.weight = localStorage.getItem('weight');
         this.updateUserIMG = localStorage.getItem('img');
-        this.age = localStorage.getItem('ageCount');
-        this.played = localStorage.getItem('played');
-        this.experienceNumber = localStorage.getItem('experience');
-        this.points = '300';
+    }
+    ProfileSettingsPage.prototype.ionViewWillEnter = function () {
     };
-    ProfilePage.prototype.updateUser = function () {
+    ProfileSettingsPage.prototype.ionViewWillLeave = function () {
+        this.updateUser();
+    };
+    ProfileSettingsPage.prototype.updateUser = function () {
         var _this = this;
         localStorage.setItem('name', this.name);
         localStorage.setItem('height', this.height);
@@ -150,53 +93,55 @@ var ProfilePage = (function () {
             _this.presentToast('Profile Updated!');
         });
     };
-    ProfilePage.prototype.presentToast = function (msg) {
+    ProfileSettingsPage.prototype.showVersionInfo = function () {
+        var modal = this.modalCtrl.create('AboutVersionPage');
+        modal.present();
+    };
+    ProfileSettingsPage.prototype.showPrivacyPolicy = function () {
+        var modal = this.modalCtrl.create('PolicyPage');
+        modal.present();
+    };
+    ProfileSettingsPage.prototype.showTerms = function () {
+        var modal = this.modalCtrl.create('TermsPage');
+        modal.present();
+    };
+    ProfileSettingsPage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({
             message: msg,
             duration: 2000
         });
         toast.present();
     };
-    ProfilePage.prototype.accepInvitation = function (invitation) {
+    ProfileSettingsPage.prototype.accepInvitation = function (invitation) {
         var _this = this;
         this.firebaseService.acceptInvitation(invitation).then(function () {
             _this.presentToast('Invitation accepted!');
         });
     };
-    ProfilePage.prototype.discardInvitation = function (invitationId) {
+    ProfileSettingsPage.prototype.discardInvitation = function (invitationId) {
         this.firebaseService.discardInvitation(invitationId);
     };
-    ProfilePage.prototype.logOut = function () {
+    ProfileSettingsPage.prototype.logOut = function () {
         var _this = this;
         this.firebaseService.logoutUser().then(function () {
             localStorage.clear();
             _this.navCtrl.setRoot('LoginPage');
         });
     };
-    ProfilePage.prototype.goToSettings = function () {
-        this.navCtrl.push('ProfileSettingsPage');
-    };
-    ProfilePage.prototype.goToProfile = function (uid) {
-        this.navCtrl.push('PlayerPage', uid);
-    };
-    ProfilePage.prototype.goToConnect = function () {
-        this.navCtrl.push('ConnectPage');
-    };
-    return ProfilePage;
+    return ProfileSettingsPage;
 }());
-ProfilePage = __decorate([
+ProfileSettingsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-profile-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-page/profile-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      My Profile\n    </ion-title>\n    <button class="score" ion-button end (click)="goToSettings()">\n     <img class="navIcon" src="assets/img/icons-gear.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="bgImage">\n  <div class="profileBG"></div>\n  <div class="imageContainer">\n    <img src="{{updateUserIMG}}" />\n  </div>\n\n  <h2><ion-input class="playerName" [(ngModel)]="name" disabled></ion-input></h2>\n\n    <ion-grid class="playerDetailPrimary">\n        <ion-row>\n            <ion-col col-4>\n                <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                <ion-input class="points" [(ngModel)]="points" disabled></ion-input>\n            </ion-col>\n            <ion-col col-4 class="middle">\n              <ion-input [(ngModel)]="played" disabled></ion-input>\n            </ion-col>\n          <ion-col col-4>\n              <ion-input class="experience" [(ngModel)]="experience" disabled></ion-input>\n              <img class="icon chart" src="assets/img/icons-chart.svg"/>\n            </ion-col>\n            </ion-row>\n      </ion-grid>\n\n\n    <ion-grid class="playerPageDetails">\n        <ion-row>\n            <ion-col col-3>\n                Age <ion-input [(ngModel)]="age" disabled></ion-input>\n            </ion-col>\n            <ion-col col-3>\n            Height <ion-input [(ngModel)]="height" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3>\n            Weight <ion-input [(ngModel)]="weight" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3 class="sex">\n              Sex <ion-input [(ngModel)]="gender" disabled></ion-input>\n            </ion-col>\n          </ion-row>\n      </ion-grid>\n    \n      <ion-list class="players" style="background-color: none;">\n        <h5 (click)="goToConnect()">Friends ({{friendNum}})<span class="seeAllFriends">See All</span></h5>\n        <div class="playerContainer">\n          <div class="player" *ngFor="let friend of friendData| slice:0:4">\n            <span class="imgContainer" (click)="goToProfile(friend.uid)"><img [src]="friend.img" /></span>\n          </div>\n          <div class="player more" id="squad-false" (click)="goToConnect()">\n            {{moreFriends}}+\n          </div>\n        </div>\n      </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-page/profile-page.html"*/,
+        selector: 'page-profile-settings',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-settings-page/profile-settings-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Profile Settings\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="disabled">\n  <div class="profileInputs">\n    <ion-item>\n      <ion-label>Nickname</ion-label>\n      <ion-input [(ngModel)]="name" class="name" type="text">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Birthdate</ion-label>\n      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="birthday"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label class="level">Experience</ion-label>\n      <ion-select [(ngModel)]="experience" interface="action-sheet">\n        <ion-option value="1">Recreational</ion-option>\n        <ion-option value="2">High School</ion-option>\n        <ion-option value="3">AAU/Club</ion-option>\n        <ion-option value="4">Collegiate</ion-option>\n        <ion-option value="5">Semi-Pro</ion-option>\n        <ion-option value="6">Professional</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Gender</ion-label>\n      <ion-select [(ngModel)]="gender" interface="action-sheet">\n        <ion-option value="male">Male</ion-option>\n        <ion-option value="female">Female</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Height</ion-label>\n      <ion-select [(ngModel)]="height" interface="action-sheet">\n        <ion-option value="5\'1">5\'1"</ion-option>\n        <ion-option value="5\'2">5\'2"</ion-option>\n        <ion-option value="5\'3">5\'3"</ion-option>\n        <ion-option value="5\'4">5\'4"</ion-option>\n        <ion-option value="5\'5">5\'5"</ion-option>\n        <ion-option value="5\'6">5\'6"</ion-option>\n        <ion-option value="5\'7">5\'7"</ion-option>\n        <ion-option value="5\'8">5\'8"</ion-option>\n        <ion-option value="5\'9">5\'9"</ion-option>\n        <ion-option value="5\'10">5\'10"</ion-option>\n        <ion-option value="5\'11" checked="true">5\'11"</ion-option>\n        <ion-option value="6\'0">6\'0"</ion-option>\n        <ion-option value="6\'1">6\'1"</ion-option>\n        <ion-option value="6\'2">6\'2"</ion-option>\n        <ion-option value="6\'3">6\'3"</ion-option>\n        <ion-option value="6\'4">6\'4"</ion-option>\n        <ion-option value="6\'6">6\'6"</ion-option>\n        <ion-option value="6\'5">6\'5"</ion-option>\n        <ion-option value="6\'7">6\'7"</ion-option>\n        <ion-option value="6\'8">6\'8"</ion-option>\n        <ion-option value="6\'9">6\'9"</ion-option>\n        <ion-option value="6\'10">5\'10"</ion-option>\n        <ion-option value="6\'11">6\'11"</ion-option>\n        <ion-option value="7\'0">7\'0"</ion-option>\n        <ion-option value="7\'1">7\'1"</ion-option>\n        <ion-option value="7\'2">7\'2"</ion-option>\n        <ion-option value="7\'3">7\'3"</ion-option>\n        <ion-option value="7\'4">7\'4"</ion-option>\n        <ion-option value="7\'5">7\'5"</ion-option>\n        <ion-option value="7\'6">7\'6"</ion-option>\n        <ion-option value="7\'7">7\'7"</ion-option>\n        <ion-option value="7\'8">7\'8"</ion-option>\n        <ion-option value="7\'9">7\'9"</ion-option>\n        <ion-option value="7\'10">7\'10"</ion-option>\n        <ion-option value="7\'11">7\'11"</ion-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label>Weight</ion-label>\n      <ion-input class="weight" style="float:right;" type="tel" [(ngModel)]="weight"></ion-input>\n    </ion-item>\n  </div>\n  <ion-list class="appInfo">\n    <button ion-item (click)="showTerms()">Terms of Use</button>  \n    <button ion-item (click)="showPrivacyPolicy()">Privacy Policy</button>  \n    <button ion-item>Contact Us</button>  \n    <button ion-item (click)="showVersionInfo()">About this Version</button>\n  </ion-list>\n\n  <!-- <button ion-button block class="primaryButton" (click)="updateUser()" padding>\n      Update Profile\n    </button> -->\n\n    <button ion-button block class="logout secondaryButton" (click)="logOut()" padding outline>Logout</button>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-settings-page/profile-settings-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ToastController */]])
-], ProfilePage);
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */]])
+], ProfileSettingsPage);
 
-//# sourceMappingURL=profile-page.js.map
+//# sourceMappingURL=profile-settings-page.js.map
 
 /***/ })
 
