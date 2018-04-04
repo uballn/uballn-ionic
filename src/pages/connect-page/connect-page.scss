@@ -25,10 +25,12 @@ page-connect {
             height:auto;
         }
         div.squad-false  .item-inner {
-            background-image: url(../assets/img/icons-plus.svg) !important;
+            background-image: url(../assets/img/icons-star-empty.svg) !important;
+            background-size: 24px 24px !important;
         }
         div.squad-true .item-inner {
-                background-image: url(../assets/img/icons-minus.svg) !important;
+                background-image: url(../assets/img/icons-star.svg) !important;
+                background-size: 24px 24px !important;
         }
         button.item-block {
             background: transparent !important;

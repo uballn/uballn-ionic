@@ -5,10 +5,10 @@ webpackJsonp([9],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuickPlayPageModule", function() { return QuickPlayPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PolicyPageModule", function() { return PolicyPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__quickplay_page__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__policy_page__ = __webpack_require__(333);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var QuickPlayPageModule = (function () {
-    function QuickPlayPageModule() {
+var PolicyPageModule = (function () {
+    function PolicyPageModule() {
     }
-    return QuickPlayPageModule;
+    return PolicyPageModule;
 }());
-QuickPlayPageModule = __decorate([
+PolicyPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */],
+            __WEBPACK_IMPORTED_MODULE_2__policy_page__["a" /* PolicyPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__policy_page__["a" /* PolicyPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */]
+            __WEBPACK_IMPORTED_MODULE_2__policy_page__["a" /* PolicyPage */]
         ]
     })
-], QuickPlayPageModule);
+], PolicyPageModule);
 
-//# sourceMappingURL=quickplay-page.module.js.map
+//# sourceMappingURL=policy-page.module.js.map
 
 /***/ }),
 
-/***/ 331:
+/***/ 333:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuickPlayPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(109);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PolicyPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60,136 +59,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-var QuickPlayPage = (function () {
-    function QuickPlayPage(navCtrl, firebaseService, alertCtrl, toastCtrl) {
+var PolicyPage = (function () {
+    function PolicyPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
-        this.firebaseService = firebaseService;
-        this.alertCtrl = alertCtrl;
-        this.toastCtrl = toastCtrl;
-        this.editMode = false;
+        this.navParams = navParams;
     }
-    QuickPlayPage.prototype.ionViewDidLoad = function () {
-        this.gameLists = this.firebaseService.getGames();
-        console.log(this.gameLists);
+    PolicyPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PolicyPage');
     };
-    QuickPlayPage.prototype.ionViewWillEnter = function () {
-        sessionStorage.clear();
+    PolicyPage.prototype.close = function () {
+        this.navCtrl.pop();
     };
-    QuickPlayPage.prototype.newList = function () {
-        var _this = this;
-        var prompt = this.alertCtrl.create({
-            title: 'Create new game',
-            message: 'Enter a name for your new list',
-            inputs: [
-                {
-                    name: 'name',
-                    placeholder: 'Groceries'
-                },
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                },
-                {
-                    text: 'Create List',
-                    handler: function (data) {
-                        _this.firebaseService.createNewList(data.name).then(function (data) {
-                            _this.presentToast('New list created!');
-                        });
-                    }
-                }
-            ]
-        });
-        prompt.present();
-    };
-    QuickPlayPage.prototype.removeList = function (id) {
-        this.firebaseService.removeList(id);
-    };
-    QuickPlayPage.prototype.addItemToList = function (listId, listName) {
-        var _this = this;
-        var prompt = this.alertCtrl.create({
-            title: 'New item for "' + listName + '"',
-            message: 'Enter a name for your new item',
-            inputs: [
-                {
-                    name: 'name',
-                    placeholder: 'Milk'
-                },
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                },
-                {
-                    text: 'Add Item',
-                    handler: function (data) {
-                        _this.firebaseService.addListItem(listId, data.name).then(function (data) {
-                            _this.presentToast('New item added!');
-                        });
-                    }
-                }
-            ]
-        });
-        prompt.present();
-    };
-    QuickPlayPage.prototype.removeItem = function (itemId, listId) {
-        this.firebaseService.removegameItem(listId, itemId);
-    };
-    QuickPlayPage.prototype.shareList = function (listId, listName) {
-        var _this = this;
-        var prompt = this.alertCtrl.create({
-            title: 'Share your list "' + listName + '"',
-            message: 'Enter the Email of the person you want to share your list with',
-            inputs: [
-                {
-                    name: 'email',
-                    placeholder: 'john@doe.com'
-                },
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                },
-                {
-                    text: 'Share List',
-                    handler: function (data) {
-                        _this.firebaseService.shareList(listId, listName, data.email).then(function (res) {
-                            _this.presentToast('Invitation sent to ' + data.email);
-                        });
-                    }
-                }
-            ]
-        });
-        prompt.present();
-    };
-    QuickPlayPage.prototype.presentToast = function (msg) {
-        var toast = this.toastCtrl.create({
-            message: msg,
-            duration: 2000
-        });
-        toast.present();
-    };
-    QuickPlayPage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
-    };
-    QuickPlayPage.prototype.openGame = function (game) {
-        this.navCtrl.push('GamePage', game);
-    };
-    return QuickPlayPage;
+    return PolicyPage;
 }());
-QuickPlayPage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-quickplay-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/quickplay-page/quickPlay-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start (click)="goToProfile()">\n      <ion-icon name="contact"></ion-icon>\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end>\n        <img class="navIcon" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list class="gameContainer" *ngFor="let game of gameLists | async" (click)="openGame(game)">\n    <span class="gameBG" [style.backgroundImage]="\'url(\' + game.img + \')\'"></span>\n    <ion-list-header>\n      <h2>{{ game.name }}</h2>\n      <button ion-button item-left clear color="danger" icon-only (click)="removeList(game.$key)" *ngIf="editMode"><ion-icon name="remove-circle"></ion-icon></button>\n    </ion-list-header>\n    <ion-item>\n      <ul class="gameDetails">\n        <li><span><img [src]="game.creatorIMG" class="creator"/></span></li>\n        <li><span><img src="assets/img/icons-players.svg"/></span> {{ game.stats.playerTotal }}</li>\n        <li><span><img src="assets/img/icons-id.svg"/></span> {{ game.stats.avgAge }}</li>\n        <li><span><img src="assets/img/icons-chart.svg"/></span> {{ game.stats.avgExp }}</li>\n      </ul>\n    </ion-item>\n  </ion-list>\n\n  <!-- <ion-fab right bottom padding>\n    <button ion-fab (click)="newList()"><ion-icon name="add"></ion-icon></button>\n  </ion-fab> -->\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/quickplay-page/quickPlay-page.html"*/,
+PolicyPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
+        selector: 'page-policy',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/policy-page/policy-page.html"*/'<ion-header>\n\n  <ion-navbar>\n    <button ion-button start (click)="close()">Close</button>\n    <ion-title>Privacy Policy</ion-title>\n  </ion-navbar>\n  </ion-header>\n\n<ion-content padding>\n<div class="modalContent">\n        <h3>Your privacy is critically important to us.</h3>\n\n        <p>It is Uballn’s policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to <a href="http://uballn.com">uballn.com</a> (hereinafter, "us", "we", or "uballn.com"). We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources.</p>\n        <p>This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>\n        \n                    <h2>Gathering of Personally-Identifying Information</h2>\n        <p>Certain visitors to Uballn’s websites choose to interact with Uballn in ways that require Uballn to gather personally-identifying information. The amount and type of information that Uballn gathers depends on the nature of the interaction. For example, we ask visitors who sign up for a blog at http://uballn.com to provide a username and email address.</p>\n        \n                    <h2>Security</h2>\n        <p>The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.</p>\n        \n                    <h2>Advertisements</h2>\n        <p>Ads appearing on our website may be delivered to users by advertising partners, who may set cookies. These cookies allow the ad server to recognize your computer each time they send you an online advertisement to compile information about you or others who use your computer. This information allows ad networks to, among other things, deliver targeted advertisements that they believe will be of most interest to you. This Privacy Policy covers the use of cookies by Uballn and does not cover the use of cookies by any advertisers.</p>\n\n                    <h2>Links To External Sites</h2>\n        <p>Our Service may contain links to external sites that are not operated by us. If you click on a third party link, you will be directed to that third party\'s site. We strongly advise you to review the Privacy Policy and terms and conditions of every site you visit.</p>\n        <p>We have no control over, and assume no responsibility for the content, privacy policies or practices of any third party sites, products or services.</p>\n        \n                    <h2>Aggregated Statistics</h2>\n        <p>Uballn may collect statistics about the behavior of visitors to its website. Uballn may display this information publicly or provide it to others. However, Uballn does not disclose your personally-identifying information.</p>\n        \n                    <h2>Cookies</h2>\n        <p>To enrich and perfect your online experience, Uballn uses "Cookies", similar technologies and services provided by others to display personalized content, appropriate advertising and store your preferences on your computer.</p>\n        <p>A cookie is a string of information that a website stores on a visitor’s computer, and that the visitor’s browser provides to the website each time the visitor returns. Uballn uses cookies to help Uballn identify and track visitors, their usage of http://uballn.com, and their website access preferences. Uballn visitors who do not wish to have cookies placed on their computers should set their browsers to refuse cookies before using Uballn’s websites, with the drawback that certain features of Uballn’s websites may not function properly without the aid of cookies.</p>\n        <p>By continuing to navigate our website without changing your cookie settings, you hereby acknowledge and agree to Uballn\'s use of cookies.</p>\n        \n                    <h2>Privacy Policy Changes</h2>\n        <p>Although most changes are likely to be minor, Uballn may change its Privacy Policy from time to time, and in Uballn’s sole discretion. Uballn encourages visitors to frequently check this page for any changes to its Privacy Policy. Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change.</p>\n                 \n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/policy-page/policy-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* ToastController */]])
-], QuickPlayPage);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object])
+], PolicyPage);
 
-//# sourceMappingURL=quickplay-page.js.map
+var _a, _b;
+//# sourceMappingURL=policy-page.js.map
 
 /***/ })
 

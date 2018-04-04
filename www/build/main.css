@@ -25162,6 +25162,12 @@ ion-app ion-list {
   position: relative;
 }
 
+ion-app .modalContent {
+  padding: 20px;
+  background: #fff;
+  color: #111;
+}
+
 ion-app .imgWrapper {
   width: 30px;
   height: 30px;
@@ -25256,6 +25262,7 @@ ion-app .primaryButton {
 ion-app .secondaryButton {
   background: #fff;
   color: #000;
+  border: none;
 }
 
 ion-app .facebookButton {
@@ -25396,11 +25403,13 @@ page-connect ion-list img {
 }
 
 page-connect ion-list div.squad-false .item-inner {
-  background-image: url(../assets/img/icons-plus.svg) !important;
+  background-image: url(../assets/img/icons-star-empty.svg) !important;
+  background-size: 24px 24px !important;
 }
 
 page-connect ion-list div.squad-true .item-inner {
-  background-image: url(../assets/img/icons-minus.svg) !important;
+  background-image: url(../assets/img/icons-star.svg) !important;
+  background-size: 24px 24px !important;
 }
 
 page-connect ion-list button.item-block {
@@ -25674,9 +25683,20 @@ page-profile-page h2 {
   margin-bottom: -10px;
 }
 
+page-profile-page h5 {
+  margin-bottom: 20px;
+}
+
 page-profile-page input.text-input {
   text-align: center;
   font-size: 1.2em;
+}
+
+page-profile-page .seeAllFriends {
+  color: #76a5ff;
+  font-weight: bold;
+  float: right;
+  font-size: 0.8em;
 }
 
 page-profile-page .experience {
@@ -25706,10 +25726,11 @@ page-profile-page .imgWrapper img {
 
 page-profile-page .player {
   float: left;
-  font-size: 3em;
+  font-size: 2em;
   width: calc(20% - 10px);
   margin-right: 10px;
   position: relative;
+  line-height: 1.5em;
   max-width: 70px;
 }
 
@@ -25816,7 +25837,6 @@ page-profile-page .playerPageDetails ion-col, page-profile-page .playerPageDetai
 
 page-profile-page .playerPageDetails ion-col input {
   font-size: 2em;
-  color: #76a5ff;
 }
 
 page-profile-page .playerPageDetails .sex input:first-letter {
@@ -25854,7 +25874,7 @@ page-profile-page ion-select.level ion-select {
   max-width: 70%;
 }
 
-page-profile-settings .disabled ion-item.item.item-block {
+page-profile-settings .profileInputs ion-item.item.item-block {
   background: #111 !important;
 }
 
@@ -25891,6 +25911,20 @@ page-profile-settings ion-select.level {
 
 page-profile-settings ion-select.level ion-select {
   max-width: 70%;
+}
+
+page-profile-settings .appInfo button.item-block {
+  background: transparent;
+  color: #fff;
+  margin-left: 0;
+}
+
+page-profile-settings .appInfo button.item-block:first-child, page-profile-settings .appInfo button.item-block:last-child {
+  border: none;
+}
+
+page-profile-settings .appInfo button.item-block .item-inner {
+  border: none;
 }
 
 page-quickplay-page .creator {

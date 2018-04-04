@@ -24,6 +24,11 @@ ion-app{
   ion-list {
     position:relative;
   }
+  .modalContent {
+    padding: 20px;
+    background: #fff;
+    color: #111;
+  }
   .imgWrapper {
     width:30px;
     height:30px;
@@ -102,6 +107,7 @@ ion-app{
   .secondaryButton {
     background: #fff;
     color:#000;
+    border: none;
   }
   .facebookButton {
     color: #fff;

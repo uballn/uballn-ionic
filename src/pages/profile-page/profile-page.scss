@@ -3,9 +3,18 @@ h2 {
   margin-top: -10px;
   margin-bottom: -10px;
 }
+h5 {
+  margin-bottom: 20px;
+}
   input.text-input {
     text-align:center;
     font-size: 1.2em;
+}
+.seeAllFriends {
+  color: #76a5ff;
+  font-weight: bold;
+  float:right;
+  font-size: 0.8em;
 }
 .experience {
   width: 2em;
@@ -28,12 +37,13 @@ ion-list.players {
   }
 }
 .player {
-  float:left;
-  font-size: 3em;
-  width: calc(20% - 10px);
-  margin-right:10px;
-  position: relative;
-  max-width: 70px;
+    float: left;
+    font-size: 2em;
+    width: calc(20% - 10px);
+    margin-right: 10px;
+    position: relative;
+    line-height: 1.5em;
+    max-width: 70px;
   &#squad-true:after {
     content:'';
     width:25px;
@@ -122,7 +132,6 @@ ion-list.players {
     }
       ion-col input {
         font-size: 2em;
-        color: #76a5ff;
       }
       .sex input:first-letter {
           color:red;

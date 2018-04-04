@@ -19,6 +19,9 @@ export class FirebaseService {
   alias: any;
   experience: any;
   img: any;
+  friendData: any;
+  friends: any;
+  friendNum: any;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -183,7 +186,23 @@ export class FirebaseService {
             this.storage.set('myFriends', snapshot.val());
           }
         });
+        this.saveFriendData();
     })
+  }
+
+  saveFriendData(){
+      this.storage.get('myFriends').then((val) => {
+        this.friends = val;
+
+        this.friendData = [];
+        for (var key in this.friends) {
+          this.friendData.push(this.friends[key]);
+        }
+        this.friendNum = this.friendData.length;
+        localStorage.setItem('friendNum',this.friendNum);
+        this.storage.set('friendData',this.friendData);
+    })
+
   }
 
 }

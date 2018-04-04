@@ -1,5 +1,5 @@
 page-profile-settings {
-  .disabled {
+  .profileInputs {
     ion-item.item.item-block {
       background: #111 !important;
     }
@@ -30,6 +30,17 @@ page-profile-settings {
         ion-select {
           max-width: 70%;
         }
+    }
+  }
+  .appInfo button.item-block {
+    background: transparent;
+    color: #fff;
+    margin-left: 0;
+    &:first-child, &:last-child {
+      border: none;
+      }
+    .item-inner {
+      border: none;
     }
   }
 }

@@ -1,14 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 311:
+/***/ 322:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GamePageModule", function() { return GamePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedPageModule", function() { return SharedPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_page__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_page__ = __webpack_require__(339);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,40 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var GamePageModule = (function () {
-    function GamePageModule() {
+var SharedPageModule = (function () {
+    function SharedPageModule() {
     }
-    return GamePageModule;
+    return SharedPageModule;
 }());
-GamePageModule = __decorate([
+SharedPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */],
+            __WEBPACK_IMPORTED_MODULE_2__shared_page__["a" /* SharedPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__shared_page__["a" /* SharedPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */]
+            __WEBPACK_IMPORTED_MODULE_2__shared_page__["a" /* SharedPage */]
         ]
     })
-], GamePageModule);
+], SharedPageModule);
 
-//# sourceMappingURL=game-page.module.js.map
+//# sourceMappingURL=shared-page.module.js.map
 
 /***/ }),
 
-/***/ 326:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GamePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(321);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -64,87 +61,66 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var GamePage = (function () {
-    function GamePage(navCtrl, navParams, firebaseService, storage, toastCtrl) {
+var SharedPage = (function () {
+    function SharedPage(navCtrl, firebaseService, alertCtrl, toastCtrl) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
         this.firebaseService = firebaseService;
-        this.storage = storage;
+        this.alertCtrl = alertCtrl;
         this.toastCtrl = toastCtrl;
-        this.gameData = [];
-        this.players = [];
-        this.playerData = [];
-        this.gameData = this.navParams;
-        this.gameID = this.navParams.data.$key;
-        this.players = this.gameData.data.players;
-        this.updateGame();
-        sessionStorage.setItem('gameID', this.gameID);
     }
-    GamePage.prototype.ionViewWillEnter = function () {
-        if (sessionStorage.getItem('playing') === 'true') {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#joinGame').css('display', 'none');
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#leaveGame').css('display', 'block');
-        }
-        else {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#joinGame').css('display', 'block');
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#leaveGame').css('display', 'none');
-        }
-    };
-    GamePage.prototype.updateGame = function () {
-        this.playerData = [];
-        for (var key in this.players) {
-            if (key === localStorage.getItem('uid')) {
-                sessionStorage.setItem('playing', 'true');
+    SharedPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.firebaseService.authState.subscribe(function (user) {
+            if (user) {
+                _this.sharedLists = _this.firebaseService.getSharedLists();
             }
-            else {
-                //do nothing
-            }
-            this.playerData.push(this.players[key]);
-        }
+        });
     };
-    GamePage.prototype.presentToast = function (msg) {
+    SharedPage.prototype.addItemToList = function (listId, listName) {
+        var _this = this;
+        var prompt = this.alertCtrl.create({
+            title: 'New item for "' + listName + '"',
+            message: 'Enter a name for your new item',
+            inputs: [
+                {
+                    name: 'name',
+                    placeholder: 'Milk'
+                },
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                },
+                {
+                    text: 'Add Item',
+                    handler: function (data) {
+                        _this.firebaseService.addListItem(listId, data.name).then(function (data) {
+                            _this.presentToast('New item added!');
+                        });
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    };
+    SharedPage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({
             message: msg,
             duration: 2000
         });
         toast.present();
     };
-    GamePage.prototype.joinGame = function () {
-        var _this = this;
-        sessionStorage.setItem('placeID', this.gameID);
-        this.firebaseService.joinGame(this.gameID).then(function () {
-            _this.presentToast('You have joined the game!');
-        });
-        this.navCtrl.pop();
-    };
-    GamePage.prototype.leaveGame = function () {
-        var _this = this;
-        sessionStorage.setItem('placeID', this.gameID);
-        this.firebaseService.leaveGame(this.gameID).then(function () {
-            _this.presentToast('You have left the game!');
-        });
-        this.navCtrl.pop();
-    };
-    GamePage.prototype.goToProfile = function (uid) {
-        this.navCtrl.push('PlayerPage', uid);
-    };
-    return GamePage;
+    return SharedPage;
 }());
-GamePage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-game',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end>\n        <img class="navIcon" src="assets/img/icons-share.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="gameBG" [style.backgroundImage]="\'url(\' + gameData.data.img + \')\'"></div>\n    <div class="btmGradient"></div>\n    <div class="gameDetails">\n      <h3>{{gameData.data.name}}</h3>\n      <h5>{{gameData.data.address}}</h5>\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players\n            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-id.svg"/></span>Average <br>Age\n            <span class="data">{{gameData.data.stats.avgAge}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-chart.svg"/></span>Level of <br>Play\n            <span class="data">{{gameData.data.stats.avgExp}}</span></ion-col>\n        </ion-row>\n      </ion-grid>\n      <ion-list class="players" style="background-color: none;">\n        <h5>Active Players</h5>\n        <div class="player" *ngFor="let player of playerData" (click)="goToProfile(player.uid)">\n          <!-- <ion-icon name="contact"></ion-icon> -->\n          <img class="gameAvatar" src="{{player.img}}" />\n        </div>\n      </ion-list>\n    </div>\n    <button ion-button block id="joinGame" class="primaryButton" (click)="joinGame()">Join Game</button>\n    <button ion-button block id="leaveGame" class="secondaryButton" (click)="leaveGame()">Leave Game</button>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/,
+SharedPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
+        selector: 'page-shared-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/shared-page/shared-page.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Shared Lists</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <ion-list *ngFor="let list of sharedLists | async" padding-top>\n    <ion-list-header>\n      {{ list.name }}\n      <button ion-button item-right clear icon-only (click)="addItemToList(list.$key, list.name)"><ion-icon name="add"></ion-icon></button>\n    </ion-list-header>\n    <ion-item color="light">\n    Shared by: {{ list.creator }}</ion-item>\n  \n\n    <ion-item *ngFor="let shoppingItem of list.shoppingItems | async">\n      {{ shoppingItem.name }}\n    </ion-item>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/shared-page/shared-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */]])
-], GamePage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ToastController */]])
+], SharedPage);
 
-//# sourceMappingURL=game-page.js.map
+//# sourceMappingURL=shared-page.js.map
 
 /***/ })
 

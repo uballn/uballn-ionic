@@ -52,13 +52,13 @@
       </ion-grid>
     
       <ion-list class="players" style="background-color: none;">
-        <h5 (click)="goToConnect()">Friends ({{friendNum}})</h5>
+        <h5 (click)="goToConnect()">Friends ({{friendNum}})<span class="seeAllFriends">See All</span></h5>
         <div class="playerContainer">
-          <div class="player" *ngFor="let friend of friendData| slice:0:4" id="squad-{{friend.squad}}">
+          <div class="player" *ngFor="let friend of friendData| slice:0:4">
             <span class="imgContainer" (click)="goToProfile(friend.uid)"><img [src]="friend.img" /></span>
           </div>
           <div class="player more" id="squad-false" (click)="goToConnect()">
-            <img src="assets/img/icons-more.svg"/>
+            {{moreFriends}}+
           </div>
         </div>
       </ion-list>

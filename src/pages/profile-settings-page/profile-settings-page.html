@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content padding class="disabled">
+  <div class="profileInputs">
     <ion-item>
       <ion-label>Nickname</ion-label>
       <ion-input [(ngModel)]="name" class="name" type="text">
@@ -82,11 +83,18 @@
       <ion-label>Weight</ion-label>
       <ion-input class="weight" style="float:right;" type="tel" [(ngModel)]="weight"></ion-input>
     </ion-item>
+  </div>
+  <ion-list class="appInfo">
+    <button ion-item (click)="showTerms()">Terms of Use</button>  
+    <button ion-item (click)="showPrivacyPolicy()">Privacy Policy</button>  
+    <button ion-item>Contact Us</button>  
+    <button ion-item (click)="showVersionInfo()">About this Version</button>
+  </ion-list>
 
-    <button ion-button block class="primaryButton" (click)="updateUser()" padding>
+  <!-- <button ion-button block class="primaryButton" (click)="updateUser()" padding>
       Update Profile
-    </button>
+    </button> -->
 
-    <button ion-button color="light" block class="logout" (click)="logOut()" padding outline>Logout</button>
+    <button ion-button block class="logout secondaryButton" (click)="logOut()" padding outline>Logout</button>
 
 </ion-content>

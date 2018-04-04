@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 312:
+/***/ 323:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TabsPageModule", function() { return TabsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_page__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_page__ = __webpack_require__(340);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,66 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var LoginPageModule = (function () {
-    function LoginPageModule() {
+var TabsPageModule = (function () {
+    function TabsPageModule() {
     }
-    return LoginPageModule;
+    return TabsPageModule;
 }());
-LoginPageModule = __decorate([
+TabsPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__login_page__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_2__tabs_page__["a" /* TabsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login_page__["a" /* LoginPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tabs_page__["a" /* TabsPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__login_page__["a" /* LoginPage */]
+            __WEBPACK_IMPORTED_MODULE_2__tabs_page__["a" /* TabsPage */]
         ]
     })
-], LoginPageModule);
+], TabsPageModule);
 
-//# sourceMappingURL=login-page.module.js.map
-
-/***/ }),
-
-/***/ 322:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailValidator; });
-var EmailValidator = (function () {
-    function EmailValidator() {
-    }
-    EmailValidator.isValid = function (control) {
-        var re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(control.value);
-        // success
-        if (re) {
-            return null;
-        }
-        return { "invalidEmail": true };
-    };
-    return EmailValidator;
-}());
-
-//# sourceMappingURL=email.js.map
+//# sourceMappingURL=tabs-page.module.js.map
 
 /***/ }),
 
-/***/ 327:
+/***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(110);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__validators_email__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -90,132 +61,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-
-
-
-var LoginPage = (function () {
-    function LoginPage(navCtrl, firebaseService, afd, loadingCtrl, alertCtrl, formBuilder, storage) {
+var TabsPage = (function () {
+    function TabsPage(navCtrl, firebaseService) {
         this.navCtrl = navCtrl;
         this.firebaseService = firebaseService;
-        this.afd = afd;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.formBuilder = formBuilder;
-        this.storage = storage;
-        this.loginForm = formBuilder.group({
-            email: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_4__validators_email__["a" /* EmailValidator */].isValid])],
-            password: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].minLength(6), __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required])]
-        });
+        this.tab1 = 'CourtsPage';
+        this.tab2 = 'QuickPlayPage';
+        this.tab3 = 'SchedulePage';
+        this.invitationCount = 0;
     }
-    LoginPage.prototype.loginUser = function () {
+    TabsPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        if (this.loginForm.valid) {
-            this.loading = this.loadingCtrl.create();
-            this.loading.present();
-            var currUserFriends_1;
-            this.firebaseService.loginUser(this.loginForm.value.email, this.loginForm.value.password)
-                .then(function (authData) {
-                localStorage.setItem('currUserEmail', authData.email);
-                localStorage.setItem('currUserName', authData.displayName);
-                localStorage.setItem('emailVerified', authData.emailVerified);
-                localStorage.setItem('userID', authData.uid);
-                _this.afd.list('/users/' + authData.uid, { preserveSnapshot: true })
-                    .subscribe(function (snapshots) {
-                    snapshots.forEach(function (snapshot) {
-                        localStorage.setItem(snapshot.key, snapshot.val());
-                        if (snapshot.key === 'friends') {
-                            _this.storage.set('myFriends', snapshot.val());
-                        }
-                    });
+        this.firebaseService.authState.subscribe(function (user) {
+            if (user) {
+                _this.firebaseService.getUserInvitations().subscribe(function (data) {
+                    _this.invitationCount = data.length;
+                }, function (err) {
+                    console.log('error: ', err);
                 });
-                _this.afd.list('/users', { preserveSnapshot: true })
-                    .subscribe(function (snapshots) {
-                    _this.userData = [];
-                    snapshots.forEach(function (snapshot) {
-                        _this.userData.push(snapshot.val());
-                    });
-                    _this.storage.set('allUsers', _this.userData);
-                });
-                if (localStorage.getItem('img') == null) {
-                    localStorage.setItem('img', null);
-                }
-                ;
-                _this.loading.dismiss().then(function () {
-                    _this.navCtrl.setRoot('TabsPage', currUserFriends_1);
-                });
-            }, function (error) {
-                _this.loading.dismiss().then(function () {
-                    var alert = _this.alertCtrl.create({
-                        title: 'Error',
-                        message: error.message,
-                        buttons: [
-                            {
-                                text: "Ok",
-                                role: 'cancel'
-                            }
-                        ]
-                    });
-                    alert.present();
-                });
-            });
-        }
-    };
-    LoginPage.prototype.goToSignup = function () {
-        this.navCtrl.push('RegisterPage');
-    };
-    LoginPage.prototype.resetPassword = function () {
-        var _this = this;
-        var prompt = this.alertCtrl.create({
-            title: 'Reset Password',
-            message: 'Enter your email below',
-            inputs: [
-                {
-                    name: 'email',
-                    placeholder: 'My Email'
-                },
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                },
-                {
-                    text: 'Reset',
-                    handler: function (data) {
-                        _this.firebaseService.resetPassword(data.email).then(function (data) {
-                            console.log('reset: ', data);
-                            _this.showBasicAlert('Success', 'Check your email for further instructions.');
-                        })
-                            .catch(function (err) {
-                            _this.showBasicAlert('Error', err.message);
-                        });
-                    }
-                }
-            ]
+            }
         });
-        prompt.present();
     };
-    LoginPage.prototype.showBasicAlert = function (title, text) {
-        var alert = this.alertCtrl.create({
-            title: title,
-            subTitle: text,
-            buttons: ['OK']
-        });
-        alert.present();
-    };
-    return LoginPage;
+    return TabsPage;
 }());
-LoginPage = __decorate([
+TabsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-login-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>\n\n    <div padding>\n      <button ion-button full class="facebookButton" block>Log In With Facebook</button>\n    <br>\n      <button ion-button full class="twitterButton" block>Log In With Twitter</button>\n    </div>\n\n    <p class="formText">or with your email</p>\n\n    <ion-item>\n      <ion-label>Email</ion-label>\n      <ion-input formControlName="email" type="email"\n        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines>\n      <p>Please enter a valid email.</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Password</ion-label>\n      <ion-input formControlName="password" type="password"\n        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines>\n      <p>Your password needs more than 6 characters.</p>\n    </ion-item>\n\n    <p class="formText small" (click)="resetPassword()">forgot password?</p>\n\n    <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">\n      Login\n    </button>\n\n    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/,
+        selector: 'page-tabs-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/'<ion-tabs tabsPlacement="top">\n      <ion-tab tabTitle="COURTS" [root]="tab1"></ion-tab>\n      <ion-tab tabTitle="QUICKPLAY" [root]="tab2"></ion-tab>\n      <ion-tab tabTitle="SCHEDULE" [tabBadge]="invitationCount" [root]="tab3"></ion-tab>\n    </ion-tabs>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */]) === "function" && _g || Object])
-], LoginPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */]])
+], TabsPage);
 
-var _a, _b, _c, _d, _e, _f, _g;
-//# sourceMappingURL=login-page.js.map
+//# sourceMappingURL=tabs-page.js.map
 
 /***/ })
 

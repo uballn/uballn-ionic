@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+import { ModalPage } from './modal-page';
 
 @IonicPage()
 @Component({
@@ -26,7 +28,8 @@ export class ProfileSettingsPage {
   constructor(
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public modalCtrl: ModalController) {
 
       this.name = localStorage.getItem('name');
       this.birthday = localStorage.getItem('birthday');
@@ -40,6 +43,10 @@ export class ProfileSettingsPage {
   ionViewWillEnter() {
   }
 
+  ionViewWillLeave(){
+    this.updateUser();
+  }
+
   updateUser() {
     localStorage.setItem('name',this.name);
     localStorage.setItem('height', this.height);
@@ -51,6 +58,21 @@ export class ProfileSettingsPage {
     this.firebaseService.updateUserProfile().then(() => {
       this.presentToast('Profile Updated!');
     })
+  }
+
+  showVersionInfo() {
+    let modal = this.modalCtrl.create('AboutVersionPage');
+    modal.present();
+  }
+
+  showPrivacyPolicy() {
+    let modal = this.modalCtrl.create('PolicyPage');
+    modal.present();
+  }
+
+  showTerms() {
+    let modal = this.modalCtrl.create('TermsPage');
+    modal.present();
   }
 
   presentToast(msg) {

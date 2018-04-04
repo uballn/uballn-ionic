@@ -35,6 +35,7 @@ export class ProfilePage {
   userData: any;
   users: any;
   allUsers: any;
+  moreFriends: number;
 
   constructor(
     public navCtrl: NavController,
@@ -42,21 +43,6 @@ export class ProfilePage {
     public afd: AngularFireDatabase,
     public storage: Storage,
     public toastCtrl: ToastController) {
-
-      this.storage.get('myFriends').then((val) => {
-        this.friends = val;
-
-        this.friendData = [];
-        for (var key in this.friends) {
-          this.friendData.push(this.friends[key]);
-        }
-        this.friendNum = this.friendData.length;
-        this.storage.set('friendData',this.friendData);
-        
-      if (this.friendNum < 4){
-        $('.playerContainer.more').hide();
-      }
-    })
 
     this.afd.list('/users', { preserveSnapshot: true})
           .subscribe(snapshots=>{
@@ -71,6 +57,24 @@ export class ProfilePage {
 
   ionViewWillEnter() {
 
+    this.storage.get('myFriends').then((val) => {
+      this.friends = val;
+
+      this.friendData = [];
+      for (var key in this.friends) {
+        this.friendData.push(this.friends[key]);
+      }
+      this.friendNum = this.friendData.length;
+      this.moreFriends = this.friendNum - 4;
+      this.storage.set('friendData',this.friendData);
+      
+    if (this.friendNum <= 4){
+      $('.player.more').hide();
+    }else{
+      $('.player.more').show();
+    }
+  })
+
     this.uid = localStorage.getItem('uid');
 
     this.afd.list('/users/'+this.uid, { preserveSnapshot: true})
@@ -83,9 +87,10 @@ export class ProfilePage {
         });
     })
 
-    this.allUsers = [];
     this.afd.list('/users', { preserveSnapshot: true})
     .subscribe(snapshots=>{
+      this.allUsers = [];
+
         snapshots.forEach(snapshot => {
             this.allUsers.push(snapshot.val());
         });

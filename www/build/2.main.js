@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 313:
+/***/ 312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerPageModule", function() { return PlayerPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CourtsPageModule", function() { return CourtsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__player_page__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__courts_page__ = __webpack_require__(328);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,26 +18,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PlayerPageModule = (function () {
-    function PlayerPageModule() {
+var CourtsPageModule = (function () {
+    function CourtsPageModule() {
     }
-    return PlayerPageModule;
+    return CourtsPageModule;
 }());
-PlayerPageModule = __decorate([
+CourtsPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */],
+            __WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]
+            __WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */]
         ]
     })
-], PlayerPageModule);
+], CourtsPageModule);
 
-//# sourceMappingURL=player-page.module.js.map
+//# sourceMappingURL=courts-page.module.js.map
 
 /***/ }),
 
@@ -45,14 +45,11 @@ PlayerPageModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayerPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourtsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(321);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mapStyle__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(114);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,77 +63,313 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var PlayerPage = (function () {
-    function PlayerPage(navCtrl, firebaseService, afd, navParams, storage) {
-        var _this = this;
+var CourtsPage = (function () {
+    function CourtsPage(navCtrl, geo) {
         this.navCtrl = navCtrl;
-        this.firebaseService = firebaseService;
-        this.afd = afd;
-        this.navParams = navParams;
-        this.storage = storage;
-        this.playerID = this.navParams.data;
-        this.playerIMG;
-        if (localStorage.getItem('gender') == 'male') {
-            this.playerGender = 'M';
-        }
-        else {
-            this.playerGender = 'F';
-        }
-        this.afd.list('/users/' + this.playerID, { preserveSnapshot: true })
-            .subscribe(function (snapshots) {
-            snapshots.forEach(function (snapshot) {
-                sessionStorage.setItem('CurrPlayer.' + snapshot.key, snapshot.val());
-            });
-            _this.playerName = sessionStorage.getItem('CurrPlayer.username');
-            _this.playerExperience = sessionStorage.getItem('CurrPlayer.experience');
-            _this.playerHeight = sessionStorage.getItem('CurrPlayer.height');
-            _this.playerWeight = sessionStorage.getItem('CurrPlayer.weight');
-            _this.playerIMG = sessionStorage.getItem('CurrPlayer.img');
-            _this.playerAge = sessionStorage.getItem('CurrPlayer.ageCount');
-            _this.playerPlayed = sessionStorage.getItem('CurrPlayer.played');
-            _this.playerPoints = '300';
-        });
+        this.geo = geo;
+        this.myPlaces = [
+            { 'name': '24HrFitness - Little Elm',
+                'lat': '33.175896',
+                'lng': '-96.8911934'
+            },
+            { 'name': '24HrFitness - Frisco',
+                'lat': '33.1113431',
+                'lng': '-96.8095955'
+            },
+            { 'name': '2424HrFitness - Carrollton',
+                'lat': '32.9856774',
+                'lng': '-96.8581071'
+            },
+            { 'name': '24HrFitness - Plano',
+                'lat': '33.0259727',
+                'lng': '-96.7875141'
+            },
+            { 'name': '24HrFitness - North Richland Hills',
+                'lat': '32.8420716',
+                'lng': '-97.24122919999999'
+            },
+            { 'name': '24Fitness - Lewisville',
+                'lat': '33.0650424',
+                'lng': '-96.8844226'
+            },
+            { 'name': '24HrFitness - Grapevine',
+                'lat': '32.9412612',
+                'lng': '-97.1106216'
+            }
+        ];
     }
-    PlayerPage.prototype.ionViewDidLoad = function () {
+    CourtsPage.prototype.ionViewDidEnter = function () {
+        this.loadMap();
+    };
+    CourtsPage.prototype.goToProfile = function () {
+        this.navCtrl.push('ProfilePage');
+    };
+    CourtsPage.prototype.loadMap = function () {
+        // this.geo.getCurrentPosition().then((resp) => {
+        // let lat = JSON.stringify(resp.coords.latitude);
+        // let lng = JSON.stringify(resp.coords.longitude);
+        // let watch = this.geo.watchPosition();
+        // watch.subscribe((data) => {
+        // data can be a set of coordinates, or an error (if an error occurred).
+        // data.coords.latitude
+        // data.coords.longitude
+        // });
+        var latLng = new google.maps.LatLng('33.2083057', '-96.8940848');
+        var mapOptions = {
+            center: latLng,
+            zoom: 10,
+            scroll: true,
+            rotate: true,
+            mapTypeControl: false,
+            fullscreenControl: false,
+            styles: __WEBPACK_IMPORTED_MODULE_1__mapStyle__["a" /* mapStyle */],
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        for (var _i = 0, _a = this.myPlaces; _i < _a.length; _i++) {
+            var place = _a[_i];
+            this.addMarker(place);
+        }
+        // }).catch((error) => {
+        //   console.log('Error getting location', error);
+        // });
+    };
+    CourtsPage.prototype.addMarker = function (place) {
+        var position = new google.maps.LatLng(place.lat, place.lng);
+        var markerIcon = {
+            url: 'assets/img/marker.svg',
+            scaledSize: new google.maps.Size(20, 20),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
+        var marker = new google.maps.Marker({
+            map: this.map,
+            icon: markerIcon,
+            position: position
+        });
+        var markerInfo = '<b style="color:#333">' + place.name + '</b>';
+        this.addInfoWindow(marker, markerInfo);
+    };
+    CourtsPage.prototype.addInfoWindow = function (marker, markerInfo) {
         var _this = this;
-        this.storage.get('myFriends').then(function (val) {
-            var myFriends = val;
-            if (_this.playerID == localStorage.getItem('uid')) {
-                __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').css('display', 'none');
-            }
-            else {
-                for (var key in myFriends) {
-                    if (key === _this.playerID) {
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').addClass('trueFriends');
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').html('Unfriend');
-                    }
-                }
-            }
+        var infoWindow = new google.maps.InfoWindow({
+            content: markerInfo
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.open(_this.map, marker);
         });
     };
-    PlayerPage.prototype.ionViewDidLeave = function () {
-        var uid = localStorage.getItem('uid');
-        sessionStorage.clear();
-        this.firebaseService.updateFriends(uid);
-    };
-    PlayerPage.prototype.addRemoveFriend = function () {
-        var uid = sessionStorage.getItem('CurrPlayer.uid');
-        this.firebaseService.addRemoveFriend(uid);
-    };
-    return PlayerPage;
+    return CourtsPage;
 }());
-PlayerPage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('map'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* ElementRef */])
+], CourtsPage.prototype, "mapElement", void 0);
+CourtsPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-player',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/'\n<ion-header>\n    <ion-navbar>\n      <ion-title>\n        Player Profile\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding class="bgImage">\n    <div class="profileBG"></div>\n    <div class="imageContainer">\n        <img [src]="playerIMG" />\n      </div>\n        \n    <h2><ion-input class="playerName" [(ngModel)]="playerName" disabled></ion-input></h2>\n  \n      <ion-grid class="playerDetailPrimary">\n          <ion-row>\n              <ion-col col-4>\n                  <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                  <ion-input class="points" [(ngModel)]="playerPoints" disabled></ion-input>\n              </ion-col>\n              <ion-col col-4 class="middle">\n                <ion-input [(ngModel)]="playerPlayed" disabled></ion-input>\n              </ion-col>\n            <ion-col col-4>\n                <ion-input class="experience" [(ngModel)]="playerExperience" disabled></ion-input>\n                <img class="icon chart" src="assets/img/icons-chart.svg"/>\n              </ion-col>\n              </ion-row>\n        </ion-grid>\n  \n  \n      <ion-grid class="playerPageDetails">\n          <ion-row>\n              <ion-col col-3>\n                  Age\n                  <ion-input [(ngModel)]="playerAge" disabled></ion-input>\n              </ion-col>\n              <ion-col col-3>\n              Height\n                <ion-input [(ngModel)]="playerHeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3>\n              Weight\n                <ion-input [(ngModel)]="playerWeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3 class="sex">\n                Sex\n                  <ion-input [(ngModel)]="playerGender" disabled></ion-input>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n\n        <div class="buttonContainer">\n          <button ion-button id="friendButton" class="secondaryButton" full (click)="addRemoveFriend()">Add Friend</button>\n        </div>\n  \n  </ion-content>          '/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/,
+        selector: 'courts-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start (click)="goToProfile()">\n      <ion-icon name="contact"></ion-icon>\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end>\n        <img class="navIcon" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
-], PlayerPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */]])
+], CourtsPage);
 
-var _a, _b, _c, _d, _e;
-//# sourceMappingURL=player-page.js.map
+//# sourceMappingURL=courts-page.js.map
+
+/***/ }),
+
+/***/ 329:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mapStyle; });
+var mapStyle = [
+    {
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#212121"
+            }
+        ]
+    },
+    {
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#757575"
+            }
+        ]
+    },
+    {
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#212121"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#757575"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#9e9e9e"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#bdbdbd"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#757575"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#181818"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#616161"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#1b1b1b"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#2c2c2c"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#8a8a8a"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#373737"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#3c3c3c"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway.controlled_access",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#4e4e4e"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#616161"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#757575"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#3d3d3d"
+            }
+        ]
+    }
+];
+//# sourceMappingURL=mapStyle.js.map
 
 /***/ })
 
