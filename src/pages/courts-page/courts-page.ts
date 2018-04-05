@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { mapStyle } from './mapStyle';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { FirebaseService } from './../../providers/firebase-service';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 declare var google;
@@ -18,54 +19,25 @@ export class CourtsPage {
   myLocation: any;
   google: any;
   myPlaces: any;
-
-  // myPlaces = [
-  //     {'name':'24HrFitness - Little Elm',
-  //       'lat': '33.175896',
-  //       'lng': '-96.8911934'
-  //     },
-  //     {'name': '24HrFitness - Frisco',
-  //       'lat': '33.1113431',
-  //       'lng': '-96.8095955'
-  //     },
-  //     {'name':'2424HrFitness - Carrollton',
-  //       'lat': '32.9856774',
-  //       'lng': '-96.8581071'
-  //     },
-  //     {'name':'24HrFitness - Plano',
-  //       'lat': '33.0259727',
-  //       'lng': '-96.7875141'
-  //     },
-  //     {'name':'24HrFitness - North Richland Hills',
-  //       'lat': '32.8420716',
-  //       'lng': '-97.24122919999999'
-  //     },
-  //     {'name':'24Fitness - Lewisville',
-  //       'lat':'33.0650424',
-  //       'lng': '-96.8844226'
-  //     },
-  //     {'name':'24HrFitness - Grapevine',
-  //       'lat':'32.9412612',
-  //       'lng':'-97.1106216'
-  //     }
-  //   ]
-
+  uid: string;
 
   constructor(
     public navCtrl: NavController,
     public geo: Geolocation,
     public storage: Storage,
+    public firebaseService: FirebaseService,
     public afd: AngularFireDatabase) {
- 
     }
 
     ionViewWillEnter(){
         this.loadMap();
+        let uid = localStorage.getItem('uid');
+        this.firebaseService.checkMessages(uid);  
     }
 
-  goToProfile() {
-    this.navCtrl.push('ProfilePage');
-  }
+    goToProfile(uid){
+      this.navCtrl.push('PlayerPage', uid);
+    }  
 
   loadMap(){
     // this.geo.getCurrentPosition().then((resp) => {
@@ -132,6 +104,10 @@ export class CourtsPage {
     google.maps.event.addListener(marker, 'click', () => {
       infoWindow.open(this.map, marker);
     });
+  }
+
+  seeMessages(){
+    this.navCtrl.push('MessagesPage');
   }
 
 }

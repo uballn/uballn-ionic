@@ -44,15 +44,6 @@ export class ProfilePage {
     public storage: Storage,
     public toastCtrl: ToastController) {
 
-    this.afd.list('/users', { preserveSnapshot: true})
-          .subscribe(snapshots=>{
-            this.userData = [];
-              snapshots.forEach(snapshot => {
-                this.userData.push(snapshot.val());
-              });
-              this.storage.set('userData',this.userData);
-          })
-
   }
 
   ionViewWillEnter() {

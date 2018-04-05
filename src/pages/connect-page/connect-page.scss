@@ -42,7 +42,7 @@ page-connect {
             padding: 20px 0;
         }
         img {
-            width:40px;
+            width:60px;
             height:auto;
         }
         div.status {
@@ -52,6 +52,12 @@ page-connect {
             height: 2em;
             margin-top: 10px;
             &.friendStatus {
+                &.pending.squadStatus.false {
+                background-image: url(../assets/img/icons-friendPending.svg) !important;
+                background-size: 50px !important;
+                margin-left: -20px;
+                width: 5em;
+                }
                 background-size: 17px 17px !important;
                 background-image: url(../assets/img/icons-plus.svg) !important;
                 &.friends {
@@ -59,7 +65,15 @@ page-connect {
                 }
             }
             &.squadStatus{
+              &.pending {
+                background-image: url(../assets/img/icons-squadPending.svg) !important;
+                background-size: 50px !important;
+                margin-left: -20px;
+                width: 5em;
+              }
+              &.false {
                 background-image: url(../assets/img/icons-star-empty.svg) !important;
+              }
               &.true {
                 background-image: url(../assets/img/icons-star.svg) !important;
               }

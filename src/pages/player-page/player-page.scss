@@ -2,6 +2,7 @@ page-player {
   input.text-input {
     text-align:center;
     font-size: 1.2em;
+    text-overflow: ellipsis;
 }
 .experience {
   width: 2em;

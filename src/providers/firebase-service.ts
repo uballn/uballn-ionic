@@ -22,6 +22,13 @@ export class FirebaseService {
   friendData: any;
   friends: any;
   friendNum: any;
+  myUsername: string;
+  myID: string;
+  messages: any;
+  messageID: number;
+  messageData: any;
+  messageNum: any;
+
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -136,26 +143,44 @@ export class FirebaseService {
       return this.afd.object('/users/' + this.user.uid+'/friends/'+uid).update({
         img: null,
         squad: null,
+        status: null,
         uid: null,
         username: null
       })
     } else {
-      $('#friendButton').addClass('trueFriends');
-      $('#friendButton').html('Unfriend');
-      return this.afd.object('/users/' + this.user.uid+'/friends/'+uid).update({
+      $('#friendButton').addClass('pending');
+      $('#friendButton').html('Pending');
+      this.myID = localStorage.getItem('uid');
+      this.sendfriendRequest(uid);
+      return this.afd.object('/users/' + this.myID + '/friends/' + uid).update({
         img: sessionStorage.getItem('CurrPlayer.img'),
         squad: 'false',
+        status: 'pending',
         uid: sessionStorage.getItem('CurrPlayer.uid'),
         username: sessionStorage.getItem('CurrPlayer.username')
       })
     }
   }
 
+  sendfriendRequest(uid){
+    this.myUsername = localStorage.getItem('currUserName');
+    this.messageID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
+    return this.afd.object('/users/' + uid + '/messages/' + this.messageID).update({
+      avatar: sessionStorage.getItem('CurrPlayer.img'),
+      header: 'Friend Request',
+      message: this.myUsername + ' wants to be friends.',
+      messageID: this.messageID,
+      requestorID: sessionStorage.getItem('CurrPlayer.uid'),
+      requestorName: sessionStorage.getItem('CurrPlayer.username')
+    })
+  }
+
+
   joinGame(gameID) {
     this.playerID = localStorage.getItem('uid');
     this.gameID = sessionStorage.getItem('gameID');
 
-    return this.afd.object('/games/' + this.gameID+'/players/'+this.playerID).update({  
+    return this.afd.object('/games/' + this.gameID + '/players/' + this.playerID).update({  
       alias: localStorage.getItem('name'),
       age: localStorage.getItem('age'),
       uid: localStorage.getItem('uid'),
@@ -168,7 +193,7 @@ export class FirebaseService {
     this.playerID = localStorage.getItem('uid');
     this.gameID = sessionStorage.getItem('gameID');
 
-    return this.afd.object('/games/' + this.gameID+'/players/'+this.playerID).update({  
+    return this.afd.object('/games/' + this.gameID + '/players/' + this.playerID).update({  
       alias: null,
       age: null,
       uid: null,
@@ -205,4 +230,22 @@ export class FirebaseService {
 
   }
 
+  checkMessages(uid){
+    this.messageData = [];
+    this.afd.list('/users/'+ uid + '/messages', { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          this.messageData.push(snapshot.val());
+        });
+        this.messageNum = this.messageData.length;
+        if (this.messageNum > 0){
+          $('.notify').remove();
+          $('.navIcon.messages').after('<span class="notify"></span>');
+        }else{
+          $('.notify').remove();        
+        }
+        localStorage.setItem('messageNum',this.messageNum);
+        this.storage.set('messageData',this.messageData);
+    })
+  }
 }

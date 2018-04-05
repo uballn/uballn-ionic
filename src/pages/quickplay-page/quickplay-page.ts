@@ -27,7 +27,8 @@ export class QuickPlayPage {
   }
 
   ionViewWillEnter(){
-    sessionStorage.clear();
+    let uid = localStorage.getItem('uid');
+    this.firebaseService.checkMessages(uid);
   }
 
   newList() {
@@ -133,6 +134,10 @@ export class QuickPlayPage {
 
   openGame(game) {
     this.navCtrl.push('GamePage', game);
+  }
+
+  seeMessages(){
+    this.navCtrl.push('MessagesPage');
   }
 
 }

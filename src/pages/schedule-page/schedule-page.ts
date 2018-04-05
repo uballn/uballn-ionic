@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { FirebaseService } from './../../providers/firebase-service';
 import { Settings } from '../../providers/providers';
 
 /**
@@ -44,6 +44,7 @@ export class SchedulePage {
   constructor(
     public navCtrl: NavController,
     public settings: Settings,
+    public firebaseService: FirebaseService,
     public formBuilder: FormBuilder,
     public navParams: NavParams) {
   }
@@ -94,6 +95,10 @@ export class SchedulePage {
 
       this._buildForm();
     });
+
+    let uid = localStorage.getItem('uid');
+    this.firebaseService.checkMessages(uid);
+
   }
 
   ngOnChanges() {
@@ -103,5 +108,10 @@ export class SchedulePage {
   goToProfile() {
     this.navCtrl.push('ProfilePage');
   }
+
+  seeMessages(){
+    this.navCtrl.push('MessagesPage');
+  }
+
 
 }

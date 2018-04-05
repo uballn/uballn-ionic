@@ -36,7 +36,11 @@ export class PlayerPage {
     public afd: AngularFireDatabase,
     public navParams: NavParams,
     private storage: Storage) {
+
       this.playerID = this.navParams.data;
+      let uid = localStorage.getItem('uid');
+      this.firebaseService.checkMessages(uid);
+
       this.playerIMG;
 
       if (localStorage.getItem('gender') == 'male'){

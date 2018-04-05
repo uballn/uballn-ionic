@@ -39,7 +39,7 @@
                   </button>
                 </ion-col>
                 <ion-col col-1>
-                    <div class="status squadStatus {{friend.squad}}"> </div>
+                    <div class="status friendStatus {{friend.status}} squadStatus {{friend.squad}}" (click)="requestRemoveSquad(friend.uid)"> </div>
                 </ion-col>
               </ion-row>
             </ion-grid>

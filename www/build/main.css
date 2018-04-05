@@ -25323,6 +25323,17 @@ ion-app .navIcon {
   margin-top: 15px;
 }
 
+ion-app .notify {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  background-color: red;
+  display: block;
+  border-radius: 10px;
+}
+
 ion-app .formText {
   text-align: center;
   font-size: 1.25em;
@@ -25427,7 +25438,7 @@ page-connect ion-list h5 {
 }
 
 page-connect ion-list img {
-  width: 40px;
+  width: 60px;
   height: auto;
 }
 
@@ -25444,11 +25455,25 @@ page-connect ion-list div.status.friendStatus {
   background-image: url(../assets/img/icons-plus.svg) !important;
 }
 
+page-connect ion-list div.status.friendStatus.pending.squadStatus.false {
+  background-image: url(../assets/img/icons-friendPending.svg) !important;
+  background-size: 50px !important;
+  margin-left: -20px;
+  width: 5em;
+}
+
 page-connect ion-list div.status.friendStatus.friends {
   opacity: 0.5;
 }
 
-page-connect ion-list div.status.squadStatus {
+page-connect ion-list div.status.squadStatus.pending {
+  background-image: url(../assets/img/icons-squadPending.svg) !important;
+  background-size: 50px !important;
+  margin-left: -20px;
+  width: 5em;
+}
+
+page-connect ion-list div.status.squadStatus.false {
   background-image: url(../assets/img/icons-star-empty.svg) !important;
 }
 
@@ -25607,9 +25632,68 @@ page-login-page ion-title img {
   display: block;
 }
 
+page-messages .scroll-content {
+  margin: 0 -15px;
+}
+
+page-messages ion-list {
+  border-top: 1px solid #888 !important;
+}
+
+page-messages .avatar {
+  position: relative;
+  left: 0;
+}
+
+page-messages .avatar span {
+  margin-left: -5px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  display: block;
+  overflow: hidden;
+}
+
+page-messages .avatar span img {
+  width: 60px;
+  height: auto;
+}
+
+page-messages .message {
+  margin-left: -10px;
+}
+
+page-messages .confirmation {
+  position: absolute;
+  right: 0;
+}
+
+page-messages .confirmation img {
+  width: 30px;
+  float: right;
+  margin-right: 5px;
+}
+
+page-messages ion-item.item.item-block {
+  background: transparent;
+  border-bottom: 1px solid #888 !important;
+  padding-bottom: 10px;
+}
+
+page-messages ion-item.item.item-block h2 {
+  color: #fff;
+  font-weight: bold;
+}
+
+page-messages ion-item.item.item-block p {
+  color: #eee;
+  font-weight: normal;
+}
+
 page-player input.text-input {
   text-align: center;
   font-size: 1.2em;
+  text-overflow: ellipsis;
 }
 
 page-player .experience {
