@@ -98,10 +98,11 @@ MessagesPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-messages',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/messages-page/messages-page.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Messages</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n    <ion-list>\n        <ion-item *ngFor="let message of messages">\n          <ion-grid>\n            <ion-row>\n              <ion-col col-2 class="avatar">\n              <span (click)="goToProfile(message.requestorID)">\n                  <img [src]="message.avatar">\n              </span>          \n              </ion-col>\n              <ion-col col-8 class="message">\n                  <h2>{{message.header}}</h2>\n                  <p>{{message.message}}</p>\n              </ion-col>\n              <ion-col col-3 class="confirmation">\n                <span (click)="denyFriend(message.requestorName)"><img src="assets/img/icons-cancel.svg"/></span>\n                <span (click)="approveFriend(message.requestorName)"><img src="assets/img/icons-checkmark.svg"/></span>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n      </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/messages-page/messages-page.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], MessagesPage);
 
-var _a, _b, _c;
 //# sourceMappingURL=messages-page.js.map
 
 /***/ })

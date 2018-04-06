@@ -35,10 +35,10 @@ export class CourtsPage {
         this.firebaseService.checkMessages(uid);  
     }
 
-    goToProfile(uid){
-      this.navCtrl.push('PlayerPage', uid);
-    }  
-
+    goToProfile() {
+      this.navCtrl.push('ProfilePage');
+    }
+  
   loadMap(){
     // this.geo.getCurrentPosition().then((resp) => {
     // let lat = JSON.stringify(resp.coords.latitude);

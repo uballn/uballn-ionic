@@ -21,6 +21,8 @@ export class LoginPage {
   userData: any;
   currUserFriends: any;
   myPlaces: any;
+  uid: any;
+  allUsers: any;
 
   constructor(
     public navCtrl: NavController,
@@ -146,5 +148,5 @@ export class LoginPage {
     });
     alert.present();
   }
-
+  
 }

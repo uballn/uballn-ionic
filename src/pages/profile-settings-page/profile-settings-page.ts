@@ -44,7 +44,9 @@ export class ProfileSettingsPage {
   }
 
   ionViewWillLeave(){
-    this.updateUser();
+    if (localStorage.length !== 0){
+      this.updateUser();
+    }
   }
 
   updateUser() {

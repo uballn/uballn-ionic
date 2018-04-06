@@ -79,7 +79,9 @@ var ProfileSettingsPage = (function () {
     ProfileSettingsPage.prototype.ionViewWillEnter = function () {
     };
     ProfileSettingsPage.prototype.ionViewWillLeave = function () {
-        this.updateUser();
+        if (localStorage.length !== 0) {
+            this.updateUser();
+        }
     };
     ProfileSettingsPage.prototype.updateUser = function () {
         var _this = this;

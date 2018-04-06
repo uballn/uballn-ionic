@@ -82,8 +82,8 @@ var CourtsPage = (function () {
         var uid = localStorage.getItem('uid');
         this.firebaseService.checkMessages(uid);
     };
-    CourtsPage.prototype.goToProfile = function (uid) {
-        this.navCtrl.push('PlayerPage', uid);
+    CourtsPage.prototype.goToProfile = function () {
+        this.navCtrl.push('ProfilePage');
     };
     CourtsPage.prototype.loadMap = function () {
         // this.geo.getCurrentPosition().then((resp) => {

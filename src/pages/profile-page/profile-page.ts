@@ -66,28 +66,6 @@ export class ProfilePage {
     }
   })
 
-    this.uid = localStorage.getItem('uid');
-
-    this.afd.list('/users/'+this.uid, { preserveSnapshot: true})
-    .subscribe(snapshots=>{
-        snapshots.forEach(snapshot => {
-          localStorage.setItem(snapshot.key, snapshot.val());
-          if (snapshot.key === 'friends'){
-            this.storage.set('myFriends', snapshot.val());
-          }
-        });
-    })
-
-    this.afd.list('/users', { preserveSnapshot: true})
-    .subscribe(snapshots=>{
-      this.allUsers = [];
-
-        snapshots.forEach(snapshot => {
-            this.allUsers.push(snapshot.val());
-        });
-        this.storage.set('allUsers',this.allUsers);
-      })
-
     if (localStorage.getItem('gender') === 'male'){
       this.gender = 'M';
     }else {
@@ -127,25 +105,10 @@ export class ProfilePage {
     toast.present();
   }
 
-  accepInvitation(invitation) {
-    this.firebaseService.acceptInvitation(invitation).then(() => {
-      this.presentToast('Invitation accepted!');
-    })
-  }
-
-  discardInvitation(invitationId) {
-    this.firebaseService.discardInvitation(invitationId);
-  }
-
-  logOut() {
-    this.firebaseService.logoutUser().then(() => {
-      localStorage.clear();
-      this.navCtrl.setRoot('LoginPage');
-    });
-  }
   goToSettings(){
     this.navCtrl.push('ProfileSettingsPage');
   }
+
   goToProfile(uid){
     this.navCtrl.push('PlayerPage', uid);
   }
