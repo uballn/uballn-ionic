@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 import { FirebaseService } from './../../providers/firebase-service';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Contacts, ContactFieldType, ContactFindOptions } from 'ionic-native';
-import { AddContactPage } from '../add-contact/add-contact';
 import * as $ from 'jquery';
 
 @IonicPage()
@@ -93,30 +92,6 @@ export class ConnectPage {
       messageID: this.messageID
     })
   }
-
-  findContact(ev:any) {
-		
-		let fields = ['addresses', 'birthday', 'categories', 'country', 
-		'department', 'displayName', 'emails', 'familyName', 'formatted', 
-		'givenName', 'honorificPrefix', 'honorificSuffix', 'id', 'ims', 'locality', 
-		'middleName', 'name', 'nickname', 'note', 'organizations', 'phoneNumbers', 
-		'photos', 'postalCode', 'region', 'streetAddress', 'title', 'urls'];
-
-		const options = new ContactFindOptions();
-		options.filter = ev.target.value;
-		options.multiple = true;
-		options.hasPhoneNumber = true;
-
-		Contacts.find(fields, options).then((contacts) => {
-			this.contactsfound = contacts;
-			console.log(JSON.stringify(contacts[0]));
-		});
-
-		if(this.contactsfound.length == 0){
-			this.contactsfound.push({displayName: 'No Contacts found'});  
-		}
-		this.search = true;
-	}
 
   // Still working on friend stuff for this page
   // requestRemoveFriend(uid) {

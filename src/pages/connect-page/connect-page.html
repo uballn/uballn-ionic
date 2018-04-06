@@ -63,16 +63,22 @@
           </div>
         </ion-list>
 
-        <div *ngSwitchCase="'contacts'">
-            <ion-content padding>
-                <ion-searchbar (ionInput)="findContact($event)" placeholder="Enter display name"></ion-searchbar>
-             
-                <ion-list [hidden]="!search">
-                    <ion-item *ngFor="let item of contactsfound">{{item.displayName}}</ion-item>
-                </ion-list>
-                 
-            </ion-content>
-        </div>
-
+        <ion-list *ngSwitchCase="'contacts'">
+            <button ion-button class="secondaryButton" (click)="showContacts()">Allow Access to Contacts</button>
+             <div *ngFor="let user of userData" class="contactList" style="display:none;">
+                 <ion-grid>
+                     <ion-row>
+                       <ion-col col-11>
+                         <button ion-item class="suggested" (click)="goToProfile(user.uid)">
+                           <span class="imgContainer"><img [src]="user.img"/></span>{{ user.username }}
+                         </button> 
+                       </ion-col>
+                       <ion-col col-1>
+                           <div class="status friendStatus"></div>
+                       </ion-col>
+                     </ion-row>
+                 </ion-grid>
+               </div>
+             </ion-list>
       </div>
 </ion-content>
