@@ -27,6 +27,7 @@
     "@ionic/storage": "2.0.1",
     "angularfire2": "^4.0.0-rc0",
     "cordova-ios": "4.5.4",
+    "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -42,7 +43,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "^1.3.12",
-    "typescript": "^2.3.4"
+    "typescript": "^2.8.1"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
@@ -67,7 +68,8 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-contacts": {}
     },
     "platforms": [
       "ios"

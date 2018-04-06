@@ -1,4 +1,6 @@
 {
     "libz.tbd": 2,
-    "WebKit.framework": 1
+    "WebKit.framework": 1,
+    "AddressBook.framework": 1,
+    "AddressBookUI.framework": 1
 }
