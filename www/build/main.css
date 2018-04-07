@@ -25311,7 +25311,7 @@ ion-app .notify {
 ion-app .formText {
   text-align: center;
   font-size: 1.25em;
-  margin: 30px auto;
+  margin: 20px auto;
 }
 
 ion-app .formText.small {
@@ -25797,6 +25797,11 @@ page-player ion-select.level ion-select {
   max-width: 70%;
 }
 
+page-policy a {
+  color: #111;
+  font-weight: bold;
+}
+
 page-profile-page h2 {
   margin-top: -10px;
   margin-bottom: -10px;
@@ -26134,4 +26139,13 @@ page-schedule .private {
 
 page-schedule .item-inner {
   border: none !important;
+}
+
+page-terms a {
+  color: #111;
+  font-weight: bold;
+}
+
+page-terms ol {
+  padding-left: 20px;
 }

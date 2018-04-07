@@ -7,6 +7,8 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { Storage } from '@ionic/storage';
+import { ModalController } from 'ionic-angular';
+import { ModalPage } from './modal-page';
 import 'rxjs/add/operator/map';
 
 
@@ -31,7 +33,8 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public formBuilder: FormBuilder,
-    private storage: Storage) {
+    private storage: Storage,
+    public modalCtrl: ModalController) {
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
@@ -148,5 +151,16 @@ export class LoginPage {
     });
     alert.present();
   }
+
+  showPrivacyPolicy() {
+    let modal = this.modalCtrl.create('PolicyPage');
+    modal.present();
+  }
+
+  showTerms() {
+    let modal = this.modalCtrl.create('TermsPage');
+    modal.present();
+  }
+
   
 }

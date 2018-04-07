@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
 
     <div padding>
@@ -37,15 +37,14 @@
       <p>Your password needs more than 6 characters.</p>
     </ion-item>
 
-    <p class="formText small" (click)="resetPassword()">forgot password?</p>
+    <p class="formText small" (click)="resetPassword()">forgot your password?</p>
 
     <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">
       Login
     </button>
+    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#" (click)="showTerms()">Terms of Use</a> and <a href="#" (click)="showPrivacyPolicy()">Privacy Policy</a>.</p>
 
-    <p class="formText small" (click)="goToSignup()">don't have an account? Sign Up!</p>
-
-    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+    <p class="formText small" (click)="goToSignup()">don't have an account? <a href="#">Sign Up!</a></p>
 
   </form>
 

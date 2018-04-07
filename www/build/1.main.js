@@ -95,8 +95,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginPage = (function () {
-    function LoginPage(navCtrl, firebaseService, afd, loadingCtrl, alertCtrl, formBuilder, storage) {
+    function LoginPage(navCtrl, firebaseService, afd, loadingCtrl, alertCtrl, formBuilder, storage, modalCtrl) {
         this.navCtrl = navCtrl;
         this.firebaseService = firebaseService;
         this.afd = afd;
@@ -104,6 +105,7 @@ var LoginPage = (function () {
         this.alertCtrl = alertCtrl;
         this.formBuilder = formBuilder;
         this.storage = storage;
+        this.modalCtrl = modalCtrl;
         this.loginForm = formBuilder.group({
             email: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_4__validators_email__["a" /* EmailValidator */].isValid])],
             password: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].minLength(6), __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required])]
@@ -212,22 +214,25 @@ var LoginPage = (function () {
         });
         alert.present();
     };
+    LoginPage.prototype.showPrivacyPolicy = function () {
+        var modal = this.modalCtrl.create('PolicyPage');
+        modal.present();
+    };
+    LoginPage.prototype.showTerms = function () {
+        var modal = this.modalCtrl.create('TermsPage');
+        modal.present();
+    };
     return LoginPage;
 }());
 LoginPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-login-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>\n\n    <div padding>\n      <button ion-button full class="facebookButton" block>Log In With Facebook</button>\n    <br>\n      <button ion-button full class="twitterButton" block>Log In With Twitter</button>\n    </div>\n\n    <p class="formText">or with your email</p>\n\n    <ion-item>\n      <ion-label>Email</ion-label>\n      <ion-input formControlName="email" type="email"\n        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines>\n      <p>Please enter a valid email.</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Password</ion-label>\n      <ion-input formControlName="password" type="password"\n        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines>\n      <p>Your password needs more than 6 characters.</p>\n    </ion-item>\n\n    <p class="formText small" (click)="resetPassword()">forgot password?</p>\n\n    <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">\n      Login\n    </button>\n\n    <p class="formText small" (click)="goToSignup()">don\'t have an account? Sign Up!</p>\n\n    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/,
+        selector: 'page-login-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>\n\n    <div padding>\n      <button ion-button full class="facebookButton" block>Log In With Facebook</button>\n    <br>\n      <button ion-button full class="twitterButton" block>Log In With Twitter</button>\n    </div>\n\n    <p class="formText">or with your email</p>\n\n    <ion-item>\n      <ion-label>Email</ion-label>\n      <ion-input formControlName="email" type="email"\n        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines>\n      <p>Please enter a valid email.</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Password</ion-label>\n      <ion-input formControlName="password" type="password"\n        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines>\n      <p>Your password needs more than 6 characters.</p>\n    </ion-item>\n\n    <p class="formText small" (click)="resetPassword()">forgot your password?</p>\n\n    <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">\n      Login\n    </button>\n    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#" (click)="showTerms()">Terms of Use</a> and <a href="#" (click)="showPrivacyPolicy()">Privacy Policy</a>.</p>\n\n    <p class="formText small" (click)="goToSignup()">don\'t have an account? <a href="#">Sign Up!</a></p>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */],
-        __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* FormBuilder */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */]) === "function" && _h || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=login-page.js.map
 
 /***/ })
