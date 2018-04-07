@@ -25371,6 +25371,19 @@ ion-app ion-grid.grid ion-row ion-col.col[col-6]:first-child {
   margin-right: 10px;
 }
 
+page-about-version .modalContent {
+  min-height: 100%;
+  text-align: center;
+  margin: 0 -20px;
+}
+
+page-about-version .modalContent img {
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 40px auto;
+  display: block;
+}
+
 page-connect .item-inner {
   background-image: none !important;
 }
@@ -25808,7 +25821,12 @@ page-player ion-select.level ion-select {
   max-width: 70%;
 }
 
-page-policy a {
+page-policy .modalContent {
+  min-height: 100%;
+  margin: 0 -20px;
+}
+
+page-policy .modalContent a {
   color: #111;
   font-weight: bold;
 }
@@ -26156,12 +26174,17 @@ page-schedule .item-inner {
   border: none !important;
 }
 
-page-terms a {
+page-terms .modalContent {
+  min-height: 100%;
+  margin: 0 -20px;
+}
+
+page-terms .modalContent a {
   color: #111;
   font-weight: bold;
 }
 
-page-terms ol {
+page-terms .modalContent ol {
   padding-left: 20px;
 }
 

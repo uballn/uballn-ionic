@@ -1,3 +1,13 @@
 page-about-version {
-
+    .modalContent{
+        min-height:100%;
+        text-align: center;
+        margin: 0 -20px;
+        img {
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 40px auto;
+            display:block;
+        }
+    }
 }
