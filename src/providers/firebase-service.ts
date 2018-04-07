@@ -133,7 +133,8 @@ export class FirebaseService {
       weight: localStorage.getItem('weight'),
       experience: localStorage.getItem('experience'),
       birthday: localStorage.getItem('birthday'),
-      gender: localStorage.getItem('gender')
+      gender: localStorage.getItem('gender'),
+      img: localStorage.getItem('img')
     });
   }
 

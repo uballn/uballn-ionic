@@ -4,7 +4,12 @@ page-profile-settings {
       background: #111 !important;
     }
   }
-
+  .editPhoto {
+    width: 100%;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
   .invalid {
       border-bottom: 1px solid #ff0000;
     }

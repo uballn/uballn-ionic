@@ -25108,11 +25108,19 @@ ion-navbar.toolbar {
   }
 }
 
-ion-app .avatar {
+ion-app .avatarContainer {
   width: 30px;
+  height: 30px;
   border-radius: 30px;
   overflow: hidden;
   border: 2px solid #fff;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+ion-app .avatarContainer img {
+  min-width: 40px;
+  min-height: 40px;
 }
 
 ion-app .item-ios.item-block .item-inner {
@@ -25331,10 +25339,16 @@ ion-app .imageContainer {
   border: 3px solid #fff;
   overflow: hidden;
   border-radius: 250px;
-  margin: 10px auto 10px;
+  margin: 10px auto 30px;
   background: #000;
   z-index: 10;
   position: relative;
+}
+
+ion-app .imageContainer.profilePhoto img {
+  min-height: 300px;
+  min-width: 300px;
+  margin: -20% 0 0 -10%;
 }
 
 ion-app ion-navbar button[ion-button] {
@@ -26028,6 +26042,13 @@ page-profile-page ion-select.level ion-select {
 
 page-profile-settings .profileInputs ion-item.item.item-block {
   background: #111 !important;
+}
+
+page-profile-settings .editPhoto {
+  width: 100%;
+  margin-top: -20px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 page-profile-settings .invalid {

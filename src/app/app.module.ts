@@ -14,6 +14,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { HttpModule } from '@angular/http';
 import { Games } from '../data/providers/games';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAHJifVSUazzTFUH-yW7rIc3ZrjYz0phco",
@@ -64,6 +65,7 @@ const firebaseConfig = {
     SplashScreen,
     Games,
     Geofence,
+    Camera,
     Geolocation,
         { provide: Settings,
           useFactory: provideSettings,

@@ -1,10 +1,12 @@
 import { FirebaseService } from './../../providers/firebase-service';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
 import { ModalPage } from './modal-page';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -12,6 +14,8 @@ import { ModalPage } from './modal-page';
   templateUrl: 'profile-settings-page.html',
 })
 export class ProfileSettingsPage {
+  @ViewChild('fileInput') fileInput;
+  isReadyToSave: boolean;
   nameForm: FormGroup;
   invitations: Observable<any[]>;
   profileData: any;
@@ -29,7 +33,9 @@ export class ProfileSettingsPage {
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
     public toastCtrl: ToastController,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public storage: Storage,
+    public camera: Camera) {
 
       this.name = localStorage.getItem('name');
       this.birthday = localStorage.getItem('birthday');
@@ -41,6 +47,13 @@ export class ProfileSettingsPage {
   }
 
   ionViewWillEnter() {
+    let profilePic;
+    if (localStorage.getItem('userPhoto') === 'null'){
+      profilePic = 'https://mydjapp.jnashdev.com/images/kanye.jpg';
+      localStorage.setItem('userPhoto', profilePic)
+    }else{
+      profilePic = localStorage.getItem('userPhoto');
+    };
   }
 
   ionViewWillLeave(){
@@ -85,15 +98,49 @@ export class ProfileSettingsPage {
     toast.present();
   }
 
-  accepInvitation(invitation) {
-    this.firebaseService.acceptInvitation(invitation).then(() => {
-      this.presentToast('Invitation accepted!');
-    })
+  // accepInvitation(invitation) {
+  //   this.firebaseService.acceptInvitation(invitation).then(() => {
+  //     this.presentToast('Invitation accepted!');
+  //   })
+  // }
+
+  // discardInvitation(invitationId) {
+  //   this.firebaseService.discardInvitation(invitationId);
+  // }
+
+  getPicture() {
+    if (Camera['installed']()) {
+      this.camera.getPicture({
+        destinationType: this.camera.DestinationType.DATA_URL,
+        targetWidth: 96,
+        targetHeight: 96
+      }).then((data) => {
+        this.storage.set('profilePic', data);        
+        // this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
+      }, (err) => {
+        alert('Unable to take photo');
+      })
+    } else {
+      this.fileInput.nativeElement.click();
+    }
   }
 
-  discardInvitation(invitationId) {
-    this.firebaseService.discardInvitation(invitationId);
+  processWebImage(event) {
+    let reader = new FileReader();
+    reader.onload = (readerEvent) => {
+
+      let imageData = (readerEvent.target as any).result;
+      this.updateUserIMG = imageData;
+      localStorage.setItem('img', imageData);
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
   }
+
+  // getProfileImageStyle() {
+  //   return 'url(' + this.form.controls['profilePic'].value + ')'
+  // }
+
 
   logOut() {
     this.firebaseService.logoutUser().then(() => {
