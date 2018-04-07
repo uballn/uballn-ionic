@@ -26138,6 +26138,10 @@ page-register-page .error-message {
   margin-top: -15px;
 }
 
+page-register-page .primaryButton {
+  margin-top: 20px;
+}
+
 page-schedule .scheduleIntro {
   text-align: center;
   font-size: 1.25em;
@@ -26159,4 +26163,64 @@ page-terms a {
 
 page-terms ol {
   padding-left: 20px;
+}
+
+page-welcome .overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+
+page-welcome .introLogo {
+  height: 20%;
+}
+
+page-welcome .introLogo img {
+  max-width: 50%;
+  margin: 20% auto 10px;
+  display: block;
+}
+
+page-welcome ion-slides {
+  max-height: 30%;
+  position: absolute;
+  bottom: 200px;
+}
+
+page-welcome ion-slides .slide-zoom {
+  padding: 0 40px;
+}
+
+page-welcome .primaryButton {
+  margin-bottom: 20px;
+}
+
+page-welcome .swiper-pagination-bullet {
+  background-color: #fff;
+  opacity: 0.3;
+}
+
+page-welcome .swiper-pagination-bullet-active {
+  background-color: #fff !important;
+  opacity: 1;
+}
+
+page-welcome form {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+page-welcome video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }

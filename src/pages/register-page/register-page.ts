@@ -3,6 +3,8 @@ import { EmailValidator } from './../../validators/email';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Loading, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from 'ionic-angular';
+import { ModalPage } from './modal-page';
 
 @IonicPage()
 @Component({
@@ -18,7 +20,8 @@ export class RegisterPage {
     public firebaseService: FirebaseService,
     public formBuilder: FormBuilder, 
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController) {
 
     this.signupForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
@@ -54,4 +57,20 @@ export class RegisterPage {
         });
     }
   }
+
+  showPrivacyPolicy() {
+    let modal = this.modalCtrl.create('PolicyPage');
+    modal.present();
+  }
+
+  showTerms() {
+    let modal = this.modalCtrl.create('TermsPage');
+    modal.present();
+  }
+
+  back(){
+    this.navCtrl.pop();
+  }
+
+
 }

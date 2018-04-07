@@ -1,6 +1,9 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
+      <button ion-button start (click)="back()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+      <ion-title>
       <img src="assets/img/uballn-logo.png" />
     </ion-title>
   </ion-navbar>
@@ -8,14 +11,6 @@
 
 <ion-content>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
-
-    <div padding>
-      <button ion-button full class="facebookButton" block>Log In With Facebook</button>
-    <br>
-      <button ion-button full class="twitterButton" block>Log In With Twitter</button>
-    </div>
-
-    <p class="formText">or with your email</p>
 
     <ion-item>
       <ion-label>Email</ion-label>

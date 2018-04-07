@@ -1,11 +1,13 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      Create Account
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
+    <ion-navbar>
+        <button ion-button start (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+        <ion-title>
+        <img src="assets/img/uballn-logo.png" />
+      </ion-title>
+    </ion-navbar>
+  </ion-header>  
 
 <ion-content padding>
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
@@ -43,8 +45,11 @@
       <p>Your password needs more than 6 characters.</p>
     </ion-item>
 
-    <button ion-button block type="submit" [disabled]="!signupForm.valid">
+    <button ion-button block class="primaryButton" type="submit" [disabled]="!signupForm.valid">
       Create Account
     </button>
+
+    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#" (click)="showTerms()">Terms of Use</a> and <a href="#" (click)="showPrivacyPolicy()">Privacy Policy</a>.</p>
+
   </form>
 </ion-content>

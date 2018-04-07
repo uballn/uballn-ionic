@@ -162,5 +162,8 @@ export class LoginPage {
     modal.present();
   }
 
+  back(){
+    this.navCtrl.pop();
+  }
   
 }

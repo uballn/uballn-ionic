@@ -1,0 +1,39 @@
+<ion-content no-bounce>
+  <div class="overlay">
+      <video autoplay loop src="assets/vid/intro_hooping.mp4"></video>
+      <div class="introLogo">
+        <img src="assets/img/uballn_logo.svg"/>
+      </div>
+
+      <div class="slidesAndButtons">
+      <ion-slides pager>
+        <ion-slide (didChange)="slideChanged()">
+          <h2>Find a Pick-Up Game</h2>
+          <p>Don't know where the ballers are? Now you can easily find active games nearby.</p>
+        </ion-slide>
+        
+        <ion-slide (didChange)="slideChanged()">
+            <h2>Level of Play</h2>
+            <p>Instantly get an idea of the competition with our level of play system. </p>
+          </ion-slide>
+
+        <ion-slide (didChange)="slideChanged()">
+            <h2>Easily Organize Games</h2>
+            <p>No need to text or tweet to get people to show. Just hit "invite".</p>
+          </ion-slide>
+
+        <ion-slide (didChange)="slideChanged()">
+            <h2>Profile</h2>
+            <p>Create a player profile and show everyone what you bring to the court.</p>
+          </ion-slide>
+        
+      </ion-slides>
+      <form>
+        <div padding>
+          <button ion-button class="primaryButton" block (click)="goToSignup()">Create Account</button>
+          <button ion-button class="secondaryButton" block (click)="goToLogin()">Log In</button>
+        </div>
+      </form>
+    </div>
+</div>
+</ion-content>

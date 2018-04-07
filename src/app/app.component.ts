@@ -27,7 +27,7 @@ export class MyApp {
         if (user) {
           this.rootPage = 'TabsPage';
         } else {
-          this.rootPage = 'LoginPage';
+          this.rootPage = 'WelcomePage';
         }
       });
     });
