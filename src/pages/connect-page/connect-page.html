@@ -22,14 +22,14 @@
       <div [ngSwitch]="connect">            
         <ion-list *ngSwitchCase="'friends'">
             <div class="playerContainer">
-              <p>Your Squad</p>
+              <p>My Squad</p>
               <div *ngFor="let friend of friends" class="playerLoop">
                 <div class="player" *ngIf="friend.squad == 'true'">
                   <span class="imgContainer squad" (click)="goToProfile(friend.uid)"><img [src]="friend.img" /></span>
                 </div>
                 </div>
               </div> 
-
+          <p>My Friends</p>
           <div *ngFor="let friend of friends">
             <ion-grid>
               <ion-row>

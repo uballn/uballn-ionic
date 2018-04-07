@@ -14,6 +14,7 @@ import * as $ from 'jquery';
 
 export class ConnectPage {
   friends: any;
+  pendingFriends: any;
   connect: any;
   users: any;
   userData: any;

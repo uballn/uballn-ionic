@@ -4,10 +4,10 @@
 	 viewBox="0 0 300 137" style="enable-background:new 0 0 300 137;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#E6A000;}
-	.st1{font-family:'Arial-Black';}
-	.st2{font-size:56px;}
+	.st1{font-family:'OpenSans';}
+	.st2{font-size:66px;}
+	.st3{letter-spacing:-3;}
 </style>
-<rect y="-3.1" class="st0" width="299" height="140.3"/>
-<text transform="matrix(1 0 0 1 6.9848 113.7237)" class="st1 st2">PENDING</text>
-<text transform="matrix(1 0 0 1 33.3989 57.7237)" class="st1 st2">SQUAD</text>
+<text transform="matrix(1 0 0 1 16.9928 129.7166)" class="st0 st1 st2 st3">PENDING</text>
+<text transform="matrix(1 0 0 1 42.5143 56.6998)" class="st0 st1 st2 st3">SQUAD</text>
 </svg>

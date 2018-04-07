@@ -1,6 +1,9 @@
 // App Global Sass
 // --------------------------------------------------
 ion-app{
+  .item-ios.item-block .item-inner {
+    border: none !important;
+  }
   .imgContainer {
     height: 30px;
     width: 30px;
@@ -146,9 +149,6 @@ ion-app{
       background-color: #242424;
       margin-bottom: 10px;
       color: #a0a0a0;
-      border: none!important;
-    }
-    .item-inner {
       border: none!important;
     }
   }

@@ -26,8 +26,9 @@ export class FirebaseService {
   myID: string;
   messages: any;
   messageID: number;
-  messageData: any;
+  MessageData: any;
   messageNum: any;
+  unreadMessages: any;
 
 
   constructor(
@@ -231,22 +232,36 @@ export class FirebaseService {
   }
 
   checkMessages(uid){
-    this.messageData = [];
+    this.MessageData = [];
+    this.unreadMessages = [];
     this.afd.list('/users/'+ uid + '/messages', { preserveSnapshot: true})
     .subscribe(snapshots=>{
         snapshots.forEach(snapshot => {
-          this.messageData.push(snapshot.val());
+          if (snapshot.val().read == "false"){
+              this.unreadMessages.push(snapshot.key)
+          }
+          this.MessageData.push(snapshot.val());
         });
-        this.messageNum = this.messageData.length;
+
+        this.messageNum; let i = 0; let num = 1;
+        for (var key in this.MessageData) {
+          if (this.MessageData[i].read === "false"){
+            this.messageNum = num++
+          }else{
+            //do nothing
+          }
+          i++;
+        }  
+
         if (this.messageNum > 0){
           $('.notify').remove();
           $('.navIcon.messages').after('<span class="notify"></span>');
         }else{
           $('.notify').remove();        
         }
-        localStorage.setItem('messageNum',this.messageNum);
-        this.storage.set('messageData',this.messageData);
+        localStorage.setItem('MessageNum',this.messageNum);
+        this.storage.set('MessageData',this.MessageData);
     })
   }
-  
+
 }

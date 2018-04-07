@@ -3756,59 +3756,33 @@ ion-icon {
 }
 
 @font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 300;
-  src: local("Roboto Light"), local("Roboto-Light"), url("../assets/fonts/roboto-light.woff2") format("woff2"), url("../assets/fonts/roboto-light.woff") format("woff"), url("../assets/fonts/roboto-light.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Roboto";
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local("Roboto"), local("Roboto-Regular"), url("../assets/fonts/roboto-regular.woff2") format("woff2"), url("../assets/fonts/roboto-regular.woff") format("woff"), url("../assets/fonts/roboto-regular.ttf") format("truetype");
+  src: url("../assets/fonts/OpenSans-Regular.ttf");
 }
 
 @font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  src: local("Roboto Medium"), local("Roboto-Medium"), url("../assets/fonts/roboto-medium.woff2") format("woff2"), url("../assets/fonts/roboto-medium.woff") format("woff"), url("../assets/fonts/roboto-medium.ttf") format("truetype");
+  font-family: 'Open Sans';
+  font-style: semi-bold;
+  font-weight: 600;
+  src: url("../assets/fonts/OpenSans-Semibold.ttf");
 }
 
 @font-face {
-  font-family: "Roboto";
-  font-style: normal;
+  font-family: 'Open Sans';
+  font-style: bold;
   font-weight: 700;
-  src: local("Roboto Bold"), local("Roboto-Bold"), url("../assets/fonts/roboto-bold.woff2") format("woff2"), url("../assets/fonts/roboto-bold.woff") format("woff"), url("../assets/fonts/roboto-bold.ttf") format("truetype");
+  src: url("../assets/fonts/OpenSans-Bold.ttf");
 }
 
-@font-face {
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 300;
-  src: local("Noto Sans"), local("Noto-Sans-Regular"), url("../assets/fonts/noto-sans-regular.woff") format("woff"), url("../assets/fonts/noto-sans-regular.ttf") format("truetype");
+body {
+  font-family: "Open Sans" !important;
+  font-weight: 400 !important;
 }
 
-@font-face {
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Noto Sans"), local("Noto-Sans-Regular"), url("../assets/fonts/noto-sans-regular.woff") format("woff"), url("../assets/fonts/noto-sans-regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 700;
-  src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
+h1, h2, button, input, div, body {
+  font-family: "Open Sans" !important;
 }
 
 ion-action-sheet {
@@ -25134,6 +25108,10 @@ ion-navbar.toolbar {
   }
 }
 
+ion-app .item-ios.item-block .item-inner {
+  border: none !important;
+}
+
 ion-app .imgContainer {
   height: 30px;
   width: 30px;
@@ -25311,10 +25289,6 @@ ion-app ion-item.item.item-block {
   background-color: #242424;
   margin-bottom: 10px;
   color: #a0a0a0;
-  border: none !important;
-}
-
-ion-app ion-item .item-inner {
   border: none !important;
 }
 
@@ -25636,17 +25610,21 @@ page-messages .scroll-content {
   margin: 0 -15px;
 }
 
+page-messages h5 {
+  margin-left: 20px;
+}
+
 page-messages ion-list {
   border-top: 1px solid #888 !important;
 }
 
 page-messages .avatar {
   position: relative;
-  left: 0;
+  left: 5px;
 }
 
 page-messages .avatar span {
-  margin-left: -5px;
+  margin-left: 0px;
   width: 45px;
   height: 45px;
   border-radius: 50px;
@@ -25657,10 +25635,6 @@ page-messages .avatar span {
 page-messages .avatar span img {
   width: 60px;
   height: auto;
-}
-
-page-messages .message {
-  margin-left: -10px;
 }
 
 page-messages .confirmation {
@@ -25674,20 +25648,25 @@ page-messages .confirmation img {
   margin-right: 5px;
 }
 
-page-messages ion-item.item.item-block {
+page-messages .false .input-wrapper {
+  background-color: #111;
+}
+
+page-messages .item-inner {
   background: transparent;
-  border-bottom: 1px solid #888 !important;
-  padding-bottom: 10px;
+  border-bottom: 1px solid #111 !important;
+  margin-top: 2px;
 }
 
-page-messages ion-item.item.item-block h2 {
+page-messages .item-inner h2 {
   color: #fff;
-  font-weight: bold;
+  margin: 0;
 }
 
-page-messages ion-item.item.item-block p {
+page-messages .item-inner p {
   color: #eee;
   font-weight: normal;
+  margin: 0;
 }
 
 page-player input.text-input {
@@ -26063,7 +26042,7 @@ page-profile-settings .appInfo button.item-block:first-child, page-profile-setti
 }
 
 page-profile-settings .appInfo button.item-block .item-inner {
-  border: none;
+  border: none !important;
 }
 
 page-quickplay-page .creator {
@@ -26151,4 +26130,8 @@ page-schedule .scheduleIntro {
 
 page-schedule .private {
   padding: 0;
+}
+
+page-schedule .item-inner {
+  border: none !important;
 }

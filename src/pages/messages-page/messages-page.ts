@@ -8,7 +8,9 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'messages-page.html',
 })
 export class MessagesPage {
-  messages: any;
+  MessageData: any;
+  messageArray: any;
+  unreadMessageNum: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -17,10 +19,9 @@ export class MessagesPage {
     }
 
   ionViewWillEnter(){
-    this.storage.get('messageData').then((val) => {
-      this.messages = val;
+    this.storage.get('MessageData').then((val) => {
+      this.MessageData = val;
     })
-
   }
 
   ionViewDidLoad() {

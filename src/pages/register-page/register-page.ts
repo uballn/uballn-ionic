@@ -13,8 +13,11 @@ export class RegisterPage {
   public signupForm: FormGroup;
   loading: Loading;
 
-  constructor(public navCtrl: NavController, public firebaseService: FirebaseService,
-    public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
+  constructor(
+    public navCtrl: NavController, 
+    public firebaseService: FirebaseService,
+    public formBuilder: FormBuilder, 
+    public loadingCtrl: LoadingController,
     public alertCtrl: AlertController) {
 
     this.signupForm = formBuilder.group({
