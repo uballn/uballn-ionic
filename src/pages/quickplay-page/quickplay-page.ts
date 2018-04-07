@@ -13,13 +13,14 @@ export class QuickPlayPage {
   gameLists: Observable<any[]>;
   user: any;
   editMode = false;
+  avatar: any;
 
   constructor(
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController) {
-  }
+    }
 
   ionViewDidLoad() {
     this.gameLists = this.firebaseService.getGames();
@@ -27,6 +28,7 @@ export class QuickPlayPage {
   }
 
   ionViewWillEnter(){
+    this.avatar = localStorage.getItem('img');
     let uid = localStorage.getItem('uid');
     this.firebaseService.checkMessages(uid);
   }

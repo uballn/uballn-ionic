@@ -20,6 +20,7 @@ export class CourtsPage {
   google: any;
   myPlaces: any;
   uid: string;
+  avatar: string;
 
   constructor(
     public navCtrl: NavController,
@@ -32,7 +33,9 @@ export class CourtsPage {
     ionViewWillEnter(){
         this.loadMap();
         let uid = localStorage.getItem('uid');
-        this.firebaseService.checkMessages(uid);  
+        this.firebaseService.checkMessages(uid); 
+        
+        this.avatar = localStorage.getItem('img');
     }
 
     goToProfile() {

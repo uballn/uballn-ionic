@@ -17,12 +17,10 @@ import { Settings } from '../../providers/providers';
 export class SchedulePage {
   // Our local settings object
   options: any;
-
   chosenCourt: string;
-
   settingsReady = false;
-
   form: FormGroup;
+  avatar: string;
 
   profileSettings = {
     page: 'profile',
@@ -47,6 +45,7 @@ export class SchedulePage {
     public firebaseService: FirebaseService,
     public formBuilder: FormBuilder,
     public navParams: NavParams) {
+
   }
 
   _buildForm() {
@@ -79,6 +78,8 @@ export class SchedulePage {
   }
 
   ionViewWillEnter() {
+    this.avatar = localStorage.getItem('img');
+
     // Build an empty form for the template to render
     this.form = this.formBuilder.group({});
 

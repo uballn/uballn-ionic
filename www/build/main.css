@@ -25108,6 +25108,13 @@ ion-navbar.toolbar {
   }
 }
 
+ion-app .avatar {
+  width: 30px;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 2px solid #fff;
+}
+
 ion-app .item-ios.item-block .item-inner {
   border: none !important;
 }
@@ -25321,6 +25328,7 @@ ion-app .formText.small {
 ion-app .imageContainer {
   height: 250px;
   width: 250px;
+  border: 3px solid #fff;
   overflow: hidden;
   border-radius: 250px;
   margin: 10px auto 10px;
@@ -25611,7 +25619,7 @@ page-messages .scroll-content {
 }
 
 page-messages h5 {
-  margin-left: 20px;
+  margin-bottom: 0px;
 }
 
 page-messages ion-list {
@@ -25667,6 +25675,9 @@ page-messages .item-inner p {
   color: #eee;
   font-weight: normal;
   margin: 0;
+  text-overflow: ellipsis;
+  width: 90%;
+  overflow: hidden;
 }
 
 page-player input.text-input {

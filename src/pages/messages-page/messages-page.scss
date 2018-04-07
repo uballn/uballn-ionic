@@ -3,7 +3,7 @@ page-messages {
         margin: 0 -15px;
     }
     h5 {
-        margin-left: 20px;
+        margin-bottom: 0px;
     }
     ion-list {
         border-top: 1px solid #888 !important;
@@ -48,6 +48,9 @@ page-messages {
             color:#eee;
             font-weight: normal;
             margin:0;
+            text-overflow: ellipsis;
+            width: 90%;
+            overflow: hidden;
         }
     }
 }
