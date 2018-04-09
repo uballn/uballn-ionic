@@ -13,30 +13,12 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'schedule-page.html'
 })
 export class SchedulePage {
-  // Our local settings object
   options: any;
   chosenCourt: string;
   settingsReady = false;
   form: FormGroup;
   avatar: string;
   location: string;
-
-  // profileSettings = {
-  //   page: 'profile',
-  //   pageTitleKey: 'SETTINGS_PAGE_PROFILE'
-  // };
-
-  // page: string = 'main';
-  // pageTitleKey: string = 'SETTINGS_TITLE';
-  // pageTitle: string;
-
-  // subSettings: any = SchedulePage;
-
-  // public event = {
-  //   month: '1990-02-19',
-  //   timeStarts: '07:43',
-  //   timeEnds: '1990-02-20'
-  // }
 
   constructor(
     public navCtrl: NavController,
@@ -48,33 +30,7 @@ export class SchedulePage {
 
   }
 
-  // _buildForm() {
-  //   let group: any = {
-  //     option1: [this.options.option1],
-  //     timeStarts: [],
-  //     timeEnds: []
-  //   };
-
-  //   switch (this.page) {
-  //     case 'main':
-  //       break;
-  //     case 'profile':
-  //       group = {
-  //         option4: [this.options.option4]
-  //       };
-  //       break;
-  //   }
-  //   this.form = this.formBuilder.group(group);
-
-  //   // Watch the form for changes, and
-  //   this.form.valueChanges.subscribe((v) => {
-  //     this.settings.merge(this.form.value);
-  //   });
-  // }
-
   ionViewDidLoad() {
-    // Build an empty form for the template to render
-    // this.form = this.formBuilder.group({});
   }
 
   ionViewWillEnter() {
@@ -82,7 +38,7 @@ export class SchedulePage {
     this.storage.get('selectedLocation').then((val) => {
       let selectedLocation = val;
 
-    if (val == null){
+    if (val == undefined){
       console.log('No location selected')
     }else {
       this.location = val.name;
@@ -105,13 +61,15 @@ export class SchedulePage {
   }
 
   getCourt() {
-    let modal = this.modalCtrl.create('FindACourtPage');
-    modal.present();
+    this.navCtrl.push('FindACourtPage');
   }
 
   seeMessages(){
     this.navCtrl.push('MessagesPage');
   }
 
+  setupGame(){
+    this.firebaseService.setupGame();
+  }
 
 }

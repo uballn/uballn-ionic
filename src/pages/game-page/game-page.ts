@@ -61,8 +61,7 @@ export class GamePage {
   }
 
   joinGame(){
-    sessionStorage.setItem('placeID', this.gameID);
-    this.firebaseService.joinGame(this.gameID).then(() => {
+    this.firebaseService.joinGame().then(() => {
       this.presentToast('You have joined the game!');
     })
     this.navCtrl.pop();

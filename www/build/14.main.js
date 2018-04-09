@@ -113,8 +113,7 @@ var GamePage = (function () {
     };
     GamePage.prototype.joinGame = function () {
         var _this = this;
-        sessionStorage.setItem('placeID', this.gameID);
-        this.firebaseService.joinGame(this.gameID).then(function () {
+        this.firebaseService.joinGame().then(function () {
             _this.presentToast('You have joined the game!');
         });
         this.navCtrl.pop();

@@ -29,6 +29,7 @@ export class FirebaseService {
   MessageData: any;
   messageNum: any;
   unreadMessages: any;
+  selectedLocation: any;
 
 
   constructor(
@@ -186,8 +187,26 @@ export class FirebaseService {
     })
   }
 
+  setupGame(){
+    this.myID = localStorage.getItem('uid');
+    this.gameID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
+    sessionStorage.setItem('gameID', this.gameID);
+    this.storage.get('selectedLocation').then((val) => {
+      this.selectedLocation = val;
+    
+      this.afd.object('/games/' + this.gameID).update({
+        address: this.selectedLocation.address,
+        creator: localStorage.getItem('uid'),
+        creatorIMG: localStorage.getItem('img'),
+        img: this.selectedLocation.img,
+        name: this.selectedLocation.name
+      }).then(() => {this.joinGame()}).then(() => {
+        this.storage.set('selectedLocation', undefined)
+      })
+    })
+  }
 
-  joinGame(gameID) {
+  joinGame() {
     this.playerID = localStorage.getItem('uid');
     this.gameID = sessionStorage.getItem('gameID');
 
@@ -238,7 +257,6 @@ export class FirebaseService {
         localStorage.setItem('friendNum',this.friendNum);
         this.storage.set('friendData',this.friendData);
     })
-
   }
 
   checkMessages(uid){

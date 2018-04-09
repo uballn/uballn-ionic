@@ -98,16 +98,6 @@ export class ProfileSettingsPage {
     toast.present();
   }
 
-  // accepInvitation(invitation) {
-  //   this.firebaseService.acceptInvitation(invitation).then(() => {
-  //     this.presentToast('Invitation accepted!');
-  //   })
-  // }
-
-  // discardInvitation(invitationId) {
-  //   this.firebaseService.discardInvitation(invitationId);
-  // }
-
   getPicture() {
     if (Camera['installed']()) {
       this.camera.getPicture({
@@ -116,7 +106,6 @@ export class ProfileSettingsPage {
         targetHeight: 96
       }).then((data) => {
         this.storage.set('profilePic', data);        
-        // this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
       }, (err) => {
         alert('Unable to take photo');
       })
@@ -145,7 +134,7 @@ export class ProfileSettingsPage {
   logOut() {
     this.firebaseService.logoutUser().then(() => {
       localStorage.clear();
-      this.navCtrl.setRoot('LoginPage');
+      this.navCtrl.setRoot('WelcomePage');
     });
   }
 }

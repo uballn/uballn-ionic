@@ -67,19 +67,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var SchedulePage = (function () {
-    // profileSettings = {
-    //   page: 'profile',
-    //   pageTitleKey: 'SETTINGS_PAGE_PROFILE'
-    // };
-    // page: string = 'main';
-    // pageTitleKey: string = 'SETTINGS_TITLE';
-    // pageTitle: string;
-    // subSettings: any = SchedulePage;
-    // public event = {
-    //   month: '1990-02-19',
-    //   timeStarts: '07:43',
-    //   timeEnds: '1990-02-20'
-    // }
     function SchedulePage(navCtrl, settings, modalCtrl, firebaseService, navParams, storage) {
         this.navCtrl = navCtrl;
         this.settings = settings;
@@ -89,36 +76,13 @@ var SchedulePage = (function () {
         this.storage = storage;
         this.settingsReady = false;
     }
-    // _buildForm() {
-    //   let group: any = {
-    //     option1: [this.options.option1],
-    //     timeStarts: [],
-    //     timeEnds: []
-    //   };
-    //   switch (this.page) {
-    //     case 'main':
-    //       break;
-    //     case 'profile':
-    //       group = {
-    //         option4: [this.options.option4]
-    //       };
-    //       break;
-    //   }
-    //   this.form = this.formBuilder.group(group);
-    //   // Watch the form for changes, and
-    //   this.form.valueChanges.subscribe((v) => {
-    //     this.settings.merge(this.form.value);
-    //   });
-    // }
     SchedulePage.prototype.ionViewDidLoad = function () {
-        // Build an empty form for the template to render
-        // this.form = this.formBuilder.group({});
     };
     SchedulePage.prototype.ionViewWillEnter = function () {
         var _this = this;
         this.storage.get('selectedLocation').then(function (val) {
             var selectedLocation = val;
-            if (val == null) {
+            if (val == undefined) {
                 console.log('No location selected');
             }
             else {
@@ -136,23 +100,29 @@ var SchedulePage = (function () {
         this.navCtrl.push('ProfilePage');
     };
     SchedulePage.prototype.getCourt = function () {
-        var modal = this.modalCtrl.create('FindACourtPage');
-        modal.present();
+        this.navCtrl.push('FindACourtPage');
     };
     SchedulePage.prototype.seeMessages = function () {
         this.navCtrl.push('MessagesPage');
+    };
+    SchedulePage.prototype.setupGame = function () {
+        this.firebaseService.setupGame();
     };
     return SchedulePage;
 }());
 SchedulePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-schedule',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n        <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content block>\n  <div padding>\n    <p class="scheduleIntro">Take control of the court and schedule your next game.</p>\n  </div>\n\n  <div>\n    <ion-list>\n      <ion-item>\n        <ion-label>when are you hoopin?</ion-label>\n        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="timeEnds"></ion-datetime>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>at what time?</ion-label>\n        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="timeStarts"></ion-datetime>\n      </ion-item>\n\n      <!-- <div padding (click)="getCourt()">\n        <button ion-button block class="secondaryButton">Find a Court</button>\n      </div> -->\n\n      <ion-item (click)="getCourt()">\n        <ion-label>on what court?</ion-label>\n        <ion-input type="text" [(ngModel)]="location"></ion-input>\n      </ion-item>\n\n      <ion-item class="noBG private">\n        <ion-label>Private Game?</ion-label>\n        <ion-toggle [(ngModel)]="option1"></ion-toggle>\n      </ion-item>\n\n      <div padding>\n        <button ion-button block class="secondaryButton">Invite Friends</button>\n      </div>\n\n      <div padding>\n        <button ion-button block class="primaryButton">Let\'s Do It</button>\n      </div>\n    </ion-list>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/
+        selector: 'page-schedule',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n        <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content block>\n  <div padding>\n    <p class="scheduleIntro">Take control of the court and schedule your next game.</p>\n  </div>\n\n  <div>\n    <ion-list>\n      <ion-item>\n        <ion-label>when are you hoopin?</ion-label>\n        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="timeEnds"></ion-datetime>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>at what time?</ion-label>\n        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="timeStarts"></ion-datetime>\n      </ion-item>\n\n      <!-- <div padding (click)="getCourt()">\n        <button ion-button block class="secondaryButton">Find a Court</button>\n      </div> -->\n\n      <ion-item (click)="getCourt()">\n        <ion-label>on what court?</ion-label>\n        <ion-input type="text" [(ngModel)]="location"></ion-input>\n      </ion-item>\n\n      <ion-item class="noBG private">\n        <ion-label>Private Game?</ion-label>\n        <ion-toggle [(ngModel)]="option1"></ion-toggle>\n      </ion-item>\n\n      <div padding>\n        <button ion-button block class="secondaryButton">Invite Friends</button>\n      </div>\n\n      <div padding>\n        <button ion-button block class="primaryButton" (click)="setupGame()">Let\'s Do It</button>\n      </div>\n    </ion-list>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_providers__["a" /* Settings */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_providers__["a" /* Settings */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_providers__["a" /* Settings */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
 ], SchedulePage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=schedule-page.js.map
 
 /***/ })
