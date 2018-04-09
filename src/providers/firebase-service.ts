@@ -111,6 +111,15 @@ export class FirebaseService {
     this.afd.list('/invitations').remove(invitationId);
   }
 
+  getCourts(){
+    this.afd.list('/courts', { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          this.storage.set('courts', snapshot.val());
+        });
+      })
+  }
+
   getSharedLists() {
     return this.afd.list('/games', {
       query: {

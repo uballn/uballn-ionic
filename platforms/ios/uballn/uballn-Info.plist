@@ -37,16 +37,6 @@
           <key>NSExceptionAllowsInsecureHTTPLoads</key>
           <true/>
         </dict>
-        <key>10.153.226.122</key>
-        <dict>
-          <key>NSExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-        </dict>
-        <key>10.0.103.19</key>
-        <dict>
-          <key>NSExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-        </dict>
       </dict>
       <key>NSAllowsArbitraryLoads</key>
       <true/>
@@ -70,5 +60,9 @@
       <string>UIInterfaceOrientationPortraitUpsideDown</string>
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>NSCameraUsageDescription</key>
+    <string>uballn would like to access your camera.</string>
+    <key>NSContactsUsageDescription</key>
+    <string>Allow the app to access your contacts.</string>
   </dict>
 </plist>

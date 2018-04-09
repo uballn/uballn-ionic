@@ -17,30 +17,30 @@
     <p class="scheduleIntro">Take control of the court and schedule your next game.</p>
   </div>
 
-  <form [formGroup]="form" *ngIf="settingsReady">
-    <ion-list *ngIf="page == 'main'">
+  <div>
+    <ion-list>
       <ion-item>
         <ion-label>when are you hoopin?</ion-label>
-        <ion-datetime displayFormat="MMM DD YYYY" formControlName="timeEnds"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="timeEnds"></ion-datetime>
       </ion-item>
 
       <ion-item>
         <ion-label>at what time?</ion-label>
-        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="timeStarts"></ion-datetime>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="timeStarts"></ion-datetime>
       </ion-item>
 
-      <!-- <div padding>
-        <button ion-button block class="secondaryButton">Add a location</button>
+      <!-- <div padding (click)="getCourt()">
+        <button ion-button block class="secondaryButton">Find a Court</button>
       </div> -->
 
-      <ion-item>
+      <ion-item (click)="getCourt()">
         <ion-label>on what court?</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="location"></ion-input>
       </ion-item>
 
       <ion-item class="noBG private">
         <ion-label>Private Game?</ion-label>
-        <ion-toggle formControlName="option1"></ion-toggle>
+        <ion-toggle [(ngModel)]="option1"></ion-toggle>
       </ion-item>
 
       <div padding>
@@ -51,6 +51,6 @@
         <button ion-button block class="primaryButton">Let's Do It</button>
       </div>
     </ion-list>
-  </form>
+  </div>
 
 </ion-content>

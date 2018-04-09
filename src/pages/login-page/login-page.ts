@@ -86,6 +86,8 @@ export class LoginPage {
           if (localStorage.getItem('img') == null){
             localStorage.setItem('img',null);
           };
+
+          this.firebaseService.getCourts();
           
           this.loading.dismiss().then(() => {
             this.navCtrl.setRoot('TabsPage', currUserFriends);

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FirebaseService } from './../../providers/firebase-service';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
-import { Contacts, ContactFieldType, ContactFindOptions } from 'ionic-native';
+// import { Contacts, ContactFieldType, ContactFindOptions } from 'ionic-native';
 import * as $ from 'jquery';
 
 @IonicPage()
@@ -25,13 +25,31 @@ export class ConnectPage {
   contactsfound = [];
   ContactFieldType: any;
   search = false;
+  // contactlist: any;
 
   constructor(
     public navCtrl: NavController,
     public storage: Storage,
     public afd: AngularFireDatabase,
     public navParams: NavParams,
-    public FirebaseService: FirebaseService) {
+    public FirebaseService: FirebaseService,
+    public platform: Platform) {
+
+    //   this.platform.ready().then(() => {
+    //     var opts = {   
+    //        filter : "M",                                
+    //        multiple: true,        
+    //        hasPhoneNumber:true,                             
+    //        fields:  [ 'name.givenName' ]
+    //      };
+    //      Contacts.find([ 'displayName', 'name' ],opts).then((contacts) => {
+    //       alert('Found ' + contacts.length + ' contacts.');
+    //        this.contactlist=contacts;
+    //        console.log(this.contactlist);
+    //      }, (error) => {
+    //        console.log(error);
+    //      })
+    //  })
   
       this.connect = 'friends';
 

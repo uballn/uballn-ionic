@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button start (click)="close()">Close</button>
+        <ion-title>
+        Find A Court
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="placeholder"></ion-searchbar>
+    <ion-list>
+      <button ion-item *ngFor="let court of courts" (click)="sendLocation(court)">
+        <ion-avatar item-start>
+          <img [src]="court.img" />
+        </ion-avatar>
+        <h2>{{court.name}}</h2>
+        <p>{{court.address}}</p>
+      </button>
+    </ion-list>
+  </ion-content>

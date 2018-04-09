@@ -3759,21 +3759,21 @@ ion-icon {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url("../assets/fonts/OpenSans-Regular.ttf");
+  src: url("https://firebasestorage.googleapis.com/v0/b/uballn-basketball-2f8d6.appspot.com/o/fonts%2FOpenSans-Regular.ttf?alt=media&token=24925028-1676-40c0-ae14-c6d1646caeac");
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-style: semi-bold;
   font-weight: 600;
-  src: url("../assets/fonts/OpenSans-Semibold.ttf");
+  src: url("https://firebasestorage.googleapis.com/v0/b/uballn-basketball-2f8d6.appspot.com/o/fonts%2FOpenSans-Semibold.ttf?alt=media&token=d2d9805f-4358-4cd1-8199-778b0f4789d6");
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-style: bold;
   font-weight: 700;
-  src: url("../assets/fonts/OpenSans-Bold.ttf");
+  src: url("https://firebasestorage.googleapis.com/v0/b/uballn-basketball-2f8d6.appspot.com/o/fonts%2FOpenSans-Bold.ttf?alt=media&token=4f6ee15a-3fdc-4bc9-8df4-684dfbb771a1");
 }
 
 body {
@@ -25109,11 +25109,11 @@ ion-navbar.toolbar {
 }
 
 ion-app .avatarContainer {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 30px;
   overflow: hidden;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   margin-left: 20px;
   margin-top: 15px;
 }
@@ -25532,6 +25532,48 @@ page-connect ion-list button.item-block .item-inner {
   max-width: 200px;
   color: #333;
   margin: 0;
+}
+
+page-find-a-court ion-searchbar {
+  border-bottom: 0 !important;
+}
+
+page-find-a-court .courts {
+  background: transparent;
+  color: #fff;
+  margin: 0 -20px;
+  width: calc(100% + 60px);
+}
+
+page-find-a-court .imgContainer img {
+  width: auto;
+  height: 30px;
+  max-width: none;
+}
+
+page-find-a-court .item.item-block {
+  background: transparent;
+  color: #fff;
+  border-bottom: 1px solid #111 !important;
+}
+
+page-find-a-court button .item-inner ion-label h2 {
+  line-height: 2em;
+}
+
+page-find-a-court button .item-inner ion-label p {
+  font-weight: 0.3em;
+}
+
+page-find-a-court button .item-inner ion-label ion-avatar {
+  float: left;
+  margin-right: 10px;
+}
+
+page-find-a-court .item-ios[detail-push] .item-inner,
+page-find-a-court button.item-ios:not([detail-none]) .item-inner,
+page-find-a-court a.item-ios:not([detail-none]) .item-inner {
+  background-image: none;
 }
 
 page-game .gameBG {
@@ -26181,6 +26223,10 @@ page-register-page .primaryButton {
   margin-top: 20px;
 }
 
+page-schedule .scroll-content {
+  padding: 0 20px;
+}
+
 page-schedule .scheduleIntro {
   text-align: center;
   font-size: 1.25em;
@@ -26256,13 +26302,13 @@ page-welcome form {
   width: 100%;
 }
 
-page-welcome video {
+page-welcome .gifBG {
   position: fixed;
   top: 50%;
   left: 50%;
-  min-width: 100%;
+  min-width: 300%;
   min-height: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
   z-index: -100;
   -webkit-transform: translateX(-50%) translateY(-50%);

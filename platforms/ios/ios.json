@@ -46,6 +46,24 @@
             }
           ]
         }
+      },
+      "*-Info.plist": {
+        "parents": {
+          "NSCameraUsageDescription": [
+            {
+              "xml": "<string>uballn would like to access your camera.</string>",
+              "count": 1,
+              "mode": "merge",
+              "id": "config.xml"
+            }
+          ],
+          "NSContactsUsageDescription": [
+            {
+              "xml": "<string>Allow the app to access your contacts.</string>",
+              "count": 8
+            }
+          ]
+        }
       }
     }
   },

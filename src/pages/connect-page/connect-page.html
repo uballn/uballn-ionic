@@ -63,14 +63,14 @@
           </div>
         </ion-list>
 
-        <ion-list *ngSwitchCase="'contacts'">
-            <button ion-button class="secondaryButton" (click)="showContacts()">Allow Access to Contacts</button>
-             <div *ngFor="let user of userData" class="contactList" style="display:none;">
+        <ion-list *ngSwitchCase="'contacts'">              
+            <!-- <button ion-button class="secondaryButton" (click)="showContacts()">Allow Access to Contacts</button> -->
+             <!-- <div *ngFor="let contact of contactlist" class="contactList">
                  <ion-grid>
                      <ion-row>
                        <ion-col col-11>
                          <button ion-item class="suggested" (click)="goToProfile(user.uid)">
-                           <span class="imgContainer"><img [src]="user.img"/></span>{{ user.username }}
+                           {{contact.name.givenName}} | {{contact.emails[0].value}}
                          </button> 
                        </ion-col>
                        <ion-col col-1>
@@ -78,7 +78,7 @@
                        </ion-col>
                      </ion-row>
                  </ion-grid>
-               </div>
+               </div> -->
              </ion-list>
       </div>
 </ion-content>

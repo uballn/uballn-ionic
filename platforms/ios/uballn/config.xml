@@ -33,6 +33,12 @@
         <param name="ios-package" value="CDVSplashScreen" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Contacts">
+        <param name="ios-package" value="CDVContacts" />
+    </feature>
+    <feature name="Camera">
+        <param name="ios-package" value="CDVCamera" />
+    </feature>
     <name>uballn</name>
     <description>Pickup basketball.</description>
     <author email="info@uballn.co" href="http://ionicframework.com/">uballn Team</author>
@@ -44,8 +50,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="http://10.153.226.122:8100" />
-    <allow-navigation href="http://10.0.103.19:8100" />
+    <allow-navigation href="*" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -80,7 +85,10 @@
     <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
     <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
-    <preference name="AllowInlineMediaPlayback" value="false" />
+    <config-file overwrite="true" parent="NSContactsUsageDescription" platform="ios" target="*-Info.plist">
+        <string>Allow the app to access your contacts.</string>
+    </config-file>
+    <preference name="AllowInlineMediaPlayback" value="true" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="false" />
     <preference name="EnableViewportScale" value="false" />
@@ -94,6 +102,7 @@
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <preference name="CameraUsesGeolocation" value="false" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="SplashMaintainAspectRatio" value="true" />
@@ -101,11 +110,4 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <feature name="Contacts">
-        <param name="ios-package" value="CDVContacts" />
-    </feature>
-    <feature name="Camera">
-        <param name="ios-package" value="CDVCamera" />
-    </feature>
-    <preference name="CameraUsesGeolocation" value="false" />
 </widget>
