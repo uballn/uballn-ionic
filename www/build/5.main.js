@@ -68,19 +68,8 @@ var TabsPage = (function () {
         this.tab1 = 'CourtsPage';
         this.tab2 = 'QuickPlayPage';
         this.tab3 = 'SchedulePage';
-        this.invitationCount = 0;
     }
     TabsPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.firebaseService.authState.subscribe(function (user) {
-            if (user) {
-                _this.firebaseService.getUserInvitations().subscribe(function (data) {
-                    _this.invitationCount = data.length;
-                }, function (err) {
-                    console.log('error: ', err);
-                });
-            }
-        });
     };
     return TabsPage;
 }());

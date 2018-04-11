@@ -8,6 +8,7 @@
 
 <ion-content padding class="disabled">
   <div class="profileInputs">
+    
       <div class="imageContainer profilePhoto" (click)="getPicture()">
           <img src="{{updateUserIMG}}" />
           <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />

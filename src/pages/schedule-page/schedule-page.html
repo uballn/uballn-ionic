@@ -21,19 +21,19 @@
     <ion-list>
       <ion-item>
         <ion-label>when are you hoopin?</ion-label>
-        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="timeEnds"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="gameDate"></ion-datetime>
       </ion-item>
 
       <ion-item>
         <ion-label>at what time?</ion-label>
-        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="timeStarts"></ion-datetime>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="gameStart"></ion-datetime>
       </ion-item>
 
-      <!-- <div padding (click)="getCourt()">
+      <div padding (click)="getCourt()">
         <button ion-button block class="secondaryButton">Find a Court</button>
-      </div> -->
+      </div>
 
-      <ion-item (click)="getCourt()">
+      <ion-item>
         <ion-label>on what court?</ion-label>
         <ion-input type="text" [(ngModel)]="location"></ion-input>
       </ion-item>

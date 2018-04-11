@@ -27,6 +27,7 @@ export class GamePage {
       this.gameData = this.navParams;
       this.gameID = this.navParams.data.$key;
       this.players = this.gameData.data.players;
+      localStorage.setItem('playerNum', this.players.length);
       this.updateGame();
         sessionStorage.setItem('gameID',this.gameID);
   }
@@ -52,6 +53,7 @@ export class GamePage {
       this.playerData.push(this.players[key]);
     }
   }
+
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,

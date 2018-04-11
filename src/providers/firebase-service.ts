@@ -30,6 +30,8 @@ export class FirebaseService {
   messageNum: any;
   unreadMessages: any;
   selectedLocation: any;
+  userDOB: any;
+  Date: any;
 
 
   constructor(
@@ -72,6 +74,10 @@ export class FirebaseService {
 
   getGameDetails() {
     return this.afd.list('/games'+this.gameID)
+  }
+
+  getGamePlayers(){
+    return this.afd.list('/games'+this.gameID+'/players')
   }
 
   removeList(id) {
@@ -137,7 +143,12 @@ export class FirebaseService {
   }
 
   updateUserProfile() {
+    let birthday = localStorage.getItem('birthday');
+    const yearsFromToday  = new Date(+new Date - +new Date(birthday)).getFullYear()-1970
+    const numYears = yearsFromToday.toString();
+  
     return this.afd.object('/users/' + this.user.uid).update({
+      ageCount: numYears,
       name: localStorage.getItem('name'),
       height: localStorage.getItem('height'),
       weight: localStorage.getItem('weight'),
@@ -212,7 +223,7 @@ export class FirebaseService {
 
     return this.afd.object('/games/' + this.gameID + '/players/' + this.playerID).update({  
       alias: localStorage.getItem('name'),
-      age: localStorage.getItem('age'),
+      age: localStorage.getItem('ageCount'),
       uid: localStorage.getItem('uid'),
       experience: localStorage.getItem('experience'),
       img: localStorage.getItem('img')

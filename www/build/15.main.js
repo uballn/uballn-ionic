@@ -163,10 +163,12 @@ FindACourtPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-find-a-court',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/find-a-court-page/find-a-court-page.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n        Find A Court\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-searchbar (ionInput)="getItems($event)" placeholder="placeholder"></ion-searchbar>\n    <ion-list>\n      <button ion-item *ngFor="let court of courts" (click)="sendLocation(court)">\n        <ion-avatar item-start>\n          <img [src]="court.img" />\n        </ion-avatar>\n        <h2>{{court.name}}</h2>\n        <p>{{court.address}}</p>\n      </button>\n    </ion-list>\n  </ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/find-a-court-page/find-a-court-page.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["b" /* AngularFireDatabase */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
 ], FindACourtPage);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=find-a-court-page.js.map
 
 /***/ })

@@ -28,6 +28,7 @@ export class ProfileSettingsPage {
   birthday: string;
   uid: string;
   updateUserIMG: string;
+  private imageSrc: string;
 
   constructor(
     public navCtrl: NavController,
@@ -101,11 +102,17 @@ export class ProfileSettingsPage {
   getPicture() {
     if (Camera['installed']()) {
       this.camera.getPicture({
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
         destinationType: this.camera.DestinationType.DATA_URL,
-        targetWidth: 96,
-        targetHeight: 96
+        quality: 100,
+        targetWidth: 500,
+        targetHeight: 500,
+        encodingType: this.camera.EncodingType.JPEG,      
+        correctOrientation: true
       }).then((data) => {
-        this.storage.set('profilePic', data);        
+        this.storage.set('profilePic', data);
+        localStorage.setItem('img', 'data:image/png;base64,'+data);
+        this.updateUserIMG = 'data:image/png;base64,'+data;    
       }, (err) => {
         alert('Unable to take photo');
       })
@@ -125,11 +132,6 @@ export class ProfileSettingsPage {
 
     reader.readAsDataURL(event.target.files[0]);
   }
-
-  // getProfileImageStyle() {
-  //   return 'url(' + this.form.controls['profilePic'].value + ')'
-  // }
-
 
   logOut() {
     this.firebaseService.logoutUser().then(() => {

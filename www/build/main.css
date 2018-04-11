@@ -26208,7 +26208,7 @@ page-quickplay-page .gameContainer ul li span img {
 }
 
 page-quickplay-page .gameContainer .gameDetails {
-  margin-left: -20px;
+  float: right;
 }
 
 page-register-page .invalid {
@@ -26239,6 +26239,10 @@ page-schedule .private {
 
 page-schedule .item-inner {
   border: none !important;
+}
+
+page-schedule .text-input {
+  text-align: right;
 }
 
 page-terms .modalContent {
