@@ -1,14 +1,14 @@
 webpackJsonp([15],{
 
-/***/ 314:
+/***/ 316:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FindACourtPageModule", function() { return FindACourtPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GamePageModule", function() { return GamePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__find_a_court_page__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_page__ = __webpack_require__(338);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var FindACourtPageModule = (function () {
-    function FindACourtPageModule() {
+var GamePageModule = (function () {
+    function GamePageModule() {
     }
-    return FindACourtPageModule;
+    return GamePageModule;
 }());
-FindACourtPageModule = __decorate([
+GamePageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__find_a_court_page__["a" /* FindACourtPage */],
+            __WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__find_a_court_page__["a" /* FindACourtPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__find_a_court_page__["a" /* FindACourtPage */]
+            __WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */]
         ]
     })
-], FindACourtPageModule);
+], GamePageModule);
 
-//# sourceMappingURL=find-a-court-page.module.js.map
+//# sourceMappingURL=game-page.module.js.map
 
 /***/ }),
 
-/***/ 334:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindACourtPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GamePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,113 +65,86 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var FindACourtPage = (function () {
-    function FindACourtPage(navCtrl, afd, navParams, storage) {
+
+var GamePage = (function () {
+    function GamePage(navCtrl, navParams, firebaseService, storage, toastCtrl) {
         this.navCtrl = navCtrl;
-        this.afd = afd;
         this.navParams = navParams;
+        this.firebaseService = firebaseService;
         this.storage = storage;
-        this.searchQuery = '';
-        this.initializeItems();
+        this.toastCtrl = toastCtrl;
+        this.gameData = [];
+        this.players = [];
+        this.playerData = [];
+        this.gameData = this.navParams;
+        this.gameID = this.navParams.data.$key;
+        this.players = this.gameData.data.players;
+        localStorage.setItem('playerNum', this.players.length);
+        this.updateGame();
+        sessionStorage.setItem('gameID', this.gameID);
     }
-    FindACourtPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad FindACourtPage');
-    };
-    FindACourtPage.prototype.ionViewWillEnter = function () {
-        this.storage.set('selectedLocation', null);
-    };
-    FindACourtPage.prototype.initializeItems = function () {
-        this.courts = [
-            {
-                "address": "2700 E Eldorado Pkwy Ste 300, Little Elm, TX 75068",
-                "img": "http://clubsolutionsmagazine.com/wp-content/uploads/2017/05/Southglenn-Gym-Centennial-Colorado.-620x400.png",
-                "lat": "33.175896",
-                "lng": "-96.8911934",
-                "name": "24HrFitness - Little Elm",
-                "uid": "29x2xbf5z1e64ngris3d5gfcnxb8"
-            },
-            {
-                "address": "6601 NE Loop 820, North Richland Hills, TX 76180",
-                "img": "https://www.24hourfitness.com/images/clubs/club_slideshows/816/album1/xlarge/image1.jpg",
-                "lat": "32.8420716",
-                "lng": "-97.24122919999999",
-                "name": "24HrFitness - North Richland Hills",
-                "uid": "3a2msjilsimavr4btpih82kfck21"
-            },
-            {
-                "address": "3865 Preston Rd, Frisco, TX 75034",
-                "img": "//geo1.ggpht.com/cbk?panoid=bQiDHenhLEaGmrJHey4Kag&output=thumbnail&cb_client=unknown_client.imagery_viewer.gps&thumb=2&w=203&h=100&yaw=277.5091&pitch=0&thumbfov=100",
-                "lat": "33.1113431",
-                "lng": "-96.8095955",
-                "name": "24HrFitness - Frisco",
-                "uid": "7aex0hdit22fngm6er47nuil9r68"
-            },
-            {
-                "address": "724 W Main St #190, Lewisville, TX 75067",
-                "img": "https://lh5.googleusercontent.com/p/AF1QipM5Fnl0B_hqiGnlxxkFCgQQcDysxxZaYj4FdNA5=w203-h140-k-no",
-                "lat": "33.0550825",
-                "lng": "-96.9816676",
-                "name": "24Fitness - Lewisville",
-                "uid": "7bbvll64eewec7hw2z1emzdfoyl8"
-            },
-            {
-                "address": "301 N. Nolen Drive, Southlake, TX 76092",
-                "img": "https://lh5.googleusercontent.com/p/AF1QipMzFHJnZsyellBH4qQ6mfMKDBfBJ-_azEGdDfDv=w203-h100-k-no",
-                "lat": "32.9412612",
-                "lng": "-97.1106216",
-                "name": "24HrFitness - Grapevine",
-                "uid": "9mckeq9g3rssggab9yj4yejr2r0x"
-            },
-            {
-                "address": "4600 W Park Blvd, Plano, TX 75093",
-                "img": "https://media.superpages.com/media/photos/92e8/9461/8325/2851/64ab/abe9/f3c3/d283/image/92e894618325285164ababe9f3c3d283.jpeg",
-                "lat": "33.0259727",
-                "lng": "-96.7875141",
-                "name": "24HrFitness - Plano",
-                "uid": "bmsfkzdice4icvg8dg5rvsm3t7g2"
-            },
-            {
-                "address": "2770 E Trinity Mills Rd, Carrollton, TX 75006",
-                "img": "https://lh5.googleusercontent.com/p/AF1QipNu2CbFzc85VjtW7yJD6P9DhNo-VsYtkPWCsuVo=w203-h152-k-no",
-                "lat": "32.9856774",
-                "lng": "-96.8581071",
-                "name": "24HrFitness - Carrollton",
-                "uid": "jf23jw3566fka2k4ci23llytng6g"
-            }
-        ];
-    };
-    FindACourtPage.prototype.getItems = function (ev) {
-        // Reset items back to all of the items
-        this.initializeItems();
-        var val = ev.target.value;
-        // if the value is an empty string don't filter the items
-        if (val && val.trim() != '') {
-            this.courts = this.courts.filter(function (court) {
-                return (court.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            });
+    GamePage.prototype.ionViewWillEnter = function () {
+        if (sessionStorage.getItem('playing') === 'true') {
+            __WEBPACK_IMPORTED_MODULE_4_jquery__('#joinGame').css('display', 'none');
+            __WEBPACK_IMPORTED_MODULE_4_jquery__('#leaveGame').css('display', 'block');
+        }
+        else {
+            __WEBPACK_IMPORTED_MODULE_4_jquery__('#joinGame').css('display', 'block');
+            __WEBPACK_IMPORTED_MODULE_4_jquery__('#leaveGame').css('display', 'none');
         }
     };
-    FindACourtPage.prototype.sendLocation = function (court) {
-        this.storage.set('selectedLocation', court);
+    GamePage.prototype.updateGame = function () {
+        this.playerData = [];
+        for (var key in this.players) {
+            if (key === localStorage.getItem('uid')) {
+                sessionStorage.setItem('playing', 'true');
+            }
+            else {
+                //do nothing
+            }
+            this.playerData.push(this.players[key]);
+        }
+    };
+    GamePage.prototype.presentToast = function (msg) {
+        var toast = this.toastCtrl.create({
+            message: msg,
+            duration: 2000
+        });
+        toast.present();
+    };
+    GamePage.prototype.joinGame = function () {
+        var _this = this;
+        this.firebaseService.joinGame().then(function () {
+            _this.presentToast('You have joined the game!');
+        });
         this.navCtrl.pop();
     };
-    FindACourtPage.prototype.close = function () {
+    GamePage.prototype.leaveGame = function () {
+        var _this = this;
+        sessionStorage.setItem('placeID', this.gameID);
+        this.firebaseService.leaveGame(this.gameID).then(function () {
+            _this.presentToast('You have left the game!');
+        });
         this.navCtrl.pop();
     };
-    return FindACourtPage;
+    GamePage.prototype.goToProfile = function (uid) {
+        this.navCtrl.push('PlayerPage', uid);
+    };
+    return GamePage;
 }());
-FindACourtPage = __decorate([
+GamePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-find-a-court',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/find-a-court-page/find-a-court-page.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n        Find A Court\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-searchbar (ionInput)="getItems($event)" placeholder="placeholder"></ion-searchbar>\n    <ion-list>\n      <button ion-item *ngFor="let court of courts" (click)="sendLocation(court)">\n        <ion-avatar item-start>\n          <img [src]="court.img" />\n        </ion-avatar>\n        <h2>{{court.name}}</h2>\n        <p>{{court.address}}</p>\n      </button>\n    </ion-list>\n  </ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/find-a-court-page/find-a-court-page.html"*/,
+        selector: 'page-game',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end>\n        <img class="navIcon" src="assets/img/icons-share.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="gameBG" [style.backgroundImage]="\'url(\' + gameData.data.img + \')\'"></div>\n    <div class="btmGradient"></div>\n    <div class="gameDetails">\n      <h3>{{gameData.data.name}}</h3>\n      <h5>{{gameData.data.address}}</h5>\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players\n            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-id.svg"/></span>Average <br>Age\n            <span class="data">{{gameData.data.stats.avgAge}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-chart.svg"/></span>Level of <br>Play\n            <span class="data">{{gameData.data.stats.avgExp}}</span></ion-col>\n        </ion-row>\n      </ion-grid>\n      <ion-list class="players" style="background-color: none;">\n        <h5>Active Players</h5>\n        <div class="player" *ngFor="let player of playerData" (click)="goToProfile(player.uid)">\n          <!-- <ion-icon name="contact"></ion-icon> -->\n          <img class="gameAvatar" src="{{player.img}}" />\n        </div>\n      </ion-list>\n    </div>\n    <button ion-button block id="joinGame" class="primaryButton" (click)="joinGame()">Join Game</button>\n    <button ion-button block id="leaveGame" class="secondaryButton" (click)="leaveGame()">Leave Game</button>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["b" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
-], FindACourtPage);
+        __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+], GamePage);
 
-//# sourceMappingURL=find-a-court-page.js.map
+//# sourceMappingURL=game-page.js.map
 
 /***/ })
 

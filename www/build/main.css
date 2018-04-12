@@ -25108,6 +25108,12 @@ ion-navbar.toolbar {
   }
 }
 
+ion-app .toast-container {
+  background: linear-gradient(135deg, #5c0a5f 0%, #8d0338 42%, #c50000 100%);
+  margin: 0 -20px;
+  padding-left: 20px;
+}
+
 ion-app .avatarContainer {
   width: 40px;
   height: 40px;
@@ -25398,6 +25404,17 @@ page-about-version .modalContent img {
   display: block;
 }
 
+page-ad .modalContent {
+  min-height: 100%;
+  text-align: center;
+  margin: 0 -20px;
+}
+
+page-ad .modalContent img {
+  width: 100%;
+  height: auto;
+}
+
 page-connect .item-inner {
   background-image: none !important;
 }
@@ -25668,6 +25685,48 @@ page-game ion-col[col-4] img {
 page-game ion-col[col-4] span {
   font-size: 2em;
   display: block;
+}
+
+page-invite-friends ion-searchbar {
+  border-bottom: 0 !important;
+}
+
+page-invite-friends .friends {
+  background: transparent;
+  color: #fff;
+  margin: 0 -20px;
+  width: calc(100% + 60px);
+}
+
+page-invite-friends .imgContainer img {
+  width: auto;
+  height: 30px;
+  max-width: none;
+}
+
+page-invite-friends .item.item-block {
+  background: transparent;
+  color: #fff;
+  border-bottom: 1px solid #111 !important;
+}
+
+page-invite-friends button .item-inner ion-label h2 {
+  line-height: 2em;
+}
+
+page-invite-friends button .item-inner ion-label p {
+  font-weight: 0.3em;
+}
+
+page-invite-friends button .item-inner ion-label ion-avatar {
+  float: left;
+  margin-right: 10px;
+}
+
+page-invite-friends .item-ios[detail-push] .item-inner,
+page-invite-friends button.item-ios:not([detail-none]) .item-inner,
+page-invite-friends a.item-ios:not([detail-none]) .item-inner {
+  background-image: none;
 }
 
 page-login-page .invalid {

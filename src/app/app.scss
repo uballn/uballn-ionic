@@ -1,6 +1,11 @@
 // App Global Sass
 // --------------------------------------------------
 ion-app{
+  .toast-container{
+    background: linear-gradient(135deg, #5c0a5f 0%, #8d0338 42%, #c50000 100%);
+    margin: 0 -20px;
+    padding-left: 20px;
+  }
   .avatarContainer {
     width: 40px;
     height: 40px;

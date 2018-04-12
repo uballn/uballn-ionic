@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+        Invite Friends
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-searchbar (ionInput)="findFriend($event)" placeholder="Search By Name"></ion-searchbar>
+    <ion-list>
+      <button ion-item *ngFor="let friend of friends" (click)="inviteFriend(friend)">
+        <ion-avatar item-start>
+          <img [src]="friend.img" />
+        </ion-avatar>
+        <h2>{{friend.username}}</h2>
+      </button>
+    </ion-list>
+  </ion-content>

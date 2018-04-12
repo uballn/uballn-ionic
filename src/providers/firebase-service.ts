@@ -29,9 +29,9 @@ export class FirebaseService {
   MessageData: any;
   messageNum: any;
   unreadMessages: any;
-  selectedLocation: any;
   userDOB: any;
   Date: any;
+
 
 
   constructor(
@@ -195,25 +195,6 @@ export class FirebaseService {
       messageID: this.messageID,
       requestorID: sessionStorage.getItem('CurrPlayer.uid'),
       requestorName: sessionStorage.getItem('CurrPlayer.username')
-    })
-  }
-
-  setupGame(){
-    this.myID = localStorage.getItem('uid');
-    this.gameID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
-    sessionStorage.setItem('gameID', this.gameID);
-    this.storage.get('selectedLocation').then((val) => {
-      this.selectedLocation = val;
-    
-      this.afd.object('/games/' + this.gameID).update({
-        address: this.selectedLocation.address,
-        creator: localStorage.getItem('uid'),
-        creatorIMG: localStorage.getItem('img'),
-        img: this.selectedLocation.img,
-        name: this.selectedLocation.name
-      }).then(() => {this.joinGame()}).then(() => {
-        this.storage.set('selectedLocation', undefined)
-      })
     })
   }
 

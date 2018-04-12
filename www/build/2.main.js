@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 313:
+/***/ 318:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CourtsPageModule", function() { return CourtsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__courts_page__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_page__ = __webpack_require__(340);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,41 +18,66 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CourtsPageModule = (function () {
-    function CourtsPageModule() {
+var LoginPageModule = (function () {
+    function LoginPageModule() {
     }
-    return CourtsPageModule;
+    return LoginPageModule;
 }());
-CourtsPageModule = __decorate([
+LoginPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */],
+            __WEBPACK_IMPORTED_MODULE_2__login_page__["a" /* LoginPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login_page__["a" /* LoginPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */]
+            __WEBPACK_IMPORTED_MODULE_2__login_page__["a" /* LoginPage */]
         ]
     })
-], CourtsPageModule);
+], LoginPageModule);
 
-//# sourceMappingURL=courts-page.module.js.map
+//# sourceMappingURL=login-page.module.js.map
 
 /***/ }),
 
-/***/ 332:
+/***/ 331:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourtsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mapStyle__ = __webpack_require__(333);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailValidator; });
+var EmailValidator = (function () {
+    function EmailValidator() {
+    }
+    EmailValidator.isValid = function (control) {
+        var re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(control.value);
+        // success
+        if (re) {
+            return null;
+        }
+        return { "invalidEmail": true };
+    };
+    return EmailValidator;
+}());
+
+//# sourceMappingURL=email.js.map
+
+/***/ }),
+
+/***/ 340:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__validators_email__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -69,296 +94,156 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CourtsPage = (function () {
-    function CourtsPage(navCtrl, geo, storage, firebaseService, afd) {
+
+
+var LoginPage = (function () {
+    function LoginPage(navCtrl, firebaseService, afd, loadingCtrl, alertCtrl, formBuilder, storage, modalCtrl) {
         this.navCtrl = navCtrl;
-        this.geo = geo;
-        this.storage = storage;
         this.firebaseService = firebaseService;
         this.afd = afd;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.formBuilder = formBuilder;
+        this.storage = storage;
+        this.modalCtrl = modalCtrl;
+        this.loginForm = formBuilder.group({
+            email: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_4__validators_email__["a" /* EmailValidator */].isValid])],
+            password: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* Validators */].minLength(6), __WEBPACK_IMPORTED_MODULE_3__angular_forms__["e" /* Validators */].required])]
+        });
     }
-    CourtsPage.prototype.ionViewWillEnter = function () {
-        this.loadMap();
-        var uid = localStorage.getItem('uid');
-        this.firebaseService.checkMessages(uid);
-        this.avatar = localStorage.getItem('img');
-    };
-    CourtsPage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
-    };
-    CourtsPage.prototype.loadMap = function () {
-        // this.geo.getCurrentPosition().then((resp) => {
-        // let lat = JSON.stringify(resp.coords.latitude);
-        // let lng = JSON.stringify(resp.coords.longitude);
+    LoginPage.prototype.loginUser = function () {
         var _this = this;
-        // let watch = this.geo.watchPosition();
-        // watch.subscribe((data) => {
-        // data can be a set of coordinates, or an error (if an error occurred).
-        // data.coords.latitude
-        // data.coords.longitude
-        // });
-        this.storage.get('courts').then(function (val) {
-            _this.myPlaces = val;
-            var latLng = new google.maps.LatLng('33.2083057', '-96.8940848');
-            var mapOptions = {
-                center: latLng,
-                zoom: 10,
-                scroll: true,
-                rotate: true,
-                mapTypeControl: false,
-                fullscreenControl: false,
-                styles: __WEBPACK_IMPORTED_MODULE_1__mapStyle__["a" /* mapStyle */],
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            _this.map = new google.maps.Map(_this.mapElement.nativeElement, mapOptions);
-            for (var _i = 0, _a = _this.myPlaces; _i < _a.length; _i++) {
-                var place = _a[_i];
-                _this.addMarker(place);
-            }
-        });
+        if (this.loginForm.valid) {
+            this.loading = this.loadingCtrl.create();
+            this.loading.present();
+            var currUserFriends_1;
+            this.firebaseService.loginUser(this.loginForm.value.email, this.loginForm.value.password)
+                .then(function (authData) {
+                localStorage.setItem('currUserEmail', authData.email);
+                localStorage.setItem('currUserName', authData.displayName);
+                localStorage.setItem('emailVerified', authData.emailVerified);
+                localStorage.setItem('userID', authData.uid);
+                _this.afd.list('/users/' + authData.uid, { preserveSnapshot: true })
+                    .subscribe(function (snapshots) {
+                    snapshots.forEach(function (snapshot) {
+                        localStorage.setItem(snapshot.key, snapshot.val());
+                        if (snapshot.key === 'friends') {
+                            _this.storage.set('myFriends', snapshot.val());
+                        }
+                    });
+                });
+                _this.afd.list('/courts', { preserveSnapshot: true })
+                    .subscribe(function (snapshots) {
+                    _this.myPlaces = [];
+                    snapshots.forEach(function (snapshot) {
+                        _this.myPlaces.push(snapshot.val());
+                    });
+                    _this.storage.set('courts', _this.myPlaces);
+                });
+                _this.afd.list('/users', { preserveSnapshot: true })
+                    .subscribe(function (snapshots) {
+                    _this.userData = [];
+                    snapshots.forEach(function (snapshot) {
+                        _this.userData.push(snapshot.val());
+                    });
+                    _this.storage.set('allUsers', _this.userData);
+                });
+                if (localStorage.getItem('img') == null) {
+                    localStorage.setItem('img', null);
+                }
+                ;
+                _this.firebaseService.getCourts();
+                _this.loading.dismiss().then(function () {
+                    _this.navCtrl.setRoot('TabsPage', currUserFriends_1);
+                });
+            }, function (error) {
+                _this.loading.dismiss().then(function () {
+                    var alert = _this.alertCtrl.create({
+                        title: 'Error',
+                        message: error.message,
+                        buttons: [
+                            {
+                                text: "Ok",
+                                role: 'cancel'
+                            }
+                        ]
+                    });
+                    alert.present();
+                });
+            });
+        }
     };
-    CourtsPage.prototype.addMarker = function (place) {
-        var position = new google.maps.LatLng(place.lat, place.lng);
-        var markerIcon = {
-            url: 'assets/img/marker.svg',
-            scaledSize: new google.maps.Size(20, 20),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0) // anchor
-        };
-        var marker = new google.maps.Marker({
-            map: this.map,
-            icon: markerIcon,
-            position: position
-        });
-        var markerInfo = '<img class="mapImage" src="' + place.img + '" /><b>' + place.name + '</b><p>' + place.address + '</p>';
-        this.addInfoWindow(marker, markerInfo);
+    LoginPage.prototype.goToSignup = function () {
+        this.navCtrl.push('RegisterPage');
     };
-    CourtsPage.prototype.addInfoWindow = function (marker, markerInfo) {
+    LoginPage.prototype.resetPassword = function () {
         var _this = this;
-        var infoWindow = new google.maps.InfoWindow({
-            content: markerInfo
+        var prompt = this.alertCtrl.create({
+            title: 'Reset Password',
+            message: 'Enter your email below',
+            inputs: [
+                {
+                    name: 'email',
+                    placeholder: 'My Email'
+                },
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                },
+                {
+                    text: 'Reset',
+                    handler: function (data) {
+                        _this.firebaseService.resetPassword(data.email).then(function (data) {
+                            console.log('reset: ', data);
+                            _this.showBasicAlert('Success', 'Check your email for further instructions.');
+                        })
+                            .catch(function (err) {
+                            _this.showBasicAlert('Error', err.message);
+                        });
+                    }
+                }
+            ]
         });
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.open(_this.map, marker);
+        prompt.present();
+    };
+    LoginPage.prototype.showBasicAlert = function (title, text) {
+        var alert = this.alertCtrl.create({
+            title: title,
+            subTitle: text,
+            buttons: ['OK']
         });
+        alert.present();
     };
-    CourtsPage.prototype.seeMessages = function () {
-        this.navCtrl.push('MessagesPage');
+    LoginPage.prototype.showPrivacyPolicy = function () {
+        var modal = this.modalCtrl.create('PolicyPage');
+        modal.present();
     };
-    return CourtsPage;
+    LoginPage.prototype.showTerms = function () {
+        var modal = this.modalCtrl.create('TermsPage');
+        modal.present();
+    };
+    LoginPage.prototype.back = function () {
+        this.navCtrl.pop();
+    };
+    return LoginPage;
 }());
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('map'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* ElementRef */])
-], CourtsPage.prototype, "mapElement", void 0);
-CourtsPage = __decorate([
+LoginPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'courts-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n      <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
+        selector: 'page-login-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/'<ion-header>\n  <ion-navbar>\n      <button ion-button start (click)="back()">\n          <ion-icon name="arrow-back"></ion-icon>\n        </button>\n      <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>\n\n    <ion-item>\n      <ion-label>Email</ion-label>\n      <ion-input formControlName="email" type="email"\n        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines>\n      <p>Please enter a valid email.</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Password</ion-label>\n      <ion-input formControlName="password" type="password"\n        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines>\n      <p>Your password needs more than 6 characters.</p>\n    </ion-item>\n\n    <p class="formText small" (click)="resetPassword()">forgot your password?</p>\n\n    <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">\n      Login\n    </button>\n    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#" (click)="showTerms()">Terms of Use</a> and <a href="#" (click)="showPrivacyPolicy()">Privacy Policy</a>.</p>\n\n    <p class="formText small" (click)="goToSignup()">don\'t have an account? <a href="#">Sign Up!</a></p>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/login-page/login-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
+        __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
+        __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* FormBuilder */],
         __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */]])
-], CourtsPage);
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ModalController */]])
+], LoginPage);
 
-//# sourceMappingURL=courts-page.js.map
-
-/***/ }),
-
-/***/ 333:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mapStyle; });
-var mapStyle = [
-    {
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#212121"
-            }
-        ]
-    },
-    {
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "color": "#212121"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.country",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#9e9e9e"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.land_parcel",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.locality",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#bdbdbd"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#181818"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#616161"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "color": "#1b1b1b"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#2c2c2c"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#8a8a8a"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#373737"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#3c3c3c"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#4e4e4e"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#616161"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#3d3d3d"
-            }
-        ]
-    }
-];
-//# sourceMappingURL=mapStyle.js.map
+//# sourceMappingURL=login-page.js.map
 
 /***/ })
 

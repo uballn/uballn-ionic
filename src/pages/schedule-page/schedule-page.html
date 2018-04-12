@@ -19,37 +19,38 @@
 
   <div>
     <ion-list>
-      <ion-item>
+      <ion-item class="gamedate">
         <ion-label>when are you hoopin?</ion-label>
         <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="gameDate"></ion-datetime>
       </ion-item>
 
-      <ion-item>
+      <ion-item class="gameStart">
         <ion-label>at what time?</ion-label>
         <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="gameStart"></ion-datetime>
       </ion-item>
 
-      <div padding (click)="getCourt()">
+      <div padding (click)="getCourt()" style="padding-top: 10px;">
         <button ion-button block class="secondaryButton">Find a Court</button>
       </div>
 
-      <ion-item>
+      <ion-item class="location">
         <ion-label>on what court?</ion-label>
         <ion-input type="text" [(ngModel)]="location"></ion-input>
       </ion-item>
 
-      <ion-item class="noBG private">
+      <!-- <ion-item class="noBG private">
         <ion-label>Private Game?</ion-label>
-        <ion-toggle [(ngModel)]="option1"></ion-toggle>
-      </ion-item>
+        <ion-toggle [(ngModel)]="private"></ion-toggle>
+      </ion-item> -->
 
       <div padding>
-        <button ion-button block class="secondaryButton">Invite Friends</button>
+        <button ion-button block class="secondaryButton" (click)="inviteFriends()">Invite Friends</button>
       </div>
 
       <div padding>
         <button ion-button block class="primaryButton" (click)="setupGame()">Let's Do It</button>
       </div>
+      <p class="error" style="display:none;margin-top: -10px"></p>
     </ion-list>
   </div>
 

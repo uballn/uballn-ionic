@@ -9,7 +9,7 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item *ngFor="let message of MessageData" class="{{message.read}}">
+        <ion-item *ngFor="let message of MessageData; let i = index" class="{{message.read}}">
           <ion-grid>
             <ion-row>
               <ion-col col-2 class="avatar">
@@ -21,9 +21,9 @@
                   <h5>{{message.header}}</h5>
                   <p>{{message.message}}</p>
               </ion-col>
-              <ion-col col-3 class="confirmation">
-                <span (click)="denyFriend(message.requestorName)"><img src="assets/img/icons-cancel.svg"/></span>
-                <span (click)="approveFriend(message.requestorName)"><img src="assets/img/icons-checkmark.svg"/></span>
+              <ion-col col-3 id="message-{{i}}" class="confirmation">
+                <span><img (click)="denyFriend(message)" src="assets/img/icons-cancel.svg"/></span>
+                <span><img (click)="approveFriend(message)" src="assets/img/icons-checkmark.svg"/></span>
               </ion-col>
             </ion-row>
           </ion-grid>
