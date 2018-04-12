@@ -7,7 +7,7 @@
   </ion-header>
 
   <ion-content>
-    <ion-searchbar (ionInput)="getItems($event)" placeholder="placeholder"></ion-searchbar>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Search Name or Address"></ion-searchbar>
     <ion-list>
       <button ion-item *ngFor="let court of courts" (click)="sendLocation(court)">
         <ion-avatar item-start>
