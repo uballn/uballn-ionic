@@ -25691,6 +25691,11 @@ page-invite-friends ion-searchbar {
   border-bottom: 0 !important;
 }
 
+page-invite-friends .item-ios ion-avatar ion-img,
+page-invite-friends .item-ios ion-avatar img {
+  border: 1px solid #fff;
+}
+
 page-invite-friends .friends {
   background: transparent;
   color: #fff;
@@ -25712,6 +25717,7 @@ page-invite-friends .item.item-block {
 
 page-invite-friends button .item-inner ion-label h2 {
   line-height: 2em;
+  float: left;
 }
 
 page-invite-friends button .item-inner ion-label p {
@@ -25727,6 +25733,16 @@ page-invite-friends .item-ios[detail-push] .item-inner,
 page-invite-friends button.item-ios:not([detail-none]) .item-inner,
 page-invite-friends a.item-ios:not([detail-none]) .item-inner {
   background-image: none;
+}
+
+page-invite-friends span ion-icon {
+  float: right;
+  font-size: 2em;
+  font-weight: bold;
+  display: block;
+  margin-right: 20px;
+  position: relative;
+  z-index: 10;
 }
 
 page-login-page .invalid {

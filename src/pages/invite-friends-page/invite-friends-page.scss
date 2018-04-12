@@ -2,6 +2,10 @@ page-invite-friends {
     ion-searchbar {
         border-bottom: 0 !important;
     }
+    .item-ios ion-avatar ion-img, 
+    .item-ios ion-avatar img {
+        border: 1px solid #fff;
+    }
     .friends {
         background: transparent;
         color: #fff;
@@ -21,6 +25,7 @@ page-invite-friends {
     button .item-inner ion-label {
         h2 {
             line-height: 2em;
+            float: left;
         }
         p {
             font-weight: 0.3em;
@@ -34,5 +39,14 @@ page-invite-friends {
     button.item-ios:not([detail-none]) .item-inner, 
     a.item-ios:not([detail-none]) .item-inner {
         background-image: none;
+    }
+    span ion-icon {
+        float: right;
+        font-size: 2em;
+        font-weight: bold;
+        display:block;
+        margin-right:20px;
+        position: relative;
+        z-index: 10;
     }
 }

@@ -54,6 +54,10 @@ export class InviteFriendsPage {
     alert('You invited '+friend.username+'!')
   }
 
+  goToProfile(uid){
+    this.navCtrl.push('PlayerPage', uid);
+  }
+
   close(){
     this.navCtrl.pop();
   }

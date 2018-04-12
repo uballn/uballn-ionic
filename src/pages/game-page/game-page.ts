@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FirebaseService } from './../../providers/firebase-service';
+import { ActionSheetController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import * as $ from 'jquery';
 
@@ -23,6 +24,7 @@ export class GamePage {
     public navParams: NavParams,
     public firebaseService: FirebaseService,
     public storage: Storage,
+    public actionSheetCtrl: ActionSheetController,
     public toastCtrl: ToastController) {
       this.gameData = this.navParams;
       this.gameID = this.navParams.data.$key;
@@ -79,5 +81,36 @@ export class GamePage {
 
   goToProfile(uid){
     this.navCtrl.push('PlayerPage', uid);
+  }
+    share(){
+      let actionSheet = this.actionSheetCtrl.create({
+      title: 'Game Options',
+      buttons: [
+        {
+          text: 'Invite Friends',
+          role: 'destructive',
+          handler: () => {
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Add to Calendar',
+          handler: () => {
+            console.log('Calendar clicked');
+          }
+        },{
+          text: 'Get Directions',
+          handler: () => {
+            console.log('Directions clicked');
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }

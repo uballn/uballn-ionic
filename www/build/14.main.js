@@ -99,6 +99,9 @@ var InviteFriendsPage = (function () {
     InviteFriendsPage.prototype.inviteFriend = function (friend) {
         alert('You invited ' + friend.username + '!');
     };
+    InviteFriendsPage.prototype.goToProfile = function (uid) {
+        this.navCtrl.push('PlayerPage', uid);
+    };
     InviteFriendsPage.prototype.close = function () {
         this.navCtrl.pop();
     };
@@ -107,7 +110,7 @@ var InviteFriendsPage = (function () {
 InviteFriendsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-invite-friends',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/invite-friends-page/invite-friends-page.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n        Invite Friends\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-searchbar (ionInput)="findFriend($event)" placeholder="Search By Name"></ion-searchbar>\n    <ion-list>\n      <button ion-item *ngFor="let friend of friends" (click)="inviteFriend(friend)">\n        <ion-avatar item-start>\n          <img [src]="friend.img" />\n        </ion-avatar>\n        <h2>{{friend.username}}</h2>\n      </button>\n    </ion-list>\n  </ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/invite-friends-page/invite-friends-page.html"*/,
+        selector: 'page-invite-friends',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/invite-friends-page/invite-friends-page.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n        Invite Friends\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-searchbar (ionInput)="findFriend($event)" placeholder="Search By Name"></ion-searchbar>\n    <ion-list>\n      <div *ngFor="let friend of friends">\n      <button ion-item  (click)="inviteFriend(friend)">\n        <ion-avatar item-start>\n          <img [src]="friend.img"/>\n        </ion-avatar>\n        <h2>{{friend.username}}</h2>\n        <span>\n            <ion-icon name="add"></ion-icon>\n          </span>\n      </button>\n    </div>\n    </ion-list>\n  </ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/invite-friends-page/invite-friends-page.html"*/,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
 ], InviteFriendsPage);

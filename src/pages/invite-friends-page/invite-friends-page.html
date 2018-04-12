@@ -9,11 +9,16 @@
   <ion-content>
     <ion-searchbar (ionInput)="findFriend($event)" placeholder="Search By Name"></ion-searchbar>
     <ion-list>
-      <button ion-item *ngFor="let friend of friends" (click)="inviteFriend(friend)">
+      <div *ngFor="let friend of friends">
+      <button ion-item  (click)="inviteFriend(friend)">
         <ion-avatar item-start>
-          <img [src]="friend.img" />
+          <img [src]="friend.img"/>
         </ion-avatar>
         <h2>{{friend.username}}</h2>
+        <span>
+            <ion-icon name="add"></ion-icon>
+          </span>
       </button>
+    </div>
     </ion-list>
   </ion-content>

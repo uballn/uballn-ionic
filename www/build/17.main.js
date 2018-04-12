@@ -160,7 +160,7 @@ ConnectPage = __decorate([
         __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]])
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
 ], ConnectPage);
 
 //# sourceMappingURL=connect-page.js.map
