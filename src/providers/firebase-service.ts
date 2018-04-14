@@ -204,9 +204,9 @@ export class FirebaseService {
 
     return this.afd.object('/games/' + this.gameID + '/players/' + this.playerID).update({  
       alias: localStorage.getItem('name'),
-      age: localStorage.getItem('ageCount'),
+      age: parseInt(localStorage.getItem('ageCount')),
       uid: localStorage.getItem('uid'),
-      experience: localStorage.getItem('experience'),
+      experience: parseInt(localStorage.getItem('experience')),
       img: localStorage.getItem('img')
     });
   }

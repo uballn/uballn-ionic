@@ -119,6 +119,7 @@ var GamePage = (function () {
         this.firebaseService.joinGame().then(function () {
             _this.presentToast('You have joined the game!');
         });
+        sessionStorage.setItem('playing', 'true');
         this.navCtrl.pop();
     };
     GamePage.prototype.leaveGame = function () {
@@ -127,6 +128,7 @@ var GamePage = (function () {
         this.firebaseService.leaveGame(this.gameID).then(function () {
             _this.presentToast('You have left the game!');
         });
+        sessionStorage.setItem('playing', null);
         this.navCtrl.pop();
     };
     GamePage.prototype.goToProfile = function (uid) {

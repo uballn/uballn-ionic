@@ -68,6 +68,7 @@ export class GamePage {
     this.firebaseService.joinGame().then(() => {
       this.presentToast('You have joined the game!');
     })
+    sessionStorage.setItem('playing','true');
     this.navCtrl.pop();
   }
 
@@ -76,6 +77,7 @@ export class GamePage {
     this.firebaseService.leaveGame(this.gameID).then(() => {
       this.presentToast('You have left the game!');
     })
+    sessionStorage.setItem('playing',null);
     this.navCtrl.pop();
   }
 
