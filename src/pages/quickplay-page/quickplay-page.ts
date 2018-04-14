@@ -33,14 +33,6 @@ export class QuickPlayPage {
     this.firebaseService.checkMessages(uid);
   }
 
-  removeList(id) {
-    this.firebaseService.removeList(id);
-  }
-
-  removeItem(itemId, listId) {
-    this.firebaseService.removegameItem(listId, itemId);
-  }
-
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
