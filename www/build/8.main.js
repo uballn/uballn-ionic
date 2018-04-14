@@ -72,7 +72,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var SchedulePage = (function () {
-    function SchedulePage(navCtrl, settings, modalCtrl, firebaseService, afd, navParams, storage) {
+    function SchedulePage(navCtrl, settings, modalCtrl, firebaseService, afd, navParams, storage, toastCtrl) {
         this.navCtrl = navCtrl;
         this.settings = settings;
         this.modalCtrl = modalCtrl;
@@ -80,6 +80,7 @@ var SchedulePage = (function () {
         this.afd = afd;
         this.navParams = navParams;
         this.storage = storage;
+        this.toastCtrl = toastCtrl;
         this.settingsReady = false;
     }
     SchedulePage.prototype.ionViewDidLoad = function () {
@@ -117,8 +118,12 @@ var SchedulePage = (function () {
     SchedulePage.prototype.setupGame = function () {
         var _this = this;
         if (this.location === undefined || this.gameDate === undefined || this.gameStart === undefined) {
-            __WEBPACK_IMPORTED_MODULE_6_jquery__('.error').show();
-            __WEBPACK_IMPORTED_MODULE_6_jquery__('.error').html('Oops! All fields required.');
+            var toast = this.toastCtrl.create({
+                message: 'Oops! All fields required.',
+                duration: 2000,
+                position: 'top'
+            });
+            toast.present();
         }
         else {
             __WEBPACK_IMPORTED_MODULE_6_jquery__('.error').hide();
@@ -163,7 +168,8 @@ SchedulePage = __decorate([
         __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */],
         __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
+        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
 ], SchedulePage);
 
 //# sourceMappingURL=schedule-page.js.map

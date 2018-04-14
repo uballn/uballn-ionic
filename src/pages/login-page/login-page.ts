@@ -90,8 +90,12 @@ export class LoginPage {
           this.firebaseService.getCourts();
           
           this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot('TabsPage', currUserFriends);
-          });
+            if (localStorage.getItem('setupNeeded') == 'true'){
+              let modal = this.modalCtrl.create('SetupProfilePage');
+              modal.present();
+            }else{
+              this.navCtrl.setRoot('TabsPage', currUserFriends);
+            }
         }, error => {
           this.loading.dismiss().then(() => {
             let alert = this.alertCtrl.create({
@@ -107,6 +111,7 @@ export class LoginPage {
             alert.present();
           });
         });
+      })
     }
   }
 

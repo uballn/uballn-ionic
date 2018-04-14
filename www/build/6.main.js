@@ -65,8 +65,8 @@ var TabsPage = (function () {
     function TabsPage(navCtrl, firebaseService) {
         this.navCtrl = navCtrl;
         this.firebaseService = firebaseService;
-        this.tab1 = 'CourtsPage';
-        this.tab2 = 'QuickPlayPage';
+        this.tab1 = 'QuickPlayPage';
+        this.tab2 = 'CourtsPage';
         this.tab3 = 'SchedulePage';
     }
     TabsPage.prototype.ionViewDidLoad = function () {
@@ -76,7 +76,7 @@ var TabsPage = (function () {
 TabsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-tabs-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/'<ion-tabs tabsPlacement="top">\n      <ion-tab tabTitle="COURTS" [root]="tab1"></ion-tab>\n      <ion-tab tabTitle="QUICKPLAY" [root]="tab2"></ion-tab>\n      <ion-tab tabTitle="SCHEDULE" [tabBadge]="invitationCount" [root]="tab3"></ion-tab>\n    </ion-tabs>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/,
+        selector: 'page-tabs-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/'<ion-tabs tabsPlacement="top">\n      <ion-tab tabTitle="QUICKPLAY" [root]="tab1"></ion-tab>\n      <ion-tab tabTitle="COURTS" [root]="tab2"></ion-tab>\n      <ion-tab tabTitle="SCHEDULE" [tabBadge]="invitationCount" [root]="tab3"></ion-tab>\n    </ion-tabs>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/tabs-page/tabs-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */]])

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FirebaseService } from './../../providers/firebase-service';
 import { Settings } from '../../providers/providers';
 import { ModalPage } from './modal-page';
@@ -36,7 +36,8 @@ export class SchedulePage {
     public firebaseService: FirebaseService,
     public afd: AngularFireDatabase,
     public navParams: NavParams,
-    private storage: Storage) {
+    private storage: Storage,
+    public toastCtrl: ToastController) {
 
   }
 
@@ -83,9 +84,13 @@ export class SchedulePage {
   }
 
   setupGame(){
-    if (this.location === undefined || this.gameDate === undefined || this.gameStart === undefined) {      
-      $('.error').show();      
-      $('.error').html('Oops! All fields required.');
+    if (this.location === undefined || this.gameDate === undefined || this.gameStart === undefined) {
+        let toast = this.toastCtrl.create({
+          message: 'Oops! All fields required.',
+          duration: 2000,
+          position: 'top'
+        });
+        toast.present();
 
     } else {
       $('.error').hide();      

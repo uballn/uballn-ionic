@@ -47,6 +47,8 @@ export class ProfilePage {
   }
 
   ionViewWillEnter() {
+    let uid = localStorage.getItem('uid');
+    this.firebaseService.updateFriends(uid);
 
     this.storage.get('myFriends').then((val) => {
       this.friends = val;
@@ -100,7 +102,8 @@ export class ProfilePage {
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }

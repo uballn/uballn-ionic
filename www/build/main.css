@@ -26320,6 +26320,66 @@ page-schedule .text-input {
   text-align: right;
 }
 
+page-setup-profile .profileInputs ion-item.item.item-block {
+  background: #111 !important;
+}
+
+page-setup-profile .editPhoto {
+  width: 100%;
+  margin-top: -20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+page-setup-profile .invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
+page-setup-profile .error-message {
+  margin-top: -15px;
+}
+
+page-setup-profile .tabbar {
+  display: none;
+}
+
+page-setup-profile ion-input.weight input,
+page-setup-profile ion-input.name input {
+  text-align: right;
+}
+
+page-setup-profile ion-label {
+  opacity: 0.5;
+}
+
+page-setup-profile ion-select {
+  max-width: 80%;
+}
+
+page-setup-profile ion-select.level {
+  max-width: none;
+  clear: both;
+  display: block;
+}
+
+page-setup-profile ion-select.level ion-select {
+  max-width: 70%;
+}
+
+page-setup-profile .appInfo button.item-block {
+  background: transparent;
+  color: #fff;
+  margin-left: 0;
+}
+
+page-setup-profile .appInfo button.item-block:first-child, page-setup-profile .appInfo button.item-block:last-child {
+  border: none;
+}
+
+page-setup-profile .appInfo button.item-block .item-inner {
+  border: none !important;
+}
+
 page-terms .modalContent {
   min-height: 100%;
   margin: 0 -20px;

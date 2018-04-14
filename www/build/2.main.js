@@ -154,21 +154,27 @@ var LoginPage = (function () {
                 ;
                 _this.firebaseService.getCourts();
                 _this.loading.dismiss().then(function () {
-                    _this.navCtrl.setRoot('TabsPage', currUserFriends_1);
-                });
-            }, function (error) {
-                _this.loading.dismiss().then(function () {
-                    var alert = _this.alertCtrl.create({
-                        title: 'Error',
-                        message: error.message,
-                        buttons: [
-                            {
-                                text: "Ok",
-                                role: 'cancel'
-                            }
-                        ]
+                    if (localStorage.getItem('setupNeeded') == 'true') {
+                        var modal = _this.modalCtrl.create('SetupProfilePage');
+                        modal.present();
+                    }
+                    else {
+                        _this.navCtrl.setRoot('TabsPage', currUserFriends_1);
+                    }
+                }, function (error) {
+                    _this.loading.dismiss().then(function () {
+                        var alert = _this.alertCtrl.create({
+                            title: 'Error',
+                            message: error.message,
+                            buttons: [
+                                {
+                                    text: "Ok",
+                                    role: 'cancel'
+                                }
+                            ]
+                        });
+                        alert.present();
                     });
-                    alert.present();
                 });
             });
         }
@@ -236,8 +242,8 @@ LoginPage = __decorate([
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
         __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* AlertController */],
         __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* FormBuilder */],
         __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ModalController */]])

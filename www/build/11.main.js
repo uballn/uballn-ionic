@@ -78,6 +78,8 @@ var ProfilePage = (function () {
     }
     ProfilePage.prototype.ionViewWillEnter = function () {
         var _this = this;
+        var uid = localStorage.getItem('uid');
+        this.firebaseService.updateFriends(uid);
         this.storage.get('myFriends').then(function (val) {
             _this.friends = val;
             _this.friendData = [];
@@ -126,7 +128,8 @@ var ProfilePage = (function () {
     ProfilePage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({
             message: msg,
-            duration: 2000
+            duration: 2000,
+            position: 'top'
         });
         toast.present();
     };
@@ -150,7 +153,7 @@ ProfilePage = __decorate([
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
         __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ToastController */]])
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* ToastController */]])
 ], ProfilePage);
 
 //# sourceMappingURL=profile-page.js.map

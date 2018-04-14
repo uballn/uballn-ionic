@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { ActionSheetController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { ModalPage } from './modal-page';
@@ -35,6 +36,7 @@ export class ProfileSettingsPage {
     public firebaseService: FirebaseService,
     public toastCtrl: ToastController,
     public modalCtrl: ModalController,
+    public actionSheetCtrl: ActionSheetController,
     public storage: Storage,
     public camera: Camera) {
 
@@ -47,7 +49,7 @@ export class ProfileSettingsPage {
       this.updateUserIMG = localStorage.getItem('img');
   }
 
-  ionViewWillEnter() {
+  ionViewWillEnter() {    
     let profilePic;
     if (localStorage.getItem('userPhoto') === 'null'){
       profilePic = 'https://mydjapp.jnashdev.com/images/kanye.jpg';
@@ -94,15 +96,64 @@ export class ProfileSettingsPage {
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
+  }
+
+  photoOptions(){
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Upload Photo',
+      buttons: [
+        {
+          text: 'From Camera',
+          handler: () => {
+            this.takePicture();
+          }
+        },{
+          text: 'From Photo Library',
+          handler: () => {
+            this.getPicture();
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
   getPicture() {
     if (Camera['installed']()) {
       this.camera.getPicture({
         sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        quality: 100,
+        targetWidth: 500,
+        targetHeight: 500,
+        encodingType: this.camera.EncodingType.JPEG,      
+        correctOrientation: true
+      }).then((data) => {
+        this.storage.set('profilePic', data);
+        localStorage.setItem('img', 'data:image/png;base64,'+data);
+        this.updateUserIMG = 'data:image/png;base64,'+data;    
+      }, (err) => {
+        alert('Unable to take photo');
+      })
+    } else {
+      this.fileInput.nativeElement.click();
+    }
+  }
+
+  takePicture() {
+    if (Camera['installed']()) {
+      this.camera.getPicture({
+        sourceType: this.camera.PictureSourceType.CAMERA,
         destinationType: this.camera.DestinationType.DATA_URL,
         quality: 100,
         targetWidth: 500,

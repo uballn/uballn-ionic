@@ -8,8 +8,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'tabs-page.html',
 })
 export class TabsPage {
-  tab1 = 'CourtsPage';
-  tab2 = 'QuickPlayPage';
+  tab1 = 'QuickPlayPage';
+  tab2 = 'CourtsPage';
   tab3 = 'SchedulePage';
 
   constructor(

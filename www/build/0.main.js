@@ -151,8 +151,8 @@ RegisterPage = __decorate([
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
         __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* FormBuilder */],
-        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* AlertController */],
         __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["i" /* ModalController */]])
 ], RegisterPage);
 
