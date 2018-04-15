@@ -1,14 +1,14 @@
 webpackJsonp([9],{
 
-/***/ 324:
+/***/ 323:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuickPlayPageModule", function() { return QuickPlayPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileSettingsPageModule", function() { return ProfileSettingsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__quickplay_page__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_settings_page__ = __webpack_require__(345);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var QuickPlayPageModule = (function () {
-    function QuickPlayPageModule() {
+var ProfileSettingsPageModule = (function () {
+    function ProfileSettingsPageModule() {
     }
-    return QuickPlayPageModule;
+    return ProfileSettingsPageModule;
 }());
-QuickPlayPageModule = __decorate([
+ProfileSettingsPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */],
+            __WEBPACK_IMPORTED_MODULE_2__profile_settings_page__["a" /* ProfileSettingsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__profile_settings_page__["a" /* ProfileSettingsPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__quickplay_page__["a" /* QuickPlayPage */]
+            __WEBPACK_IMPORTED_MODULE_2__profile_settings_page__["a" /* ProfileSettingsPage */]
         ]
     })
-], QuickPlayPageModule);
+], ProfileSettingsPageModule);
 
-//# sourceMappingURL=quickplay-page.module.js.map
+//# sourceMappingURL=profile-settings-page.module.js.map
 
 /***/ }),
 
-/***/ 346:
+/***/ 345:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuickPlayPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileSettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,53 +63,185 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var QuickPlayPage = (function () {
-    function QuickPlayPage(navCtrl, firebaseService, alertCtrl, toastCtrl) {
+
+
+
+
+var ProfileSettingsPage = (function () {
+    function ProfileSettingsPage(navCtrl, firebaseService, toastCtrl, modalCtrl, actionSheetCtrl, storage, camera) {
         this.navCtrl = navCtrl;
         this.firebaseService = firebaseService;
-        this.alertCtrl = alertCtrl;
         this.toastCtrl = toastCtrl;
-        this.editMode = false;
+        this.modalCtrl = modalCtrl;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.storage = storage;
+        this.camera = camera;
+        this.name = localStorage.getItem('name');
+        this.birthday = localStorage.getItem('birthday');
+        this.experience = localStorage.getItem('experience');
+        this.gender = localStorage.getItem('gender');
+        this.height = localStorage.getItem('height');
+        this.weight = localStorage.getItem('weight');
+        this.updateUserIMG = localStorage.getItem('img');
     }
-    QuickPlayPage.prototype.ionViewDidLoad = function () {
-        this.gameLists = this.firebaseService.getGames();
-        console.log(this.gameLists);
+    ProfileSettingsPage.prototype.ionViewWillEnter = function () {
+        var profilePic;
+        if (localStorage.getItem('userPhoto') === 'null') {
+            profilePic = 'https://mydjapp.jnashdev.com/images/kanye.jpg';
+            localStorage.setItem('userPhoto', profilePic);
+        }
+        else {
+            profilePic = localStorage.getItem('userPhoto');
+        }
+        ;
     };
-    QuickPlayPage.prototype.ionViewWillEnter = function () {
-        this.avatar = localStorage.getItem('img');
-        var uid = localStorage.getItem('uid');
-        this.firebaseService.checkMessages(uid);
+    ProfileSettingsPage.prototype.ionViewWillLeave = function () {
+        if (localStorage.length !== 0) {
+            this.updateUser();
+        }
     };
-    QuickPlayPage.prototype.presentToast = function (msg) {
+    ProfileSettingsPage.prototype.updateUser = function () {
+        var _this = this;
+        localStorage.setItem('name', this.name);
+        localStorage.setItem('height', this.height);
+        localStorage.setItem('weight', this.weight);
+        localStorage.setItem('experience', this.experience);
+        localStorage.setItem('gender', this.gender);
+        localStorage.setItem('birthday', this.birthday);
+        this.firebaseService.updateUserProfile().then(function () {
+            _this.presentToast('Profile Updated!');
+        });
+    };
+    ProfileSettingsPage.prototype.showVersionInfo = function () {
+        var modal = this.modalCtrl.create('AboutVersionPage');
+        modal.present();
+    };
+    ProfileSettingsPage.prototype.showPrivacyPolicy = function () {
+        var modal = this.modalCtrl.create('PolicyPage');
+        modal.present();
+    };
+    ProfileSettingsPage.prototype.showTerms = function () {
+        var modal = this.modalCtrl.create('TermsPage');
+        modal.present();
+    };
+    ProfileSettingsPage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({
             message: msg,
-            duration: 2000
+            duration: 2000,
+            position: 'top'
         });
         toast.present();
     };
-    QuickPlayPage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
+    ProfileSettingsPage.prototype.photoOptions = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Upload Photo',
+            buttons: [
+                {
+                    text: 'From Camera',
+                    handler: function () {
+                        _this.takePicture();
+                    }
+                }, {
+                    text: 'From Photo Library',
+                    handler: function () {
+                        _this.getPicture();
+                    }
+                }, {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
     };
-    QuickPlayPage.prototype.openGame = function (game) {
-        this.navCtrl.push('GamePage', game);
+    ProfileSettingsPage.prototype.getPicture = function () {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]['installed']()) {
+            this.camera.getPicture({
+                sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                destinationType: this.camera.DestinationType.DATA_URL,
+                quality: 100,
+                targetWidth: 500,
+                targetHeight: 500,
+                encodingType: this.camera.EncodingType.JPEG,
+                correctOrientation: true
+            }).then(function (data) {
+                _this.storage.set('profilePic', data);
+                localStorage.setItem('img', 'data:image/png;base64,' + data);
+                _this.updateUserIMG = 'data:image/png;base64,' + data;
+            }, function (err) {
+                alert('Unable to take photo');
+            });
+        }
+        else {
+            this.fileInput.nativeElement.click();
+        }
     };
-    QuickPlayPage.prototype.seeMessages = function () {
-        this.navCtrl.push('MessagesPage');
+    ProfileSettingsPage.prototype.takePicture = function () {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]['installed']()) {
+            this.camera.getPicture({
+                sourceType: this.camera.PictureSourceType.CAMERA,
+                destinationType: this.camera.DestinationType.DATA_URL,
+                quality: 100,
+                targetWidth: 500,
+                targetHeight: 500,
+                encodingType: this.camera.EncodingType.JPEG,
+                correctOrientation: true
+            }).then(function (data) {
+                _this.storage.set('profilePic', data);
+                localStorage.setItem('img', 'data:image/png;base64,' + data);
+                _this.updateUserIMG = 'data:image/png;base64,' + data;
+            }, function (err) {
+                alert('Unable to take photo');
+            });
+        }
+        else {
+            this.fileInput.nativeElement.click();
+        }
     };
-    return QuickPlayPage;
+    ProfileSettingsPage.prototype.processWebImage = function (event) {
+        var _this = this;
+        var reader = new FileReader();
+        reader.onload = function (readerEvent) {
+            var imageData = readerEvent.target.result;
+            _this.updateUserIMG = imageData;
+            localStorage.setItem('img', imageData);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+    ProfileSettingsPage.prototype.logOut = function () {
+        var _this = this;
+        this.firebaseService.logoutUser().then(function () {
+            localStorage.clear();
+            _this.navCtrl.setRoot('WelcomePage');
+        });
+    };
+    return ProfileSettingsPage;
 }());
-QuickPlayPage = __decorate([
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_9" /* ViewChild */])('fileInput'),
+    __metadata("design:type", Object)
+], ProfileSettingsPage.prototype, "fileInput", void 0);
+ProfileSettingsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-quickplay-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/quickplay-page/quickPlay-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n      <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list class="gameContainer" *ngFor="let game of gameLists | async" (click)="openGame(game)">\n    <span class="gameBG" [style.backgroundImage]="\'url(\' + game.img + \')\'"></span>\n    <ion-list-header>\n      <h2>{{ game.name }}</h2>\n      <button ion-button item-left clear color="danger" icon-only (click)="removeList(game.$key)" *ngIf="editMode"><ion-icon name="remove-circle"></ion-icon></button>\n    </ion-list-header>\n    <ion-item>\n      <ul class="gameDetails">\n        <li><span><img [src]="game.creatorIMG" class="creator"/></span></li>\n        <li><span><img src="assets/img/icons-players.svg"/></span> {{ game.stats.playerTotal }}</li>\n        <li><span><img src="assets/img/icons-id.svg"/></span> {{ game.stats.avgAge }}</li>\n        <li><span><img src="assets/img/icons-chart.svg"/></span> {{ game.stats.avgExp }}</li>\n      </ul>\n    </ion-item>\n  </ion-list>\n\n  <!-- <ion-fab right bottom padding>\n    <button ion-fab (click)="newList()"><ion-icon name="add"></ion-icon></button>\n  </ion-fab> -->\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/quickplay-page/quickPlay-page.html"*/,
+        selector: 'page-profile-settings',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-settings-page/profile-settings-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Profile Settings\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="disabled">\n  <div class="profileInputs">\n    \n      <div class="imageContainer profilePhoto" (click)="photoOptions()">\n          <img src="{{updateUserIMG}}" />\n          <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />\n        </div>\n        <p class="editPhoto">Tap to Edit Photo</p>\n\n    <ion-item>\n      <ion-label>Nickname</ion-label>\n      <ion-input [(ngModel)]="name" class="name" type="text">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Birthdate</ion-label>\n      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="birthday"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label class="level">Experience</ion-label>\n      <ion-select [(ngModel)]="experience" interface="action-sheet">\n        <ion-option value="1">Recreational</ion-option>\n        <ion-option value="2">High School</ion-option>\n        <ion-option value="3">AAU/Club</ion-option>\n        <ion-option value="4">Collegiate</ion-option>\n        <ion-option value="5">Semi-Pro</ion-option>\n        <ion-option value="6">Professional</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Gender</ion-label>\n      <ion-select [(ngModel)]="gender" interface="action-sheet">\n        <ion-option value="male">Male</ion-option>\n        <ion-option value="female">Female</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Height</ion-label>\n      <ion-select [(ngModel)]="height" interface="action-sheet">\n        <ion-option value="5\'1">5\'1"</ion-option>\n        <ion-option value="5\'2">5\'2"</ion-option>\n        <ion-option value="5\'3">5\'3"</ion-option>\n        <ion-option value="5\'4">5\'4"</ion-option>\n        <ion-option value="5\'5">5\'5"</ion-option>\n        <ion-option value="5\'6">5\'6"</ion-option>\n        <ion-option value="5\'7">5\'7"</ion-option>\n        <ion-option value="5\'8">5\'8"</ion-option>\n        <ion-option value="5\'9">5\'9"</ion-option>\n        <ion-option value="5\'10">5\'10"</ion-option>\n        <ion-option value="5\'11" checked="true">5\'11"</ion-option>\n        <ion-option value="6\'0">6\'0"</ion-option>\n        <ion-option value="6\'1">6\'1"</ion-option>\n        <ion-option value="6\'2">6\'2"</ion-option>\n        <ion-option value="6\'3">6\'3"</ion-option>\n        <ion-option value="6\'4">6\'4"</ion-option>\n        <ion-option value="6\'5">6\'5"</ion-option>\n        <ion-option value="6\'6">6\'6"</ion-option>\n        <ion-option value="6\'7">6\'7"</ion-option>\n        <ion-option value="6\'8">6\'8"</ion-option>\n        <ion-option value="6\'9">6\'9"</ion-option>\n        <ion-option value="6\'10">6\'10"</ion-option>\n        <ion-option value="6\'11">6\'11"</ion-option>\n        <ion-option value="7\'0">7\'0"</ion-option>\n        <ion-option value="7\'1">7\'1"</ion-option>\n        <ion-option value="7\'2">7\'2"</ion-option>\n        <ion-option value="7\'3">7\'3"</ion-option>\n        <ion-option value="7\'4">7\'4"</ion-option>\n        <ion-option value="7\'5">7\'5"</ion-option>\n        <ion-option value="7\'6">7\'6"</ion-option>\n        <ion-option value="7\'7">7\'7"</ion-option>\n        <ion-option value="7\'8">7\'8"</ion-option>\n        <ion-option value="7\'9">7\'9"</ion-option>\n        <ion-option value="7\'10">7\'10"</ion-option>\n        <ion-option value="7\'11">7\'11"</ion-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label>Weight</ion-label>\n      <ion-input class="weight" style="float:right;" type="tel" [(ngModel)]="weight"></ion-input>\n    </ion-item>\n  </div>\n  <ion-list class="appInfo">\n    <button ion-item (click)="showTerms()">Terms of Use</button>  \n    <button ion-item (click)="showPrivacyPolicy()">Privacy Policy</button>  \n    <button ion-item>Contact Us</button>  \n    <button ion-item (click)="showVersionInfo()">About this Version</button>\n  </ion-list>\n\n  <!-- <button ion-button block class="primaryButton" (click)="updateUser()" padding>\n      Update Profile\n    </button> -->\n\n    <button ion-button block class="logout secondaryButton" (click)="logOut()" padding outline>Logout</button>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-settings-page/profile-settings-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* ToastController */]])
-], QuickPlayPage);
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ModalController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* ActionSheetController */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]])
+], ProfileSettingsPage);
 
-//# sourceMappingURL=quickplay-page.js.map
+//# sourceMappingURL=profile-settings-page.js.map
 
 /***/ })
 

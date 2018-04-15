@@ -28,7 +28,7 @@ export class MessagesPage {
 
   ionViewWillEnter(){
     this.storage.get('MessageData').then((val) => {
-      this.MessageData = val;
+      this.MessageData = val.reverse();
     })
   }
 
@@ -41,7 +41,7 @@ export class MessagesPage {
   declineFriend(messageID){
     this.myID = localStorage.getItem('uid');
     
-    this.afd.object('/users/'+this.myID+'/friends/'+messageID).update({
+    this.afd.object('/users/'+this.myID+'/messages/'+messageID).update({
       read: 'true',
       response: 'declined'
     })  
@@ -76,7 +76,7 @@ export class MessagesPage {
   declineSquad(messageID){
     this.myID = localStorage.getItem('uid');
 
-    this.afd.object('/users/'+this.myID+'/friends/'+messageID).update({
+    this.afd.object('/users/'+this.myID+'/messages/'+messageID).update({
       read: 'true',
       response: 'declined'
     })

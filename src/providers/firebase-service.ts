@@ -80,22 +80,6 @@ export class FirebaseService {
     return this.afd.list('/games'+this.gameID+'/players')
   }
 
-  removeList(id) {
-    this.afd.list('/games/').remove(id);
-  }
-
-  addListItem(listId, item) {
-    return this.afd.list('/games/' + listId + '/players').push({name: item});
-  }
-
-  removegameItem(listId, itemId) {
-    this.afd.list('/games/' + listId + '/players').remove(itemId);
-  }
-
-  shareList(listId, listName, shareWith) {
-    return this.afd.list('/invitations').push({listId: listId, listName: listName, toEmail: shareWith, fromEmail: this.user.email});
-  }
-
   getUserInvitations() {
     return this.afd.list('/invitations', {
       query: {
@@ -105,19 +89,6 @@ export class FirebaseService {
     })
   }
 
-  acceptInvitation(invitation) {
-    // Remove the notification
-    this.discardInvitation(invitation.$key);
-    let data = {
-      [this.user.uid]: true
-    }
-    return this.afd.object('/games/' + invitation.listId).update(data);
-  }
-
-  discardInvitation(invitationId) {
-    this.afd.list('/invitations').remove(invitationId);
-  }
-
   getCourts(){
     this.afd.list('/courts', { preserveSnapshot: true})
     .subscribe(snapshots=>{
@@ -125,15 +96,6 @@ export class FirebaseService {
           this.storage.set('courts', snapshot.val());
         });
       })
-  }
-
-  getSharedLists() {
-    return this.afd.list('/games', {
-      query: {
-        orderByChild: this.user.uid,
-        equalTo: true
-      }
-    })
   }
 
   getUserData(uid) {

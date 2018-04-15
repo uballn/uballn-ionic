@@ -102,11 +102,15 @@ export class SchedulePage {
         this.selectedLocation = val;
       
         this.afd.object('/games/' + this.gameID).update({
-          address: this.selectedLocation.address,
-          creator: localStorage.getItem('uid'),
-          creatorIMG: localStorage.getItem('img'),
-          img: this.selectedLocation.img,
-          name: this.selectedLocation.name})
+            address: this.selectedLocation.address,
+            created: JSON.stringify(+Date.now()),
+            creator: localStorage.getItem('uid'),
+            creatorIMG: localStorage.getItem('img'),
+            gameDate: this.gameDate,
+            gameStart: this.gameStart,
+            img: this.selectedLocation.img,
+            location: this.location
+          })                   
           .then(() => {
             this.firebaseService.joinGame()
           })

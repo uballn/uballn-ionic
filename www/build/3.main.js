@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 314:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CourtsPageModule", function() { return CourtsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelcomePageModule", function() { return WelcomePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__courts_page__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__welcome_page__ = __webpack_require__(352);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,41 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CourtsPageModule = (function () {
-    function CourtsPageModule() {
+var WelcomePageModule = (function () {
+    function WelcomePageModule() {
     }
-    return CourtsPageModule;
+    return WelcomePageModule;
 }());
-CourtsPageModule = __decorate([
+WelcomePageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */],
+            __WEBPACK_IMPORTED_MODULE_2__welcome_page__["a" /* WelcomePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__welcome_page__["a" /* WelcomePage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__courts_page__["a" /* CourtsPage */]
+            __WEBPACK_IMPORTED_MODULE_2__welcome_page__["a" /* WelcomePage */]
         ]
     })
-], CourtsPageModule);
+], WelcomePageModule);
 
-//# sourceMappingURL=courts-page.module.js.map
+//# sourceMappingURL=welcome-page.module.js.map
 
 /***/ }),
 
-/***/ 335:
+/***/ 352:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourtsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mapStyle__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67,298 +62,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var CourtsPage = (function () {
-    function CourtsPage(navCtrl, geo, storage, firebaseService, afd) {
+var WelcomePage = (function () {
+    function WelcomePage(navCtrl, navParams, modalCtrl) {
         this.navCtrl = navCtrl;
-        this.geo = geo;
-        this.storage = storage;
-        this.firebaseService = firebaseService;
-        this.afd = afd;
+        this.navParams = navParams;
+        this.modalCtrl = modalCtrl;
     }
-    CourtsPage.prototype.ionViewWillEnter = function () {
-        this.loadMap();
-        var uid = localStorage.getItem('uid');
-        this.firebaseService.checkMessages(uid);
-        this.avatar = localStorage.getItem('img');
+    WelcomePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad WelcomePage');
     };
-    CourtsPage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
+    WelcomePage.prototype.slideChanged = function () {
+        var currentIndex = this.slides.getActiveIndex();
+        console.log('Current index is', currentIndex);
     };
-    CourtsPage.prototype.loadMap = function () {
-        // this.geo.getCurrentPosition().then((resp) => {
-        // let lat = JSON.stringify(resp.coords.latitude);
-        // let lng = JSON.stringify(resp.coords.longitude);
-        var _this = this;
-        // let watch = this.geo.watchPosition();
-        // watch.subscribe((data) => {
-        // data can be a set of coordinates, or an error (if an error occurred).
-        // data.coords.latitude
-        // data.coords.longitude
-        // });
-        this.storage.get('courts').then(function (val) {
-            _this.myPlaces = val;
-            var latLng = new google.maps.LatLng('33.2083057', '-96.8940848');
-            var mapOptions = {
-                center: latLng,
-                zoom: 10,
-                scroll: true,
-                rotate: true,
-                mapTypeControl: false,
-                fullscreenControl: false,
-                styles: __WEBPACK_IMPORTED_MODULE_1__mapStyle__["a" /* mapStyle */],
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            _this.map = new google.maps.Map(_this.mapElement.nativeElement, mapOptions);
-            for (var _i = 0, _a = _this.myPlaces; _i < _a.length; _i++) {
-                var place = _a[_i];
-                _this.addMarker(place);
-            }
-        });
+    WelcomePage.prototype.goToLogin = function () {
+        var modal = this.modalCtrl.create('LoginPage');
+        modal.present();
     };
-    CourtsPage.prototype.addMarker = function (place) {
-        var position = new google.maps.LatLng(place.lat, place.lng);
-        var markerIcon = {
-            url: 'assets/img/marker.svg',
-            scaledSize: new google.maps.Size(20, 20),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0) // anchor
-        };
-        var marker = new google.maps.Marker({
-            map: this.map,
-            icon: markerIcon,
-            position: position
-        });
-        var markerInfo = '<img class="mapImage" src="' + place.img + '" /><b>' + place.name + '</b><p>' + place.address + '</p>';
-        this.addInfoWindow(marker, markerInfo);
+    WelcomePage.prototype.goToSignup = function () {
+        var modal = this.modalCtrl.create('RegisterPage');
+        modal.present();
     };
-    CourtsPage.prototype.addInfoWindow = function (marker, markerInfo) {
-        var _this = this;
-        var infoWindow = new google.maps.InfoWindow({
-            content: markerInfo
-        });
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.open(_this.map, marker);
-        });
-    };
-    CourtsPage.prototype.seeMessages = function () {
-        this.navCtrl.push('MessagesPage');
-    };
-    return CourtsPage;
+    return WelcomePage;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('map'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* ElementRef */])
-], CourtsPage.prototype, "mapElement", void 0);
-CourtsPage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Slides */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Slides */])
+], WelcomePage.prototype, "slides", void 0);
+WelcomePage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'courts-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n      <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/
+        selector: 'page-welcome',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/welcome-page/welcome-page.html"*/'<ion-content class="no-scroll" no-bounce>\n  <div class="overlay">\n      <img class="gifBG" src="assets/vid/intro_hooping.gif"/>\n      <div class="introLogo">\n        <img src="assets/img/uballn_logo.svg"/>\n      </div>\n\n      <div class="slidesAndButtons">\n      <ion-slides pager>\n        <ion-slide (didChange)="slideChanged()">\n          <h2>Find a Pick-Up Game</h2>\n          <p>Don\'t know where the ballers are? Now you can easily find active games nearby.</p>\n        </ion-slide>\n        \n        <ion-slide (didChange)="slideChanged()">\n            <h2>Level of Play</h2>\n            <p>Instantly get an idea of the competition with our level of play system. </p>\n          </ion-slide>\n\n        <ion-slide (didChange)="slideChanged()">\n            <h2>Easily Organize Games</h2>\n            <p>No need to text or tweet to get people to show. Just hit "invite".</p>\n          </ion-slide>\n\n        <ion-slide (didChange)="slideChanged()">\n            <h2>Profile</h2>\n            <p>Create a player profile and show everyone what you bring to the court.</p>\n          </ion-slide>\n        \n      </ion-slides>\n      <form>\n        <div padding>\n          <button ion-button class="primaryButton" block (click)="goToSignup()">Create Account</button>\n          <button ion-button class="secondaryButton" block (click)="goToLogin()">Log In</button>\n        </div>\n      </form>\n    </div>\n</div>\n</ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/welcome-page/welcome-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
-        __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */]])
-], CourtsPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]])
+], WelcomePage);
 
-//# sourceMappingURL=courts-page.js.map
-
-/***/ }),
-
-/***/ 336:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mapStyle; });
-var mapStyle = [
-    {
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#212121"
-            }
-        ]
-    },
-    {
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "color": "#212121"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.country",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#9e9e9e"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.land_parcel",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.locality",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#bdbdbd"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#181818"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#616161"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "color": "#1b1b1b"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#2c2c2c"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#8a8a8a"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#373737"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#3c3c3c"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#4e4e4e"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#616161"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#3d3d3d"
-            }
-        ]
-    }
-];
-//# sourceMappingURL=mapStyle.js.map
+//# sourceMappingURL=welcome-page.js.map
 
 /***/ })
 

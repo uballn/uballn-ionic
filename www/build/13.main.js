@@ -1,14 +1,14 @@
 webpackJsonp([13],{
 
-/***/ 320:
+/***/ 319:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerPageModule", function() { return PlayerPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessagesPageModule", function() { return MessagesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__player_page__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messages_page__ = __webpack_require__(341);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,41 +18,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PlayerPageModule = (function () {
-    function PlayerPageModule() {
+var MessagesPageModule = (function () {
+    function MessagesPageModule() {
     }
-    return PlayerPageModule;
+    return MessagesPageModule;
 }());
-PlayerPageModule = __decorate([
+MessagesPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */],
+            __WEBPACK_IMPORTED_MODULE_2__messages_page__["a" /* MessagesPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__messages_page__["a" /* MessagesPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__player_page__["a" /* PlayerPage */]
+            __WEBPACK_IMPORTED_MODULE_2__messages_page__["a" /* MessagesPage */]
         ]
     })
-], PlayerPageModule);
+], MessagesPageModule);
 
-//# sourceMappingURL=player-page.module.js.map
+//# sourceMappingURL=messages-page.module.js.map
 
 /***/ }),
 
-/***/ 342:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayerPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MessagesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(112);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67,81 +65,89 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var PlayerPage = (function () {
-    function PlayerPage(navCtrl, firebaseService, afd, navParams, storage) {
-        var _this = this;
+var MessagesPage = (function () {
+    function MessagesPage(navCtrl, navParams, afd, firebaseService, storage) {
         this.navCtrl = navCtrl;
-        this.firebaseService = firebaseService;
-        this.afd = afd;
         this.navParams = navParams;
+        this.afd = afd;
+        this.firebaseService = firebaseService;
         this.storage = storage;
-        this.playerID = this.navParams.data;
-        var uid = localStorage.getItem('uid');
-        this.firebaseService.checkMessages(uid);
-        this.playerIMG;
-        if (localStorage.getItem('gender') == 'male') {
-            this.playerGender = 'M';
-        }
-        else {
-            this.playerGender = 'F';
-        }
-        this.afd.list('/users/' + this.playerID, { preserveSnapshot: true })
-            .subscribe(function (snapshots) {
-            snapshots.forEach(function (snapshot) {
-                sessionStorage.setItem('CurrPlayer.' + snapshot.key, snapshot.val());
-            });
-            _this.playerName = sessionStorage.getItem('CurrPlayer.username');
-            _this.playerExperience = sessionStorage.getItem('CurrPlayer.experience');
-            _this.playerHeight = sessionStorage.getItem('CurrPlayer.height');
-            _this.playerWeight = sessionStorage.getItem('CurrPlayer.weight');
-            _this.playerIMG = sessionStorage.getItem('CurrPlayer.img');
-            _this.playerAge = sessionStorage.getItem('CurrPlayer.ageCount');
-            _this.playerPlayed = sessionStorage.getItem('CurrPlayer.played');
-            _this.playerPoints = '300';
-        });
     }
-    PlayerPage.prototype.ionViewDidLoad = function () {
+    MessagesPage.prototype.ionViewWillEnter = function () {
         var _this = this;
-        this.storage.get('myFriends').then(function (val) {
-            var myFriends = val;
-            if (_this.playerID == localStorage.getItem('uid')) {
-                __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').css('display', 'none');
-            }
-            else {
-                for (var key in myFriends) {
-                    if (key === _this.playerID) {
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').addClass('trueFriends');
-                        __WEBPACK_IMPORTED_MODULE_5_jquery__('#friendButton').html('Unfriend');
-                    }
-                }
-            }
+        this.storage.get('MessageData').then(function (val) {
+            _this.MessageData = val.reverse();
         });
     };
-    PlayerPage.prototype.ionViewDidLeave = function () {
-        var uid = localStorage.getItem('uid');
-        sessionStorage.clear();
-        this.firebaseService.updateFriends(uid);
+    MessagesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MessagesPage');
     };
-    PlayerPage.prototype.addRemoveFriend = function () {
-        var uid = sessionStorage.getItem('CurrPlayer.uid');
-        this.firebaseService.addRemoveFriend(uid);
+    // FRIEND REQUESTS /////////////////////////
+    MessagesPage.prototype.declineFriend = function (messageID) {
+        this.myID = localStorage.getItem('uid');
+        this.afd.object('/users/' + this.myID + '/messages/' + messageID).update({
+            read: 'true',
+            response: 'declined'
+        });
     };
-    return PlayerPage;
+    MessagesPage.prototype.approveFriend = function (requestorID, messageID) {
+        this.firebaseService.getRequestor(requestorID);
+        this.myID = localStorage.getItem('uid');
+        this.afd.object('/users/' + this.myID + '/friends/' + requestorID).update({
+            img: sessionStorage.getItem('requestor-img'),
+            squad: 'false',
+            uid: sessionStorage.getItem('requestor-uid'),
+            username: sessionStorage.getItem('requestor-username')
+        });
+        this.afd.object('/users/' + requestorID + '/friends/' + this.myID).update({
+            img: localStorage.getItem('img'),
+            squad: 'false',
+            uid: localStorage.getItem('uid'),
+            username: localStorage.getItem('username')
+        });
+        this.afd.object('/users/' + this.myID + '/messages/' + messageID).update({
+            response: 'accepted',
+            read: 'true'
+        });
+    };
+    // SQUAD REQUESTS /////////////////////////
+    MessagesPage.prototype.declineSquad = function (messageID) {
+        this.myID = localStorage.getItem('uid');
+        this.afd.object('/users/' + this.myID + '/messages/' + messageID).update({
+            read: 'true',
+            response: 'declined'
+        });
+    };
+    MessagesPage.prototype.approveSquad = function (requestorID, messageID) {
+        this.firebaseService.getRequestor(requestorID);
+        this.myID = localStorage.getItem('uid');
+        this.afd.object('/users/' + this.myID + '/friends/' + requestorID).update({
+            squad: 'true'
+        });
+        this.afd.object('/users/' + requestorID + '/friends/' + this.myID).update({
+            squad: 'true'
+        });
+        this.afd.object('/users/' + this.myID + '/messages/' + messageID).update({
+            response: 'accepted',
+            read: 'true'
+        });
+    };
+    // GO TO PROFILE /////////////////////////
+    MessagesPage.prototype.goToProfile = function (uid) {
+        this.navCtrl.push('PlayerPage', uid);
+    };
+    return MessagesPage;
 }());
-PlayerPage = __decorate([
+MessagesPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-player',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/'\n<ion-header>\n    <ion-navbar>\n      <ion-title>\n        Player Profile\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding class="bgImage">\n    <div class="profileBG"></div>\n    <div class="imageContainer">\n        <img [src]="playerIMG" />\n      </div>\n        \n    <h2><ion-input class="playerName" [(ngModel)]="playerName" disabled></ion-input></h2>\n  \n      <ion-grid class="playerDetailPrimary">\n          <ion-row>\n              <ion-col col-4>\n                  <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                  <ion-input class="points" [(ngModel)]="playerPoints" disabled></ion-input>\n              </ion-col>\n              <ion-col col-4 class="middle">\n                <ion-input [(ngModel)]="playerPlayed" disabled></ion-input>\n              </ion-col>\n            <ion-col col-4>\n                <ion-input class="experience" [(ngModel)]="playerExperience" disabled></ion-input>\n                <img class="icon chart" src="assets/img/icons-chart.svg"/>\n              </ion-col>\n              </ion-row>\n        </ion-grid>\n  \n  \n      <ion-grid class="playerPageDetails">\n          <ion-row>\n              <ion-col col-3>\n                  Age\n                  <ion-input [(ngModel)]="playerAge" disabled></ion-input>\n              </ion-col>\n              <ion-col col-3>\n              Height\n                <ion-input [(ngModel)]="playerHeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3>\n              Weight\n                <ion-input [(ngModel)]="playerWeight" disabled></ion-input>\n              </ion-col>\n            <ion-col col-3 class="sex">\n                Sex\n                  <ion-input [(ngModel)]="playerGender" disabled></ion-input>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n\n        <div class="buttonContainer">\n          <button ion-button id="friendButton" class="secondaryButton" full (click)="addRemoveFriend()">Add Friend</button>\n        </div>\n  \n  </ion-content>          '/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/player-page/player-page.html"*/,
+        selector: 'page-messages',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/messages-page/messages-page.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Messages</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-list>    \n\n        <div *ngFor="let message of MessageData" class="{{message.read}}">\n        <ion-item class="{{message.read}}">\n          <ion-grid>\n            <ion-row>\n              <ion-col col-2 class="avatar">\n              <span (click)="goToProfile(message.requestorID)">\n                  <img [src]="message.avatar">\n              </span>          \n              </ion-col>\n              <ion-col col-8 class="message">\n                  <h5>{{message.header}}</h5>\n                  <p>{{message.message}}</p>\n              </ion-col>\n\n              <!-- Friend Requests -->\n              <div *ngIf="message.type === \'friendRequest\'">\n                <ion-col col-3 class="confirmation" *ngIf="message.read === \'false\'">\n                  <span><img (click)="declineFriend(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                  <span><img (click)="approveFriend(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                </ion-col>\n\n                <ion-col col-3 class="confirmation" *ngIf="message.read === \'true\'">\n                  <p class="response">{{message.response}}</p>\n                </ion-col>\n              </div>\n\n              <!-- Squad Requests -->\n              <div *ngIf="message.type === \'squadRequest\'">\n                <ion-col col-3 class="confirmation" *ngIf="message.read === \'false\'">\n                    <span><img (click)="declineSquad(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                    <span><img (click)="approveSquad(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                </ion-col>\n\n                <ion-col col-3 class="confirmation" *ngIf="message.read === \'true\'">\n                    <p class="response">{{message.response}}</p>\n                </ion-col>\n              </div>\n\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n        </div>\n\n      </ion-list>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/messages-page/messages-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]])
-], PlayerPage);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
+], MessagesPage);
 
-//# sourceMappingURL=player-page.js.map
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=messages-page.js.map
 
 /***/ })
 

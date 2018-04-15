@@ -51,18 +51,28 @@ export class SetupProfilePage {
   }
 
   updateUser() {
-    localStorage.setItem('name',this.name);
-    localStorage.setItem('height', this.height);
-    localStorage.setItem('weight', this.weight);
-    localStorage.setItem('experience', this.experience);
-    localStorage.setItem('gender', this.gender);
-    localStorage.setItem('birthday', this.birthday);
+    if (this.name === undefined || this.height === undefined || this.weight === undefined || this.experience === undefined || this.gender === undefined || this.birthday === undefined) {
+      let toast = this.toastCtrl.create({
+        message: 'Oops! All fields required.',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
 
-    this.firebaseService.updateUserProfile()
-      .then(()=>{
-        localStorage.setItem('setupNeeded',null);
-        this.navCtrl.setRoot('TabsPage');
-    })
+  } else {
+      localStorage.setItem('name',this.name);
+      localStorage.setItem('height', this.height);
+      localStorage.setItem('weight', this.weight);
+      localStorage.setItem('experience', this.experience);
+      localStorage.setItem('gender', this.gender);
+      localStorage.setItem('birthday', this.birthday);
+
+      this.firebaseService.updateUserProfile()
+        .then(()=>{
+          localStorage.setItem('setupNeeded',null);
+          this.navCtrl.setRoot('TabsPage');
+      })
+    }
   }
 
   presentToast(msg) {
