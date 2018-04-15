@@ -16,11 +16,13 @@ export class MessagesPage {
   unreadMessageNum: any;
   myID: string;
   clickedID: string;
+  requestorInfo: any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public afd: AngularFireDatabase,
+    public firebaseService: FirebaseService,
     private storage: Storage) {
     }
 
@@ -32,50 +34,73 @@ export class MessagesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagesPage');
-
   }
-  denyFriend(message){
 
-    let index = this.MessageData.indexOf(message);
 
-    if (index > -1){
-      $(index).html('Denied');
-    }
-
+  // FRIEND REQUESTS /////////////////////////
+  declineFriend(messageID){
     this.myID = localStorage.getItem('uid');
     
-    // this.afd.object('/users/' + this.myID+'/friends/'+this.clickedID).update({
-    //   img: null,
-    //   squad: null,
-    //   uid: null,
-    //   username: null
-    // })
-
-    alert(JSON.stringify($('#'+this.clickedID).html('Denied')));
-  
+    this.afd.object('/users/'+this.myID+'/friends/'+messageID).update({
+      read: 'true',
+      response: 'declined'
+    })  
   }
 
-  approveFriend(uid){
+  approveFriend(requestorID,messageID){
+    this.firebaseService.getRequestor(requestorID);
     this.myID = localStorage.getItem('uid');
     
-    this.afd.object('/users/' + this.myID+'/friends/'+uid).update({
-      img: sessionStorage.getItem('CurrPlayer.img'),
+    this.afd.object('/users/'+this.myID+'/friends/'+requestorID).update({
+      img: sessionStorage.getItem('requestor-img'),
       squad: 'false',
-      uid: sessionStorage.getItem('CurrPlayer.uid'),
-      username: sessionStorage.getItem('CurrPlayer.username')
+      uid: sessionStorage.getItem('requestor-uid'),
+      username: sessionStorage.getItem('requestor-username')
     })
 
-    this.afd.object('/users/'+uid+'/friends/'+this.myID).update({
-      img: sessionStorage.getItem('img'),
+    this.afd.object('/users/'+requestorID+'/friends/'+this.myID).update({
+      img: localStorage.getItem('img'),
       squad: 'false',
-      uid: sessionStorage.getItem('uid'),
-      username: sessionStorage.getItem('username')
+      uid: localStorage.getItem('uid'),
+      username: localStorage.getItem('username')
     })
 
-    $('.confirmation').html('Approved');
-    
+    this.afd.object('/users/'+this.myID+'/messages/'+messageID).update({
+      response: 'accepted',
+      read: 'true'
+    })
   }
 
+
+  // SQUAD REQUESTS /////////////////////////
+  declineSquad(messageID){
+    this.myID = localStorage.getItem('uid');
+
+    this.afd.object('/users/'+this.myID+'/friends/'+messageID).update({
+      read: 'true',
+      response: 'declined'
+    })
+  }
+
+  approveSquad(requestorID,messageID){
+    this.firebaseService.getRequestor(requestorID);
+    this.myID = localStorage.getItem('uid');
+    
+    this.afd.object('/users/'+this.myID+'/friends/'+requestorID).update({
+      squad: 'true'
+    })
+
+    this.afd.object('/users/'+requestorID+'/friends/'+this.myID).update({
+      squad: 'true'
+    })
+
+    this.afd.object('/users/'+this.myID+'/messages/'+messageID).update({
+      response: 'accepted',
+      read: 'true'
+    })
+  }
+
+  // GO TO PROFILE /////////////////////////
   goToProfile(uid){
     this.navCtrl.push('PlayerPage', uid);
   }

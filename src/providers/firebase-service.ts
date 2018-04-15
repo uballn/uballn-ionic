@@ -142,6 +142,15 @@ export class FirebaseService {
     return currUser;
   }
 
+  getRequestor(uid) {
+    return this.afd.list('/users/'+uid, { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          sessionStorage.setItem('requestor-'+snapshot.key, snapshot.val());
+        });
+      })
+  }
+
   updateUserProfile() {
     let birthday = localStorage.getItem('birthday');
     const yearsFromToday  = new Date(+new Date - +new Date(birthday)).getFullYear()-1970
@@ -194,7 +203,8 @@ export class FirebaseService {
       message: this.myUsername + ' wants to be friends.',
       messageID: this.messageID,
       requestorID: sessionStorage.getItem('CurrPlayer.uid'),
-      requestorName: sessionStorage.getItem('CurrPlayer.username')
+      requestorName: sessionStorage.getItem('CurrPlayer.username'),
+      type: 'friendRequest'
     })
   }
 

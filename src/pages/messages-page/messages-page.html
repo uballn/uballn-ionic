@@ -9,7 +9,10 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item *ngFor="let message of MessageData; let i = index" class="{{message.read}}">
+
+        <!-- Friend Requests -->
+        <div *ngFor="let message of MessageData" class="{{message.read}}">
+        <ion-item *ngIf="message.type === 'friendRequest'" class="{{message.read}}">
           <ion-grid>
             <ion-row>
               <ion-col col-2 class="avatar">
@@ -21,13 +24,48 @@
                   <h5>{{message.header}}</h5>
                   <p>{{message.message}}</p>
               </ion-col>
-              <ion-col col-3 id="message-{{i}}" class="confirmation">
-                <span><img (click)="denyFriend(message)" src="assets/img/icons-cancel.svg"/></span>
-                <span><img (click)="approveFriend(message)" src="assets/img/icons-checkmark.svg"/></span>
+
+              <ion-col col-3 class="confirmation" *ngIf="message.read === 'false'">
+                <span><img (click)="declineFriend(message.messageID)" src="assets/img/icons-cancel.svg"/></span>
+                <span><img (click)="approveFriend(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>
+              </ion-col>
+
+              <ion-col col-3 class="confirmation" *ngIf="message.read === 'true'">
+                <p class="response">{{message.response}}</p>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-item>
+        </div>
+
+          <!-- Squad Requests -->
+        <div *ngFor="let message of MessageData" class="{{message.read}}">
+          <ion-item *ngIf="message.type === 'squadRequest'" class="{{message.read}}">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-2 class="avatar">
+                <span (click)="goToProfile(message.requestorID)">
+                    <img [src]="message.avatar">
+                </span>          
+                </ion-col>
+                <ion-col col-8 class="message">
+                    <h5>{{message.header}}</h5>
+                    <p>{{message.message}}</p>
+                </ion-col>
+
+                <ion-col col-3 class="confirmation" *ngIf="message.read === 'false'">
+                    <span><img (click)="declineSquad(message.messageID)" src="assets/img/icons-cancel.svg"/></span>
+                    <span><img (click)="approveSquad(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>
+                </ion-col>
+
+                <ion-col col-3 class="confirmation" *ngIf="message.read === 'true'">
+                    <p class="response">{{message.response}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          </div>
+
       </ion-list>
   
 </ion-content>

@@ -143,9 +143,13 @@ var ConnectPage = (function () {
         this.myUsername = localStorage.getItem('currUserName');
         this.messageID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
         return this.afd.object('/users/' + uid + '/messages/' + this.messageID).update({
+            avatar: localStorage.getItem('img'),
             header: 'Squad Request',
             message: this.myUsername + ' wants you to join their squad!',
-            messageID: this.messageID
+            messageID: this.messageID,
+            read: 'false',
+            requestorID: uid,
+            type: 'squadRequest'
         });
     };
     return ConnectPage;
@@ -155,14 +159,10 @@ ConnectPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-connect',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/connect-page/connect-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Connect</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div padding>\n        <ion-segment [(ngModel)]="connect">\n          <ion-segment-button value="friends">\n            Friends\n          </ion-segment-button>\n          <ion-segment-button value="suggested">\n            Suggested\n          </ion-segment-button>\n          <ion-segment-button value="contacts">\n            Contacts\n          </ion-segment-button>\n        </ion-segment>\n      </div>\n      \n      <div [ngSwitch]="connect">            \n        <ion-list *ngSwitchCase="\'friends\'">\n            <div class="playerContainer">\n              <p>My Squad</p>\n              <div *ngFor="let friend of friends" class="playerLoop">\n                <div class="player" *ngIf="friend.squad == \'true\'">\n                  <span class="imgContainer squad" (click)="goToProfile(friend.uid)"><img [src]="friend.img" /></span>\n                </div>\n                </div>\n              </div> \n          <p>My Friends</p>\n          <div *ngFor="let friend of friends">\n            <ion-grid>\n              <ion-row>\n                <ion-col col-11>\n                  <button ion-item class="squad" (click)="goToProfile(friend.uid)">\n                    <span class="imgContainer"><img [src]="friend.img"/></span>{{ friend.username }}\n                  </button>\n                </ion-col>\n                <ion-col col-1>\n                    <div class="status friendStatus {{friend.status}} squadStatus {{friend.squad}}" (click)="requestRemoveSquad(friend.uid)"> </div>\n                </ion-col>\n              </ion-row>\n            </ion-grid>\n          </div>\n        </ion-list>\n\n        <ion-list *ngSwitchCase="\'suggested\'">\n          <div *ngFor="let user of userData">\n            <ion-grid>\n                <ion-row>\n                  <ion-col col-11>\n                    <button ion-item class="suggested" (click)="goToProfile(user.uid)">\n                      <span class="imgContainer"><img [src]="user.img"/></span>{{ user.username }}\n                    </button> \n                  </ion-col>\n                  <ion-col col-1>\n                      <div class="status friendStatus"></div>\n                  </ion-col>\n                </ion-row>\n            </ion-grid>\n          </div>\n        </ion-list>\n\n        <ion-list *ngSwitchCase="\'contacts\'">              \n            <!-- <button ion-button class="secondaryButton" (click)="showContacts()">Allow Access to Contacts</button> -->\n             <!-- <div *ngFor="let contact of contactlist" class="contactList">\n                 <ion-grid>\n                     <ion-row>\n                       <ion-col col-11>\n                         <button ion-item class="suggested" (click)="goToProfile(user.uid)">\n                           {{contact.name.givenName}} | {{contact.emails[0].value}}\n                         </button> \n                       </ion-col>\n                       <ion-col col-1>\n                           <div class="status friendStatus"></div>\n                       </ion-col>\n                     </ion-row>\n                 </ion-grid>\n               </div> -->\n             </ion-list>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/connect-page/connect-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]) === "function" && _f || Object])
 ], ConnectPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=connect-page.js.map
 
 /***/ })

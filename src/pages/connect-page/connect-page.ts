@@ -106,45 +106,14 @@ export class ConnectPage {
     this.myUsername = localStorage.getItem('currUserName');
     this.messageID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
     return this.afd.object('/users/' + uid + '/messages/' + this.messageID).update({
+      avatar: localStorage.getItem('img'),
       header: 'Squad Request',
       message: this.myUsername + ' wants you to join their squad!',
-      messageID: this.messageID
+      messageID: this.messageID,
+      read: 'false',
+      requestorID: uid,
+      type: 'squadRequest'
     })
   }
-
-  // Still working on friend stuff for this page
-  // requestRemoveFriend(uid) {
-  //   this.userID = localStorage.getItem('uid');
-  //   if ($(event.target).hasClass('true')){
-  //     $($(event.target).removeClass('true'));
-  //     $($(event.target).addClass('false'));
-  //     return this.afd.object('/users/' + this.userID + '/friends/' + uid).update({
-  //       img: null,
-  //       squad: null,
-  //       uid: null,
-  //       username: null
-  //     })
-  //   } else if ($(event.target).hasClass('pending')){
-  //     //do nothing
-  //   } else {
-  //     $($(event.target).addClass('pending'));
-  //     $($(event.target).removeClass('false'));
-      
-  //     this.sendSquadRequest(uid);
-  //     return this.afd.object('/users/' + this.userID + '/friends/' + uid).update({
-  //       squad: 'pending'
-  //     })
-  //   }
-  // }
-
-  // sendfriendRequest(uid){
-  //   this.myUsername = localStorage.getItem('currUserName');
-  //   this.messageID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
-  //   return this.afd.object('/users/' + uid + '/messages/' + this.messageID).update({
-  //     header: 'Friend Request',
-  //     message: this.myUsername + ' wants to be friends.'
-  //   })
-  // }
-
 
 }
