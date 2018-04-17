@@ -25766,6 +25766,10 @@ page-messages .scroll-content {
   margin: 0 -15px;
 }
 
+page-messages .noMessages {
+  padding: 10px 20px;
+}
+
 page-messages h5 {
   margin-bottom: 0px;
 }

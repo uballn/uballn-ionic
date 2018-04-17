@@ -11,7 +11,7 @@
     <ion-list>    
 
         <div *ngFor="let message of MessageData" class="{{message.read}}">
-        <ion-item class="{{message.read}}">
+        <ion-item class="{{message.read}}" *ngIf="message.read === 'false'">
           <ion-grid>
             <ion-row>
               <ion-col col-2 class="avatar">
@@ -26,25 +26,17 @@
 
               <!-- Friend Requests -->
               <div *ngIf="message.type === 'friendRequest'">
-                <ion-col col-3 class="confirmation" *ngIf="message.read === 'false'">
+                <ion-col col-3 class="confirmation">
                   <span><img (click)="declineFriend(message.messageID)" src="assets/img/icons-cancel.svg"/></span>
                   <span><img (click)="approveFriend(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>
-                </ion-col>
-
-                <ion-col col-3 class="confirmation" *ngIf="message.read === 'true'">
-                  <p class="response">{{message.response}}</p>
                 </ion-col>
               </div>
 
               <!-- Squad Requests -->
               <div *ngIf="message.type === 'squadRequest'">
-                <ion-col col-3 class="confirmation" *ngIf="message.read === 'false'">
+                <ion-col col-3 class="confirmation">
                     <span><img (click)="declineSquad(message.messageID)" src="assets/img/icons-cancel.svg"/></span>
                     <span><img (click)="approveSquad(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>
-                </ion-col>
-
-                <ion-col col-3 class="confirmation" *ngIf="message.read === 'true'">
-                    <p class="response">{{message.response}}</p>
                 </ion-col>
               </div>
 

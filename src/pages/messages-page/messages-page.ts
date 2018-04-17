@@ -30,6 +30,12 @@ export class MessagesPage {
     this.storage.get('MessageData').then((val) => {
       this.MessageData = val.reverse();
     })
+
+    if ($('ion-item').length < 1){
+      $('ion-list').prepend('<p class="noMessages">No Messages</p>')
+    }else{
+      $('.noMessages').remove();
+    }
   }
 
   ionViewDidLoad() {

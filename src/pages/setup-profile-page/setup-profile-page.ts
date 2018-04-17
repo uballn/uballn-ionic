@@ -66,10 +66,10 @@ export class SetupProfilePage {
       localStorage.setItem('experience', this.experience);
       localStorage.setItem('gender', this.gender);
       localStorage.setItem('birthday', this.birthday);
+      localStorage.setItem('setupNeeded',null);
 
       this.firebaseService.updateUserProfile()
         .then(()=>{
-          localStorage.setItem('setupNeeded',null);
           this.navCtrl.setRoot('TabsPage');
       })
     }
