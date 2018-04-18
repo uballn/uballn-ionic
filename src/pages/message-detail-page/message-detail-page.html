@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{message.data.previewHeader}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="messageheader" [style.backgroundImage]="'url(' + message.data.img + ')'"></div>
+  <div class="messageContent">
+    <h2>{{message.data.messageHeader}}</h2>
+    <p>{{message.data.messageBody}}</p>
+  </div>
+
+</ion-content>

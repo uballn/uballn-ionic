@@ -1,0 +1,16 @@
+page-message-detail {
+    .messageheader {
+        height: 30%;
+        width: 100%;
+        background-size: cover;
+        overflow: hidden;
+        background-repeat: no-repeat;
+    }
+    .messageContent {
+        padding: 10px 20px;
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    }
+}

@@ -126,8 +126,25 @@ export class FirebaseService {
       experience: localStorage.getItem('experience'),
       birthday: localStorage.getItem('birthday'),
       gender: localStorage.getItem('gender'),
-      img: localStorage.getItem('img')
+      img: localStorage.getItem('img'),
+      setupNeeded: localStorage.getItem('setupNeeded')
     });
+  }
+
+  welcomeMessage(uid){
+    this.myUsername = localStorage.getItem('currUserName');
+    this.messageID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
+    return this.afd.object('/users/' + uid + '/messages/' + this.messageID).update({
+      avatar: "https://firebasestorage.googleapis.com/v0/b/uballn-basketball-2f8d6.appspot.com/o/location_images%2Ficon.png?alt=media&token=84ad2b4a-b8a0-4b45-873d-a6511891a64e",
+      previewHeader: 'Welcome',
+      previewMessage: 'You think you can hoop?',
+      img: "https://firebasestorage.googleapis.com/v0/b/uballn-basketball-2f8d6.appspot.com/o/location_images%2Ffrisco24hr.jpg?alt=media&token=5a07fba5-a243-4672-88ba-1851289f713f",
+      messageHeader: "Do you have skills? Prove it.",
+      messageBody: "If you think you can hoop, why don't you invite some friends and hit the court?",
+      messageID: this.messageID,
+      requestorName: sessionStorage.getItem('CurrPlayer.username'),
+      type: 'companyMessage'
+    })
   }
 
   addRemoveFriend(uid) {
@@ -161,8 +178,8 @@ export class FirebaseService {
     this.messageID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
     return this.afd.object('/users/' + uid + '/messages/' + this.messageID).update({
       avatar: sessionStorage.getItem('CurrPlayer.img'),
-      header: 'Friend Request',
-      message: this.myUsername + ' wants to be friends.',
+      previewHeader: 'Friend Request',
+      previewMessage: this.myUsername + ' wants to be friends.',
       messageID: this.messageID,
       requestorID: sessionStorage.getItem('CurrPlayer.uid'),
       requestorName: sessionStorage.getItem('CurrPlayer.username'),

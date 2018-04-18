@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 326:
+/***/ 328:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SchedulePageModule", function() { return SchedulePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetupProfilePageModule", function() { return SetupProfilePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__schedule_page__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setup_profile_page__ = __webpack_require__(351);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,42 +18,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SchedulePageModule = (function () {
-    function SchedulePageModule() {
+var SetupProfilePageModule = (function () {
+    function SetupProfilePageModule() {
     }
-    return SchedulePageModule;
+    return SetupProfilePageModule;
 }());
-SchedulePageModule = __decorate([
+SetupProfilePageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__schedule_page__["a" /* SchedulePage */],
+            __WEBPACK_IMPORTED_MODULE_2__setup_profile_page__["a" /* SetupProfilePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__schedule_page__["a" /* SchedulePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__setup_profile_page__["a" /* SetupProfilePage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__schedule_page__["a" /* SchedulePage */]
+            __WEBPACK_IMPORTED_MODULE_2__setup_profile_page__["a" /* SetupProfilePage */]
         ]
     })
-], SchedulePageModule);
+], SetupProfilePageModule);
 
-//# sourceMappingURL=schedule-page.module.js.map
+//# sourceMappingURL=setup-profile-page.module.js.map
 
 /***/ }),
 
-/***/ 348:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchedulePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_providers__ = __webpack_require__(113);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SetupProfilePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jquery__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -69,55 +66,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var SchedulePage = (function () {
-    function SchedulePage(navCtrl, settings, modalCtrl, firebaseService, afd, navParams, storage, toastCtrl) {
+var SetupProfilePage = (function () {
+    function SetupProfilePage(navCtrl, firebaseService, toastCtrl, modalCtrl, storage, camera) {
         this.navCtrl = navCtrl;
-        this.settings = settings;
-        this.modalCtrl = modalCtrl;
         this.firebaseService = firebaseService;
-        this.afd = afd;
-        this.navParams = navParams;
-        this.storage = storage;
         this.toastCtrl = toastCtrl;
-        this.settingsReady = false;
+        this.modalCtrl = modalCtrl;
+        this.storage = storage;
+        this.camera = camera;
+        localStorage.setItem('img', 'https://firebasestorage.googleapis.com/v0/b/uballn-basketball-2f8d6.appspot.com/o/profileImage%2FB47978EC-4286-4179-AA88-116C362C9176?alt=media&token=30b65ab3-70ec-4426-9e5f-838be4f2602b');
+        this.updateUserIMG = localStorage.getItem('img');
     }
-    SchedulePage.prototype.ionViewDidLoad = function () {
+    SetupProfilePage.prototype.ionViewWillEnter = function () {
     };
-    SchedulePage.prototype.ionViewWillEnter = function () {
+    SetupProfilePage.prototype.ionViewWillLeave = function () {
+        this.uid = localStorage.getItem('uid');
+        this.firebaseService.welcomeMessage(this.uid);
+    };
+    SetupProfilePage.prototype.updateUser = function () {
         var _this = this;
-        this.storage.get('selectedLocation').then(function (val) {
-            var selectedLocation = val;
-            if (val == undefined) {
-                console.log('No location selected');
-            }
-            else {
-                _this.location = val.name;
-            }
-        });
-        this.avatar = localStorage.getItem('img');
-        var uid = localStorage.getItem('uid');
-        this.firebaseService.checkMessages(uid);
-    };
-    SchedulePage.prototype.ngOnChanges = function () {
-        console.log('Ng All Changes');
-    };
-    SchedulePage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
-    };
-    SchedulePage.prototype.getCourt = function () {
-        this.navCtrl.push('FindACourtPage');
-    };
-    SchedulePage.prototype.inviteFriends = function () {
-        this.navCtrl.push('InviteFriendsPage');
-    };
-    SchedulePage.prototype.seeMessages = function () {
-        this.navCtrl.push('MessagesPage');
-    };
-    SchedulePage.prototype.setupGame = function () {
-        var _this = this;
-        if (this.location === undefined || this.gameDate === undefined || this.gameStart === undefined) {
+        if (this.name === undefined || this.height === undefined || this.weight === undefined || this.experience === undefined || this.gender === undefined || this.birthday === undefined) {
             var toast = this.toastCtrl.create({
                 message: 'Oops! All fields required.',
                 duration: 2000,
@@ -126,56 +94,75 @@ var SchedulePage = (function () {
             toast.present();
         }
         else {
-            __WEBPACK_IMPORTED_MODULE_6_jquery__('.error').hide();
-            this.myID = localStorage.getItem('uid');
-            this.gameID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
-            sessionStorage.setItem('gameID', this.gameID);
-            this.storage.get('selectedLocation').then(function (val) {
-                _this.selectedLocation = val;
-                _this.afd.object('/games/' + _this.gameID).update({
-                    address: _this.selectedLocation.address,
-                    created: JSON.stringify(+Date.now()),
-                    creator: localStorage.getItem('uid'),
-                    creatorIMG: localStorage.getItem('img'),
-                    gameDate: _this.gameDate,
-                    gameStart: _this.gameStart,
-                    img: _this.selectedLocation.img,
-                    location: _this.location
-                })
-                    .then(function () {
-                    _this.firebaseService.joinGame();
-                })
-                    .then(function () {
-                    _this.storage.set('selectedLocation', undefined);
-                    _this.location = null;
-                    _this.gameDate = null;
-                    _this.gameStart = null;
-                })
-                    .then(function () {
-                    var modal = _this.modalCtrl.create('AdPage');
-                    modal.present();
-                });
+            localStorage.setItem('name', this.name);
+            localStorage.setItem('height', this.height);
+            localStorage.setItem('weight', this.weight);
+            localStorage.setItem('experience', this.experience);
+            localStorage.setItem('gender', this.gender);
+            localStorage.setItem('birthday', this.birthday);
+            localStorage.setItem('setupNeeded', 'false');
+            this.firebaseService.updateUserProfile()
+                .then(function () {
+                _this.navCtrl.setRoot('TabsPage');
             });
         }
     };
-    return SchedulePage;
+    SetupProfilePage.prototype.presentToast = function (msg) {
+        var toast = this.toastCtrl.create({
+            message: msg,
+            duration: 2000
+        });
+        toast.present();
+    };
+    SetupProfilePage.prototype.getPicture = function () {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]['installed']()) {
+            this.camera.getPicture({
+                sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                destinationType: this.camera.DestinationType.DATA_URL,
+                quality: 100,
+                targetWidth: 500,
+                targetHeight: 500,
+                encodingType: this.camera.EncodingType.JPEG,
+                correctOrientation: true
+            }).then(function (data) {
+                _this.storage.set('profilePic', data);
+                localStorage.setItem('img', 'data:image/png;base64,' + data);
+                _this.updateUserIMG = 'data:image/png;base64,' + data;
+            }, function (err) {
+                alert('Unable to take photo');
+            });
+        }
+        else {
+            this.fileInput.nativeElement.click();
+        }
+    };
+    SetupProfilePage.prototype.processWebImage = function (event) {
+        var _this = this;
+        var reader = new FileReader();
+        reader.onload = function (readerEvent) {
+            var imageData = readerEvent.target.result;
+            _this.updateUserIMG = imageData;
+            localStorage.setItem('img', imageData);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+    return SetupProfilePage;
 }());
-SchedulePage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-schedule',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n        <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content block>\n  <div padding>\n    <p class="scheduleIntro">Take control of the court and schedule your next game.</p>\n  </div>\n\n  <div>\n    <ion-list>\n      <ion-item class="gamedate">\n        <ion-label>when are you hoopin?</ion-label>\n        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="gameDate"></ion-datetime>\n      </ion-item>\n\n      <ion-item class="gameStart">\n        <ion-label>at what time?</ion-label>\n        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="gameStart"></ion-datetime>\n      </ion-item>\n\n      <div padding (click)="getCourt()" style="padding-top: 10px;">\n        <button ion-button block class="secondaryButton">Find a Court</button>\n      </div>\n\n      <ion-item class="location">\n        <ion-label>on what court?</ion-label>\n        <ion-input type="text" [(ngModel)]="location"></ion-input>\n      </ion-item>\n\n      <!-- <ion-item class="noBG private">\n        <ion-label>Private Game?</ion-label>\n        <ion-toggle [(ngModel)]="private"></ion-toggle>\n      </ion-item> -->\n\n      <!-- <div padding>\n        <button ion-button block class="secondaryButton" (click)="inviteFriends()">Invite Friends</button>\n      </div> -->\n\n      <div padding>\n        <button ion-button block class="primaryButton" (click)="setupGame()">Let\'s Do It</button>\n      </div>\n      <p class="error" style="display:none;margin-top: -10px"></p>\n    </ion-list>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/schedule-page/schedule-page.html"*/
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_9" /* ViewChild */])('fileInput'),
+    __metadata("design:type", Object)
+], SetupProfilePage.prototype, "fileInput", void 0);
+SetupProfilePage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
+        selector: 'page-setup-profile',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/setup-profile-page/setup-profile-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Setup Profile\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="disabled">\n  <div class="profileInputs">\n    \n      <div class="imageContainer profilePhoto" (click)="getPicture()">\n          <img src="{{updateUserIMG}}" />\n          <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />\n        </div>\n        <p class="editPhoto">Tap to Edit Photo</p>\n        <p style="margin: 20px auto; text-align: center;">Please complete your player profile to enhance your game experience.</p>\n\n    <ion-item>\n      <ion-label>Nickname</ion-label>\n      <ion-input [(ngModel)]="name" class="name" type="text">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Birthdate</ion-label>\n      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="birthday"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label class="level">Experience</ion-label>\n      <ion-select [(ngModel)]="experience" interface="action-sheet">\n        <ion-option value="1">Recreational</ion-option>\n        <ion-option value="2">High School</ion-option>\n        <ion-option value="3">AAU/Club</ion-option>\n        <ion-option value="4">Collegiate</ion-option>\n        <ion-option value="5">Semi-Pro</ion-option>\n        <ion-option value="6">Professional</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Gender</ion-label>\n      <ion-select [(ngModel)]="gender" interface="action-sheet">\n        <ion-option value="male">Male</ion-option>\n        <ion-option value="female">Female</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Height</ion-label>\n      <ion-select [(ngModel)]="height" interface="action-sheet">\n        <ion-option value="5\'1">5\'1"</ion-option>\n        <ion-option value="5\'2">5\'2"</ion-option>\n        <ion-option value="5\'3">5\'3"</ion-option>\n        <ion-option value="5\'4">5\'4"</ion-option>\n        <ion-option value="5\'5">5\'5"</ion-option>\n        <ion-option value="5\'6">5\'6"</ion-option>\n        <ion-option value="5\'7">5\'7"</ion-option>\n        <ion-option value="5\'8">5\'8"</ion-option>\n        <ion-option value="5\'9">5\'9"</ion-option>\n        <ion-option value="5\'10">5\'10"</ion-option>\n        <ion-option value="5\'11" checked="true">5\'11"</ion-option>\n        <ion-option value="6\'0">6\'0"</ion-option>\n        <ion-option value="6\'1">6\'1"</ion-option>\n        <ion-option value="6\'2">6\'2"</ion-option>\n        <ion-option value="6\'3">6\'3"</ion-option>\n        <ion-option value="6\'4">6\'4"</ion-option>\n        <ion-option value="6\'5">6\'5"</ion-option>\n        <ion-option value="6\'6">6\'6"</ion-option>\n        <ion-option value="6\'7">6\'7"</ion-option>\n        <ion-option value="6\'8">6\'8"</ion-option>\n        <ion-option value="6\'9">6\'9"</ion-option>\n        <ion-option value="6\'10">6\'10"</ion-option>\n        <ion-option value="6\'11">6\'11"</ion-option>\n        <ion-option value="7\'0">7\'0"</ion-option>\n        <ion-option value="7\'1">7\'1"</ion-option>\n        <ion-option value="7\'2">7\'2"</ion-option>\n        <ion-option value="7\'3">7\'3"</ion-option>\n        <ion-option value="7\'4">7\'4"</ion-option>\n        <ion-option value="7\'5">7\'5"</ion-option>\n        <ion-option value="7\'6">7\'6"</ion-option>\n        <ion-option value="7\'7">7\'7"</ion-option>\n        <ion-option value="7\'8">7\'8"</ion-option>\n        <ion-option value="7\'9">7\'9"</ion-option>\n        <ion-option value="7\'10">7\'10"</ion-option>\n        <ion-option value="7\'11">7\'11"</ion-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label>Weight</ion-label>\n      <ion-input class="weight" style="float:right;" type="tel" [(ngModel)]="weight"></ion-input>\n    </ion-item>\n  </div>\n\n  <button ion-button block class="primaryButton" (click)="updateUser()" padding>\n      Setup Profile\n    </button>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/setup-profile-page/setup-profile-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_providers__["a" /* Settings */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
-], SchedulePage);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* ToastController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]) === "function" && _f || Object])
+], SetupProfilePage);
 
-//# sourceMappingURL=schedule-page.js.map
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=setup-profile-page.js.map
 
 /***/ })
 

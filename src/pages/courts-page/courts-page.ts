@@ -44,15 +44,19 @@ export class CourtsPage {
   
   loadMap(){
     // this.geo.getCurrentPosition().then((resp) => {
-    // let lat = JSON.stringify(resp.coords.latitude);
-    // let lng = JSON.stringify(resp.coords.longitude);
+    //   resp.coords.latitude
+    //   resp.coords.longitude
+    //  }).catch((error) => {
+    //    console.log('Error getting location', error);
+    //  });
+     
+    //  let watch = this.geo.watchPosition();
+    //  watch.subscribe((data) => {
+    //   data.coords.latitude
+    //   data.coords.longitude
+    //  });
 
-    // let watch = this.geo.watchPosition();
-    // watch.subscribe((data) => {
-     // data can be a set of coordinates, or an error (if an error occurred).
-     // data.coords.latitude
-     // data.coords.longitude
-    // });
+    //  console.log(JSON.stringify(watch));
 
     this.storage.get('courts').then((val) => {
       this.myPlaces = val;

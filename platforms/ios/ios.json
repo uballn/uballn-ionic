@@ -60,7 +60,19 @@
           "NSContactsUsageDescription": [
             {
               "xml": "<string>Allow the app to access your contacts.</string>",
-              "count": 21
+              "count": 22
+            }
+          ],
+          "NSPhotoLibraryUsageDescription": [
+            {
+              "xml": "<string>Allow the app to access your photo library.</string>",
+              "count": 1
+            }
+          ],
+          "NSLocationWhenInUseUsageDescription": [
+            {
+              "xml": "<string>Allow the app to access your location.</string>",
+              "count": 1
             }
           ]
         }

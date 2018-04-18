@@ -27,21 +27,24 @@ export class MessagesPage {
     }
 
   ionViewWillEnter(){
+    // if ($('.false').length === 0){
+    //   $('.messageList').prepend('<p class="noMessages">No Messages</p>')
+    // }else{
+    //   $('.noMessages').remove();
+    // }
+
     this.storage.get('MessageData').then((val) => {
       this.MessageData = val.reverse();
     })
-
-    if ($('ion-item').length < 1){
-      $('ion-list').prepend('<p class="noMessages">No Messages</p>')
-    }else{
-      $('.noMessages').remove();
-    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagesPage');
   }
 
+  ionViewDidLeave(){
+    $('.noMessages').remove();
+  }
 
   // FRIEND REQUESTS /////////////////////////
   declineFriend(messageID){
@@ -109,6 +112,18 @@ export class MessagesPage {
   // GO TO PROFILE /////////////////////////
   goToProfile(uid){
     this.navCtrl.push('PlayerPage', uid);
+  }
+
+  getMessageDetail(message){
+    this.storage.set('companyMessage',message);
+    this.navCtrl.push('MessageDetailPage', message)
+  }
+
+  markAsRead(uid){
+    this.myID = localStorage.getItem('uid');
+    this.afd.object('/users/'+this.myID+'/messages/'+uid).update({
+      read: 'true'
+    })
   }
 
 }

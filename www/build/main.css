@@ -25109,7 +25109,7 @@ ion-navbar.toolbar {
 }
 
 ion-app.ios {
-  border-top: 30px solid #fff;
+  border-top: 20px solid #fff;
 }
 
 ion-app .toast-container {
@@ -25762,6 +25762,23 @@ page-login-page ion-title img {
   display: block;
 }
 
+page-message-detail .messageheader {
+  height: 30%;
+  width: 100%;
+  background-size: cover;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+page-message-detail .messageContent {
+  padding: 10px 20px;
+}
+
+page-message-detail .messageContent h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 page-messages .scroll-content {
   margin: 0 -15px;
 }
@@ -26412,7 +26429,6 @@ page-welcome .overlay {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 30px;
 }
 
 page-welcome .introLogo {

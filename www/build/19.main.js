@@ -1,14 +1,14 @@
 webpackJsonp([19],{
 
-/***/ 311:
+/***/ 312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AboutVersionPageModule", function() { return AboutVersionPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdPageModule", function() { return AdPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_version_page__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ad_page__ = __webpack_require__(334);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AboutVersionPageModule = (function () {
-    function AboutVersionPageModule() {
+var AdPageModule = (function () {
+    function AdPageModule() {
     }
-    return AboutVersionPageModule;
+    return AdPageModule;
 }());
-AboutVersionPageModule = __decorate([
+AdPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__about_version_page__["a" /* AboutVersionPage */],
+            __WEBPACK_IMPORTED_MODULE_2__ad_page__["a" /* AdPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__about_version_page__["a" /* AboutVersionPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__ad_page__["a" /* AdPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__about_version_page__["a" /* AboutVersionPage */]
+            __WEBPACK_IMPORTED_MODULE_2__ad_page__["a" /* AdPage */]
         ]
     })
-], AboutVersionPageModule);
+], AdPageModule);
 
-//# sourceMappingURL=about-version-page.module.js.map
+//# sourceMappingURL=ad-page.module.js.map
 
 /***/ }),
 
-/***/ 332:
+/***/ 334:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutVersionPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -59,34 +59,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * Generated class for the AboutVersionPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var AboutVersionPage = (function () {
-    function AboutVersionPage(navCtrl, navParams) {
+var AdPage = (function () {
+    function AdPage(navCtrl, navParams, toastCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
     }
-    AboutVersionPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AboutVersionPage');
+    AdPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AdPage');
     };
-    AboutVersionPage.prototype.close = function () {
+    AdPage.prototype.ionViewWillEnter = function () {
+        localStorage.setItem('adShown', 'true');
+    };
+    AdPage.prototype.close = function () {
         this.navCtrl.pop();
+        this.presentToast('Game Added!');
     };
-    return AboutVersionPage;
+    AdPage.prototype.presentToast = function (msg) {
+        var toast = this.toastCtrl.create({
+            message: msg,
+            duration: 4000,
+            position: 'top'
+        });
+        toast.present();
+    };
+    return AdPage;
 }());
-AboutVersionPage = __decorate([
+AdPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-about-version',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/about-version-page/about-version-page.html"*/'<ion-header>\n\n  <ion-navbar>\n    <button ion-button start (click)="close()">Close</button>\n    <ion-title>About This Version</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <div class="modalContent">\n      <img src="assets/img/uballn-icon.png" />\n      <h5>Version 1.0</h5>\n      <p>Build 182457</p>\n      <p>Copyright 2018 uballn Inc.<br>\n      All Rights Reserved.</p>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/about-version-page/about-version-page.html"*/,
+        selector: 'page-ad',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/ad-page/ad-page.html"*/'<ion-header>\n    <ion-navbar>\n      <button ion-button start (click)="close()">Close</button>\n      <ion-title>Targeted Ad</ion-title>\n    </ion-navbar>  \n  </ion-header>\n  \n<ion-content padding>\n<img src="assets/img/gatorade_ad.jpg"/>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/ad-page/ad-page.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-], AboutVersionPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
+], AdPage);
 
-//# sourceMappingURL=about-version-page.js.map
+//# sourceMappingURL=ad-page.js.map
 
 /***/ })
 

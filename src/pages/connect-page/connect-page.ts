@@ -107,8 +107,8 @@ export class ConnectPage {
     this.messageID = Math.floor(10000000000000000000 + Math.random() * 90000000000000000000);
     return this.afd.object('/users/' + uid + '/messages/' + this.messageID).update({
       avatar: localStorage.getItem('img'),
-      header: 'Squad Request',
-      message: this.myUsername + ' wants you to join their squad!',
+      previewHeader: 'Squad Request',
+      previewMessage: this.myUsername + ' wants you to join their squad!',
       messageID: this.messageID,
       read: 'false',
       requestorID: uid,

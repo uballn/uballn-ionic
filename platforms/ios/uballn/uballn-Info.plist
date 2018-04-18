@@ -13,7 +13,7 @@
     <key>CFBundleIcons~ipad</key>
     <dict/>
     <key>CFBundleIdentifier</key>
-    <string>io.ionic.starter</string>
+    <string>com.uballn</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -21,11 +21,11 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.0.1</string>
+    <string>0.0.201</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>0.0.1</string>
+    <string>0.0.201</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSAppTransportSecurity</key>
@@ -64,5 +64,9 @@
     <string>uballn would like to access your camera.</string>
     <key>NSContactsUsageDescription</key>
     <string>Allow the app to access your contacts.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allow the app to access your photo library.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Allow the app to access your location.</string>
   </dict>
 </plist>

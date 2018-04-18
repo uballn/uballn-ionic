@@ -45,9 +45,8 @@ export class SetupProfilePage {
   }
 
   ionViewWillLeave(){
-    if (localStorage.length !== 0){
-      this.updateUser();
-    }
+    this.uid = localStorage.getItem('uid');
+    this.firebaseService.welcomeMessage(this.uid);
   }
 
   updateUser() {
@@ -66,7 +65,7 @@ export class SetupProfilePage {
       localStorage.setItem('experience', this.experience);
       localStorage.setItem('gender', this.gender);
       localStorage.setItem('birthday', this.birthday);
-      localStorage.setItem('setupNeeded',null);
+      localStorage.setItem('setupNeeded','false');
 
       this.firebaseService.updateUserProfile()
         .then(()=>{

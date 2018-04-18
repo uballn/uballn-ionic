@@ -1,14 +1,14 @@
 webpackJsonp([15],{
 
-/***/ 316:
+/***/ 317:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GamePageModule", function() { return GamePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InviteFriendsPageModule", function() { return InviteFriendsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_page__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__invite_friends_page__ = __webpack_require__(340);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,40 +18,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var GamePageModule = (function () {
-    function GamePageModule() {
+var InviteFriendsPageModule = (function () {
+    function InviteFriendsPageModule() {
     }
-    return GamePageModule;
+    return InviteFriendsPageModule;
 }());
-GamePageModule = __decorate([
+InviteFriendsPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */],
+            __WEBPACK_IMPORTED_MODULE_2__invite_friends_page__["a" /* InviteFriendsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__invite_friends_page__["a" /* InviteFriendsPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__game_page__["a" /* GamePage */]
+            __WEBPACK_IMPORTED_MODULE_2__invite_friends_page__["a" /* InviteFriendsPage */]
         ]
     })
-], GamePageModule);
+], InviteFriendsPageModule);
 
-//# sourceMappingURL=game-page.module.js.map
+//# sourceMappingURL=invite-friends-page.module.js.map
 
 /***/ }),
 
-/***/ 338:
+/***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GamePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InviteFriendsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,122 +63,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var GamePage = (function () {
-    function GamePage(navCtrl, navParams, firebaseService, storage, actionSheetCtrl, toastCtrl) {
+var InviteFriendsPage = (function () {
+    function InviteFriendsPage(navCtrl, afd, navParams, storage) {
         this.navCtrl = navCtrl;
+        this.afd = afd;
         this.navParams = navParams;
-        this.firebaseService = firebaseService;
         this.storage = storage;
-        this.actionSheetCtrl = actionSheetCtrl;
-        this.toastCtrl = toastCtrl;
-        this.gameData = [];
-        this.players = [];
-        this.playerData = [];
-        this.gameData = this.navParams;
-        this.gameID = this.navParams.data.$key;
-        this.players = this.gameData.data.players;
-        localStorage.setItem('playerNum', this.players.length);
-        this.updateGame();
-        sessionStorage.setItem('gameID', this.gameID);
+        this.searchQuery = '';
+        this.initializeItems();
     }
-    GamePage.prototype.ionViewWillEnter = function () {
-        if (sessionStorage.getItem('playing') === 'true') {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#joinGame').css('display', 'none');
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#leaveGame').css('display', 'block');
-        }
-        else {
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#joinGame').css('display', 'block');
-            __WEBPACK_IMPORTED_MODULE_4_jquery__('#leaveGame').css('display', 'none');
-        }
+    InviteFriendsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad FindACourtPage');
     };
-    GamePage.prototype.updateGame = function () {
-        this.playerData = [];
-        for (var key in this.players) {
-            if (key === localStorage.getItem('uid')) {
-                sessionStorage.setItem('playing', 'true');
-            }
-            else {
-                //do nothing
-            }
-            this.playerData.push(this.players[key]);
-        }
+    InviteFriendsPage.prototype.ionViewWillEnter = function () {
+        this.storage.set('selectedLocation', null);
     };
-    GamePage.prototype.presentToast = function (msg) {
-        var toast = this.toastCtrl.create({
-            message: msg,
-            duration: 2000
-        });
-        toast.present();
-    };
-    GamePage.prototype.joinGame = function () {
+    InviteFriendsPage.prototype.initializeItems = function () {
         var _this = this;
-        this.firebaseService.joinGame().then(function () {
-            _this.presentToast('You have joined the game!');
+        this.storage.get('friendData').then(function (val) {
+            _this.friends = val;
+            console.log(_this.friends);
         });
-        sessionStorage.setItem('playing', 'true');
-        this.navCtrl.pop();
     };
-    GamePage.prototype.leaveGame = function () {
-        var _this = this;
-        sessionStorage.setItem('placeID', this.gameID);
-        this.firebaseService.leaveGame(this.gameID).then(function () {
-            _this.presentToast('You have left the game!');
-        });
-        sessionStorage.setItem('playing', null);
-        this.navCtrl.pop();
+    InviteFriendsPage.prototype.findFriend = function (ev) {
+        // Reset items back to all of the items
+        this.initializeItems();
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.friends = this.friends.filter(function (friend) {
+                return (friend.username.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
     };
-    GamePage.prototype.goToProfile = function (uid) {
+    InviteFriendsPage.prototype.inviteFriend = function (friend) {
+        alert('You invited ' + friend.username + '!');
+    };
+    InviteFriendsPage.prototype.goToProfile = function (uid) {
         this.navCtrl.push('PlayerPage', uid);
     };
-    GamePage.prototype.share = function () {
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Game Options',
-            buttons: [
-                {
-                    text: 'Invite Friends',
-                    role: 'destructive',
-                    handler: function () {
-                        console.log('Destructive clicked');
-                    }
-                }, {
-                    text: 'Add to Calendar',
-                    handler: function () {
-                        console.log('Calendar clicked');
-                    }
-                }, {
-                    text: 'Get Directions',
-                    handler: function () {
-                        console.log('Directions clicked');
-                    }
-                }, {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
+    InviteFriendsPage.prototype.close = function () {
+        this.navCtrl.pop();
     };
-    return GamePage;
+    return InviteFriendsPage;
 }());
-GamePage = __decorate([
+InviteFriendsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-game',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="share()">\n        <img class="navIcon" src="assets/img/icons-share.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="gameBG" [style.backgroundImage]="\'url(\' + gameData.data.img + \')\'"></div>\n    <div class="btmGradient"></div>\n    <div class="gameDetails">\n      <h3>{{gameData.data.name}}</h3>\n      <h5>{{gameData.data.address}}</h5>\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players\n            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-id.svg"/></span>Average <br>Age\n            <span class="data">{{gameData.data.stats.avgAge}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-chart.svg"/></span>Level of <br>Play\n            <span class="data">{{gameData.data.stats.avgExp}}</span></ion-col>\n        </ion-row>\n      </ion-grid>\n      <ion-list class="players" style="background-color: none;">\n        <h5>Active Players</h5>\n        <div class="player" *ngFor="let player of playerData" (click)="goToProfile(player.uid)">\n          <!-- <ion-icon name="contact"></ion-icon> -->\n          <img class="gameAvatar" src="{{player.img}}" />\n        </div>\n      </ion-list>\n    </div>\n    <button ion-button block id="joinGame" class="primaryButton" (click)="joinGame()">Join Game</button>\n    <button ion-button block id="leaveGame" class="secondaryButton" (click)="leaveGame()">Leave Game</button>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/,
+        selector: 'page-invite-friends',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/invite-friends-page/invite-friends-page.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n        Invite Friends\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-searchbar (ionInput)="findFriend($event)" placeholder="Search By Name"></ion-searchbar>\n    <ion-list>\n      <div *ngFor="let friend of friends">\n      <button ion-item  (click)="inviteFriend(friend)">\n        <ion-avatar item-start>\n          <img [src]="friend.img"/>\n        </ion-avatar>\n        <h2>{{friend.username}}</h2>\n        <span>\n            <ion-icon name="add"></ion-icon>\n          </span>\n      </button>\n    </div>\n    </ion-list>\n  </ion-content>'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/invite-friends-page/invite-friends-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["b" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ActionSheetController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
-], GamePage);
+        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
+], InviteFriendsPage);
 
-//# sourceMappingURL=game-page.js.map
+//# sourceMappingURL=invite-friends-page.js.map
 
 /***/ })
 

@@ -8,20 +8,30 @@
 
 
 <ion-content padding>
-    <ion-list>    
+    <ion-list class="messageList">    
 
         <div *ngFor="let message of MessageData" class="{{message.read}}">
         <ion-item class="{{message.read}}" *ngIf="message.read === 'false'">
           <ion-grid>
             <ion-row>
               <ion-col col-2 class="avatar">
-              <span (click)="goToProfile(message.requestorID)">
-                  <img [src]="message.avatar">
-              </span>          
+
+              <div *ngIf="message.type === 'companyMessage'">
+                <span (click)="getMessageDetail(message)">
+                    <img [src]="message.avatar">
+                </span>
+              </div>
+
+              <div *ngIf="message.type !== 'companyMessage'">
+                <span (click)="goToProfile(message.requestorID)">
+                    <img [src]="message.avatar">
+                </span>
+              </div>
+              
               </ion-col>
               <ion-col col-8 class="message">
-                  <h5>{{message.header}}</h5>
-                  <p>{{message.message}}</p>
+                  <h5>{{message.previewHeader}}</h5>
+                  <p>{{message.previewMessage}}</p>
               </ion-col>
 
               <!-- Friend Requests -->
@@ -40,6 +50,22 @@
                 </ion-col>
               </div>
 
+              <!-- Game Invitation -->
+              <div *ngIf="message.type === 'gameInvitation'">
+                  <ion-col col-3 class="confirmation">
+                      <span><img (click)="declineGame(message.messageID)" src="assets/img/icons-cancel.svg"/></span>
+                      <span><img (click)="joinGame(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>
+                  </ion-col>
+                </div>
+                
+              <!-- Company Message -->
+              <div *ngIf="message.type === 'companyMessage'">
+                  <ion-col col-3 class="confirmation">
+                      <span><img (click)="markAsRead(message.messageID)" src="assets/img/icons-cancel.svg"/></span>
+                      <span><img (click)="getMessageDetail(message)" src="assets/img/icons-checkmark.svg"/></span>
+                  </ion-col>
+                </div>
+                
             </ion-row>
           </ion-grid>
         </ion-item>
