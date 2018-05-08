@@ -25154,8 +25154,10 @@ ion-app .imgContainer .imgContainer img {
 }
 
 ion-app .imgContainer.squad {
-  width: 50px;
-  height: 50px;
+  width: 15%;
+  height: auto;
+  margin-right: 4%;
+  position: relative;
 }
 
 ion-app ion-navbar.toolbar {
@@ -25606,6 +25608,7 @@ page-game .gameBG {
   opacity: 0.25;
   z-index: 0;
   background-position: center;
+  background-size: cover;
 }
 
 page-game .btmGradient {

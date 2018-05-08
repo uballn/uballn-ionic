@@ -39,8 +39,10 @@ ion-app{
         width: auto;
     }
     &.squad {
-      width:50px;
-      height:50px;
+      width: 15%;
+      height: auto;
+      margin-right: 4%;
+      position: relative;
     }
   }
   ion-navbar.toolbar {

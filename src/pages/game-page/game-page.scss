@@ -8,6 +8,7 @@ page-game {
     opacity: 0.25;
     z-index: 0;
     background-position: center;
+    background-size: cover;
   }
   .btmGradient {
     background: -moz-linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.35) 80%, rgba(0, 0, 0, 1) 100%);
