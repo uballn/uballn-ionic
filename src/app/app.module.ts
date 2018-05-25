@@ -15,6 +15,7 @@ import { AngularFireModule } from 'angularfire2';
 import { HttpModule } from '@angular/http';
 import { Games } from '../data/providers/games';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { GeofenceModule } from '../geofence-module/geofence.module';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAHJifVSUazzTFUH-yW7rIc3ZrjYz0phco",
@@ -47,6 +48,7 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     HttpModule,
+    GeofenceModule.forRoot(),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
@@ -63,7 +65,6 @@ const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    Games,
     Geofence,
     Camera,
     Geolocation,

@@ -1,14 +1,14 @@
 webpackJsonp([11],{
 
-/***/ 323:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfilePageModule", function() { return ProfilePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_page__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_page__ = __webpack_require__(353);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,17 +41,17 @@ ProfilePageModule = __decorate([
 
 /***/ }),
 
-/***/ 346:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -147,7 +147,7 @@ var ProfilePage = (function () {
 ProfilePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-profile-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-page/profile-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      My Profile\n    </ion-title>\n    <button class="score" ion-button end (click)="goToSettings()">\n     <img class="navIcon" src="assets/img/icons-gear.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="bgImage">\n  <div class="profileBG"></div>\n  <div class="imageContainer profilePhoto">\n    <img src="{{updateUserIMG}}" />\n  </div>\n\n  <h2><ion-input class="playerName" [(ngModel)]="name" disabled></ion-input></h2>\n\n    <ion-grid class="playerDetailPrimary">\n        <ion-row>\n            <ion-col col-4>\n                <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                <ion-input class="points" [(ngModel)]="points" disabled></ion-input>\n            </ion-col>\n            <ion-col col-4 class="middle">\n              <ion-input [(ngModel)]="played" disabled></ion-input>\n            </ion-col>\n          <ion-col col-4>\n              <ion-input class="experience" [(ngModel)]="experience" disabled></ion-input>\n              <img class="icon chart" src="assets/img/icons-chart.svg"/>\n            </ion-col>\n            </ion-row>\n      </ion-grid>\n\n\n    <ion-grid class="playerPageDetails">\n        <ion-row>\n            <ion-col col-3>\n                Age <ion-input [(ngModel)]="age" disabled></ion-input>\n            </ion-col>\n            <ion-col col-3>\n            Height <ion-input [(ngModel)]="height" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3>\n            Weight <ion-input [(ngModel)]="weight" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3 class="sex">\n              Sex <ion-input [(ngModel)]="gender" disabled></ion-input>\n            </ion-col>\n          </ion-row>\n      </ion-grid>\n    \n      <ion-list class="players" style="background-color: none;">\n        <h5 (click)="goToConnect()">Friends ({{friendNum}})<span class="seeAllFriends">See All</span></h5>\n        <div class="playerContainer">\n          <div class="player" *ngFor="let friend of friendData| slice:0:4">\n            <span class="imgContainer" (click)="goToProfile(friend.uid)"><img [src]="friend.img" /></span>\n          </div>\n          <div class="player more" id="squad-false" (click)="goToConnect()">\n            {{moreFriends}}+\n          </div>\n        </div>\n      </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/profile-page/profile-page.html"*/,
+        selector: 'page-profile-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic/src/pages/profile-page/profile-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      My Profile\n    </ion-title>\n    <button class="score" ion-button end (click)="goToSettings()">\n     <img class="navIcon" src="assets/img/icons-gear.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding class="bgImage">\n  <div class="profileBG"></div>\n  <div class="imageContainer profilePhoto">\n    <img src="{{updateUserIMG}}" />\n  </div>\n\n  <h2><ion-input class="playerName" [(ngModel)]="name" disabled></ion-input></h2>\n\n    <ion-grid class="playerDetailPrimary">\n        <ion-row>\n            <ion-col col-4>\n                <img class="icon lightning" src="assets/img/icons-lightning.svg"/>\n                <ion-input class="points" [(ngModel)]="points" disabled></ion-input>\n            </ion-col>\n            <ion-col col-4 class="middle">\n              <ion-input [(ngModel)]="played" disabled></ion-input>\n            </ion-col>\n          <ion-col col-4>\n              <ion-input class="experience" [(ngModel)]="experience" disabled></ion-input>\n              <img class="icon chart" src="assets/img/icons-chart.svg"/>\n            </ion-col>\n            </ion-row>\n      </ion-grid>\n\n\n    <ion-grid class="playerPageDetails">\n        <ion-row>\n            <ion-col col-3>\n                Age <ion-input [(ngModel)]="age" disabled></ion-input>\n            </ion-col>\n            <ion-col col-3>\n            Height <ion-input [(ngModel)]="height" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3>\n            Weight <ion-input [(ngModel)]="weight" disabled></ion-input>\n            </ion-col>\n          <ion-col col-3 class="sex">\n              Sex <ion-input [(ngModel)]="gender" disabled></ion-input>\n            </ion-col>\n          </ion-row>\n      </ion-grid>\n    \n      <ion-list class="players" style="background-color: none;">\n        <h5 (click)="goToConnect()">Friends ({{friendNum}})<span class="seeAllFriends">See All</span></h5>\n        <div class="playerContainer">\n          <div class="player" *ngFor="let friend of friendData| slice:0:4">\n            <span class="imgContainer" (click)="goToProfile(friend.uid)"><img [src]="friend.img" /></span>\n          </div>\n          <div class="player more" id="squad-false" (click)="goToConnect()">\n            {{moreFriends}}+\n          </div>\n        </div>\n      </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic/src/pages/profile-page/profile-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],

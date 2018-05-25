@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 320:
+/***/ 327:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessagesPageModule", function() { return MessagesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messages_page__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messages_page__ = __webpack_require__(350);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,17 +41,17 @@ MessagesPageModule = __decorate([
 
 /***/ }),
 
-/***/ 343:
+/***/ 350:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MessagesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jQuery__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jQuery__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jQuery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jQuery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -162,17 +162,20 @@ var MessagesPage = (function () {
 MessagesPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-messages',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/messages-page/messages-page.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Messages</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-list class="messageList">    \n\n        <div *ngFor="let message of MessageData" class="{{message.read}}">\n        <ion-item class="{{message.read}}" *ngIf="message.read === \'false\'">\n          <ion-grid>\n            <ion-row>\n              <ion-col col-2 class="avatar">\n\n              <div *ngIf="message.type === \'companyMessage\'">\n                <span (click)="getMessageDetail(message)">\n                    <img [src]="message.avatar">\n                </span>\n              </div>\n\n              <div *ngIf="message.type !== \'companyMessage\'">\n                <span (click)="goToProfile(message.requestorID)">\n                    <img [src]="message.avatar">\n                </span>\n              </div>\n              \n              </ion-col>\n              <ion-col col-8 class="message">\n                  <h5>{{message.previewHeader}}</h5>\n                  <p>{{message.previewMessage}}</p>\n              </ion-col>\n\n              <!-- Friend Requests -->\n              <div *ngIf="message.type === \'friendRequest\'">\n                <ion-col col-3 class="confirmation">\n                  <span><img (click)="declineFriend(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                  <span><img (click)="approveFriend(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                </ion-col>\n              </div>\n\n              <!-- Squad Requests -->\n              <div *ngIf="message.type === \'squadRequest\'">\n                <ion-col col-3 class="confirmation">\n                    <span><img (click)="declineSquad(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                    <span><img (click)="approveSquad(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                </ion-col>\n              </div>\n\n              <!-- Game Invitation -->\n              <div *ngIf="message.type === \'gameInvitation\'">\n                  <ion-col col-3 class="confirmation">\n                      <span><img (click)="declineGame(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                      <span><img (click)="joinGame(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                  </ion-col>\n                </div>\n                \n              <!-- Company Message -->\n              <div *ngIf="message.type === \'companyMessage\'">\n                  <ion-col col-3 class="confirmation">\n                      <span><img (click)="markAsRead(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                      <span><img (click)="getMessageDetail(message)" src="assets/img/icons-checkmark.svg"/></span>\n                  </ion-col>\n                </div>\n                \n            </ion-row>\n          </ion-grid>\n        </ion-item>\n        </div>\n\n      </ion-list>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/messages-page/messages-page.html"*/,
+        selector: 'page-messages',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic/src/pages/messages-page/messages-page.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Messages</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-list class="messageList">    \n\n        <div *ngFor="let message of MessageData" class="{{message.read}}">\n        <ion-item class="{{message.read}}" *ngIf="message.read === \'false\'">\n          <ion-grid>\n            <ion-row>\n              <ion-col col-2 class="avatar">\n\n              <div *ngIf="message.type === \'companyMessage\'">\n                <span (click)="getMessageDetail(message)">\n                    <img [src]="message.avatar">\n                </span>\n              </div>\n\n              <div *ngIf="message.type !== \'companyMessage\'">\n                <span (click)="goToProfile(message.requestorID)">\n                    <img [src]="message.avatar">\n                </span>\n              </div>\n              \n              </ion-col>\n              <ion-col col-8 class="message">\n                  <h5>{{message.header}}</h5>\n                  <p>{{message.message}}</p>\n              </ion-col>\n\n              <!-- Friend Requests -->\n              <div *ngIf="message.type === \'friendRequest\'">\n                <ion-col col-3 class="confirmation">\n                  <span><img (click)="declineFriend(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                  <span><img (click)="approveFriend(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                </ion-col>\n              </div>\n\n              <!-- Squad Requests -->\n              <div *ngIf="message.type === \'squadRequest\'">\n                <ion-col col-3 class="confirmation">\n                    <span><img (click)="declineSquad(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                    <span><img (click)="approveSquad(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                </ion-col>\n              </div>\n\n              <!-- Game Invitation -->\n              <div *ngIf="message.type === \'gameInvitation\'">\n                  <ion-col col-3 class="confirmation">\n                      <span><img (click)="declineGame(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                      <span><img (click)="joinGame(message.requestorID, message.messageID)" src="assets/img/icons-checkmark.svg"/></span>\n                  </ion-col>\n                </div>\n                \n              <!-- Company Message -->\n              <div *ngIf="message.type === \'companyMessage\'">\n                  <ion-col col-3 class="confirmation">\n                      <span><img (click)="markAsRead(message.messageID)" src="assets/img/icons-cancel.svg"/></span>\n                      <span><img (click)="getMessageDetail(message)" src="assets/img/icons-checkmark.svg"/></span>\n                  </ion-col>\n                </div>\n                \n            </ion-row>\n          </ion-grid>\n        </ion-item>\n        </div>\n\n      </ion-list>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic/src/pages/messages-page/messages-page.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["b" /* AngularFireDatabase */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__["a" /* FirebaseService */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], MessagesPage);
 
-var _a, _b, _c, _d, _e;
 //# sourceMappingURL=messages-page.js.map
 
 /***/ }),
 
-/***/ 355:
+/***/ 362:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!

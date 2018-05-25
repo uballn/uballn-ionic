@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, Loading, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from 'ionic-angular';
-import { ModalPage } from './modal-page';
 
 @IonicPage()
 @Component({

@@ -7,27 +7,48 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.uballn"
     },
     "cordova-plugin-contacts": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.uballn"
     },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-geofence": {
+      "GEOFENCE_ALWAYS_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background.",
+      "GEOFENCE_IN_USE_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use.",
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.uballn"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.uballn"
+    }
+  }
 }

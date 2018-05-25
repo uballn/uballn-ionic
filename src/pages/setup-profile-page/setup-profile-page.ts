@@ -1,12 +1,9 @@
 import { FirebaseService } from './../../providers/firebase-service';
 import { Observable } from 'rxjs/Observable';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
-import { ModalPage } from './modal-page';
-import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -16,7 +13,6 @@ import { Storage } from '@ionic/storage';
 export class SetupProfilePage {
   @ViewChild('fileInput') fileInput;
   isReadyToSave: boolean;
-  nameForm: FormGroup;
   invitations: Observable<any[]>;
   profileData: any;
   currUserName: string;
@@ -28,7 +24,6 @@ export class SetupProfilePage {
   birthday: string;
   uid: string;
   updateUserIMG: string;
-  private imageSrc: string;
 
   constructor(
     public navCtrl: NavController,

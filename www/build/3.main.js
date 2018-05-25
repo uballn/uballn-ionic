@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 314:
+/***/ 321:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CourtsPageModule", function() { return CourtsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__courts_page__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__courts_page__ = __webpack_require__(343);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,18 +41,20 @@ CourtsPageModule = __decorate([
 
 /***/ }),
 
-/***/ 336:
+/***/ 343:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourtsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mapStyle__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mapStyle__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__geofence_module_providers_geofence_service__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__geofence_module_providers_geolocation_service__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -69,13 +71,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var CourtsPage = (function () {
-    function CourtsPage(navCtrl, geo, storage, firebaseService, afd) {
+    function CourtsPage(navCtrl, geo, storage, firebaseService, afd, geofenceService, loadingCtrl, geolocationService) {
         this.navCtrl = navCtrl;
         this.geo = geo;
         this.storage = storage;
         this.firebaseService = firebaseService;
         this.afd = afd;
+        this.geofenceService = geofenceService;
+        this.loadingCtrl = loadingCtrl;
+        this.geolocationService = geolocationService;
     }
     CourtsPage.prototype.ionViewWillEnter = function () {
         this.loadMap();
@@ -87,21 +94,34 @@ var CourtsPage = (function () {
         this.navCtrl.push('ProfilePage');
     };
     CourtsPage.prototype.loadMap = function () {
-        // this.geo.getCurrentPosition().then((resp) => {
-        //   resp.coords.latitude
-        //   resp.coords.longitude
-        //  }).catch((error) => {
-        //    console.log('Error getting location', error);
-        //  });
         var _this = this;
-        //  let watch = this.geo.watchPosition();
-        //  watch.subscribe((data) => {
-        //   data.coords.latitude
-        //   data.coords.longitude
-        //  });
-        //  console.log(JSON.stringify(watch));
         this.storage.get('courts').then(function (val) {
             _this.myPlaces = val;
+            var fences = [];
+            _this.geofenceService.init().then(function () {
+                // build geofences from courts returned from localStorage
+                val.forEach(function (court) {
+                    var fence = {
+                        id: court.uid,
+                        radius: 50,
+                        latitude: parseInt(court.lat),
+                        longitude: parseInt(court.lng),
+                        transitionType: 3,
+                        notification: {
+                            id: 1,
+                            title: "You're Near A UBALLN Court",
+                            text: "Jump into the app",
+                            openAppOnClick: true
+                        }
+                    };
+                    // push this fence to the fences array
+                    fences.push(fence);
+                });
+                // now add all fences to the geofence plugin...
+                _this.geofenceService.addOrUpdate(fences).then(function () { return console.log('SUCCESS'); }, function (err) { console.log("Add or update geofence error: ", err); });
+            }, function (err) {
+                console.log('GEOFENCE SERVICE INIT ERROR: ', err);
+            });
             var latLng = new google.maps.LatLng('33.2083057', '-96.8940848');
             var mapOptions = {
                 center: latLng,
@@ -118,6 +138,10 @@ var CourtsPage = (function () {
                 var place = _a[_i];
                 _this.addMarker(place);
             }
+            _this.geolocationService.watchPosition().subscribe(function (location) {
+                console.log("we rcvd a new position: " + JSON.stringify(location));
+                _this.plotPositionOnMap(location);
+            }, function (err) { console.log('GEOLOCATION ERROR: ', err); });
         });
     };
     CourtsPage.prototype.addMarker = function (place) {
@@ -148,6 +172,28 @@ var CourtsPage = (function () {
     CourtsPage.prototype.seeMessages = function () {
         this.navCtrl.push('MessagesPage');
     };
+    CourtsPage.prototype.plotPositionOnMap = function (position) {
+        var markerIcon = {
+            url: 'assets/img/location-marker.svg',
+            scaledSize: new google.maps.Size(20, 20),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
+        var myPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        if (this.currentPosition !== undefined) {
+            this.currentPosition.setPosition(myPosition);
+            this.map.setCenter(myPosition);
+            console.log('plotPositionOnMap');
+        }
+        else {
+            this.currentPosition = new google.maps.Marker({
+                position: myPosition,
+                map: this.map,
+                icon: markerIcon
+            });
+            console.log('initial attempt to plotPositionOnMap');
+        }
+    };
     return CourtsPage;
 }());
 __decorate([
@@ -157,20 +203,23 @@ __decorate([
 CourtsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'courts-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n      <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/courts-page/courts-page.html"*/
+        selector: 'courts-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic/src/pages/courts-page/courts-page.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button start class="avatarContainer" (click)="goToProfile()">\n      <img class="avatar" src="{{avatar}}" />\n    </button>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="seeMessages()">\n        <img class="navIcon messages" src="assets/img/icons-message.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="map"></div>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic/src/pages/courts-page/courts-page.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */],
         __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
         __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__["a" /* FirebaseService */],
-        __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */]])
+        __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */],
+        __WEBPACK_IMPORTED_MODULE_7__geofence_module_providers_geofence_service__["a" /* GeofenceService */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_8__geofence_module_providers_geolocation_service__["a" /* GeolocationService */]])
 ], CourtsPage);
 
 //# sourceMappingURL=courts-page.js.map
 
 /***/ }),
 
-/***/ 337:
+/***/ 344:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

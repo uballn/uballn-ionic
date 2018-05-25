@@ -1,8 +1,8 @@
 // App Global Sass
 // --------------------------------------------------
 ion-app{
-  &.ios {
-    border-top: 20px solid #fff;
+  .scroll-content {
+    padding-top: 0;
   }
   .toast-container{
     background: linear-gradient(135deg, #5c0a5f 0%, #8d0338 42%, #c50000 100%);
@@ -236,5 +236,11 @@ ion-app{
         }
       }
     }
+  }
+  .transition-enter .toast-wrapper {
+    background-color: green;
+  }
+  .transition-exit .toast-wrapper{
+    background-color: red;
   }
 }

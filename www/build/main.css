@@ -25108,8 +25108,8 @@ ion-navbar.toolbar {
   }
 }
 
-ion-app.ios {
-  border-top: 20px solid #fff;
+ion-app .scroll-content {
+  padding-top: 0;
 }
 
 ion-app .toast-container {
@@ -25395,6 +25395,20 @@ ion-app ion-grid.grid ion-row ion-col.col[col-6] {
 
 ion-app ion-grid.grid ion-row ion-col.col[col-6]:first-child {
   margin-right: 10px;
+}
+
+ion-app .transition-enter .toast-wrapper {
+  background-color: green;
+}
+
+ion-app .transition-exit .toast-wrapper {
+  background-color: red;
+}
+
+geofence-map {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 page-about-version .modalContent {

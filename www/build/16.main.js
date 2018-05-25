@@ -1,14 +1,14 @@
 webpackJsonp([16],{
 
-/***/ 316:
+/***/ 323:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GamePageModule", function() { return GamePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_page__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_page__ = __webpack_require__(346);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,16 +41,16 @@ GamePageModule = __decorate([
 
 /***/ }),
 
-/***/ 339:
+/***/ 346:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GamePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -170,7 +170,7 @@ var GamePage = (function () {
 GamePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-game',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="share()">\n        <img class="navIcon" src="assets/img/icons-share.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="gameBG" [style.backgroundImage]="\'url(\' + gameData.data.img + \')\'"></div>\n    <div class="btmGradient"></div>\n    <div class="gameDetails">\n      <h3>{{gameData.data.name}}</h3>\n      <h5>{{gameData.data.address}}</h5>\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players\n            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-id.svg"/></span>Average <br>Age\n            <span class="data">{{gameData.data.stats.avgAge}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-chart.svg"/></span>Level of <br>Play\n            <span class="data">{{gameData.data.stats.avgExp}}</span></ion-col>\n        </ion-row>\n      </ion-grid>\n      <ion-list class="players" style="background-color: none;">\n        <h5>Active Players</h5>\n        <div class="player" *ngFor="let player of playerData" (click)="goToProfile(player.uid)">\n          <!-- <ion-icon name="contact"></ion-icon> -->\n          <img class="gameAvatar" src="{{player.img}}" />\n        </div>\n      </ion-list>\n    </div>\n    <button ion-button block id="joinGame" class="primaryButton" (click)="joinGame()">Join Game</button>\n    <button ion-button block id="leaveGame" class="secondaryButton" (click)="leaveGame()">Leave Game</button>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic3/src/pages/game-page/game-page.html"*/,
+        selector: 'page-game',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic/src/pages/game-page/game-page.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n    <button ion-button end (click)="share()">\n        <img class="navIcon" src="assets/img/icons-share.svg"/>\n    </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class="gameBG" [style.backgroundImage]="\'url(\' + gameData.data.img + \')\'"></div>\n    <div class="btmGradient"></div>\n    <div class="gameDetails">\n      <h3>{{gameData.data.name}}</h3>\n      <h5>{{gameData.data.address}}</h5>\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players\n            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-id.svg"/></span>Average <br>Age\n            <span class="data">{{gameData.data.stats.avgAge}}</span></ion-col>\n          <ion-col col-4><span><img src="assets/img/icons-chart.svg"/></span>Level of <br>Play\n            <span class="data">{{gameData.data.stats.avgExp}}</span></ion-col>\n        </ion-row>\n      </ion-grid>\n      <ion-list class="players" style="background-color: none;">\n        <h5>Active Players</h5>\n        <div class="player" *ngFor="let player of playerData" (click)="goToProfile(player.uid)">\n          <!-- <ion-icon name="contact"></ion-icon> -->\n          <img class="gameAvatar" src="{{player.img}}" />\n        </div>\n      </ion-list>\n    </div>\n    <button ion-button block id="joinGame" class="primaryButton" (click)="joinGame()">Join Game</button>\n    <button ion-button block id="leaveGame" class="secondaryButton" (click)="leaveGame()">Leave Game</button>\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic/src/pages/game-page/game-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
