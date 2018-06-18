@@ -23,6 +23,7 @@
     "@ionic-native/core": "^4.6.0",
     "@ionic-native/geofence": "^4.6.0",
     "@ionic-native/geolocation": "^4.7.0",
+    "@ionic-native/local-notifications": "^4.7.0",
     "@ionic-native/splash-screen": "3.4.2",
     "@ionic-native/status-bar": "^3.4.2",
     "@ionic/storage": "2.0.1",
@@ -73,7 +74,6 @@
   "description": "advancedFirebase: An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
@@ -85,7 +85,8 @@
         "GEOFENCE_IN_USE_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use."
       },
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {}
     },
     "platforms": [
       "ios"

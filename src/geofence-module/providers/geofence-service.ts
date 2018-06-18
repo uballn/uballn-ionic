@@ -6,79 +6,79 @@ import { Geofence } from '@ionic-native/geofence';
 @Injectable()
 export class GeofenceService {
 
-  private geofences = {
-    data: [
-      {
-        id : 1,
-        title : "Stonebriar Centre Mall",
-        geofence : {
-          id : 1,
-          latitude : 33.099081,
-          longitude : -96.811477,
-          radius : 400,
-          transitionType : 3,
-          notification : {
-            id: 1, 
-            title : "You Crossed a Fence",
-            text : "Stonebriar Center Mall",
-            openAppOnClick : true
-          }
-        }
-      },
-      {
-        id : 2,
-        title : "Garden Park Ward",
-        geofence : {
-          id : 2,
-          latitude : 40.745289,
-          longitude : -111.857776,
-          radius : 50,
-          transitionType : 3,
-          notification : {
-            id: 1, 
-            title : "You Crossed a Fence",
-            text : "Garden Park Ward",
-            openAppOnClick : true
-          }
-        }
-      },
-      {
-        id : 3,
-        title : "Inglewood Park",
-        geofence : {
-          id : 3,
-          latitude : 40.743739,
-          longitude : -111.861024,
-          radius : 50,
-          transitionType : 3,
-          notification : {
-            id: 1, 
-            title : "You Crossed a Fence",
-            text : "Inglewood Park" ,
-            openAppOnClick : true
-          }
-        }
-      },
-      // 40.750811, -111.855253
-      {
-        id : 4,
-        title : "East High School",
-        geofence : {
-          id : 4,
-          latitude : 40.750811,
-          longitude : -111.855253,
-          radius : 50,
-          transitionType : 3,
-          notification : {
-            id: 1, 
-            title : "You Crossed a Fence",
-            text : "East High School" ,
-            openAppOnClick : true
-          }
-        }
-      }
-    ]
-  }
+  // private geofences = {
+  //   data: [
+  //     {
+  //       id : 1,
+  //       title : "Stonebriar Centre Mall",
+  //       geofence : {
+  //         id : 1,
+  //         latitude : 33.099081,
+  //         longitude : -96.811477,
+  //         radius : 400,
+  //         transitionType : 3,
+  //         notification : {
+  //           id: 1, 
+  //           title : "You Crossed a Fence",
+  //           text : "Stonebriar Center Mall",
+  //           openAppOnClick : true
+  //         }
+  //       }
+  //     },
+  //     {
+  //       id : 2,
+  //       title : "Garden Park Ward",
+  //       geofence : {
+  //         id : 2,
+  //         latitude : 40.745289,
+  //         longitude : -111.857776,
+  //         radius : 50,
+  //         transitionType : 3,
+  //         notification : {
+  //           id: 1, 
+  //           title : "You Crossed a Fence",
+  //           text : "Garden Park Ward",
+  //           openAppOnClick : true
+  //         }
+  //       }
+  //     },
+  //     {
+  //       id : 3,
+  //       title : "Inglewood Park",
+  //       geofence : {
+  //         id : 3,
+  //         latitude : 40.743739,
+  //         longitude : -111.861024,
+  //         radius : 50,
+  //         transitionType : 3,
+  //         notification : {
+  //           id: 1, 
+  //           title : "You Crossed a Fence",
+  //           text : "Inglewood Park" ,
+  //           openAppOnClick : true
+  //         }
+  //       }
+  //     },
+  //     // 40.750811, -111.855253
+  //     {
+  //       id : 4,
+  //       title : "East High School",
+  //       geofence : {
+  //         id : 4,
+  //         latitude : 40.750811,
+  //         longitude : -111.855253,
+  //         radius : 50,
+  //         transitionType : 3,
+  //         notification : {
+  //           id: 1, 
+  //           title : "You Crossed a Fence",
+  //           text : "East High School" ,
+  //           openAppOnClick : true
+  //         }
+  //       }
+  //     }
+  //   ]
+  // }
 
   TransitionType: {
     ENTER: 1;
@@ -136,11 +136,11 @@ export class GeofenceService {
    * @returns {Object<any>}
    */
   public get(fenceId){
-    console.log(fenceId);
-    //let fence: any;
-    let fence = this.geofences.data.filter(fence => fence.id == fenceId);
-    //console.log(fence);
-    return fence[0];
+    //console.log(fenceId);
+    ////let fence: any;
+    //let fence = this.geofences.data.filter(fence => fence.id == fenceId);
+    ////console.log(fence);
+    //return fence[0];
   }
 
   /**
@@ -149,7 +149,7 @@ export class GeofenceService {
    * @returns {Object<Array<any>>}
    */
   public getAll(){
-    return this.geofences;
+    //return this.geofences;
   }
 
   /** DEPRECATED, replaced by this.addOrUpdate(geofences) */
@@ -197,14 +197,14 @@ export class GeofenceService {
 
   /** utilitly method for quickly adding all geofences from this.geofences */
   public addAll(){
-    console.log("adding all geofences...", JSON.stringify(this.geofences));
-    let gf = [];
-    this.geofences.data.forEach((fence) => {
-      console.log("adding ", fence.title);
-      gf.push(fence.geofence);
-    })
-    console.log(JSON.stringify(gf));
-    return this.addOrUpdate(gf);
+    //console.log("adding all geofences...", JSON.stringify(this.geofences));
+    //let gf = [];
+    //this.geofences.data.forEach((fence) => {
+    //  console.log("adding ", fence.title);
+    //  gf.push(fence.geofence);
+    //})
+    //console.log(JSON.stringify(gf));
+    //return this.addOrUpdate(gf);
 
   }
 

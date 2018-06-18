@@ -36,10 +36,13 @@ export class MyApp {
       geofenceService.init().then(
         () => {
           console.log('GEOFENCE SERVICE INITIALIZED');
-          geofenceService.addAll().then(
-            () => console.log("added all fences..."),
-            (err) => "An error was encountered when adding fences..."
-          );
+          // geofenceService.addAll().then(
+          //   () => console.log("added all fences..."),
+          //   (err) => "An error was encountered when adding fences..."
+          // );
+          geofenceService.removeAll().then( response => {
+            console.log("GEOFENCES CLEARED...");
+          })
           geofenceService.getTransitions().subscribe((transition) => {
             console.log('TRANSITION DETECTED: ', JSON.stringify(transition));
             if(transition != null) {
@@ -62,7 +65,7 @@ export class MyApp {
       null, 'ENTERED', 'EXITED', ''
     ]
 
-    console.log("PRESENTING TOAST...", strings[transitionType]);
+    alert(strings[transitionType]);
 
     let cssClassStr = transitionType == 1 ? "transition-enter" : "transition-exit"
 

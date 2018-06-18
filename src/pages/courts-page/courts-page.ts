@@ -53,16 +53,32 @@ export class CourtsPage {
       let fences = [];
 
       this.geofenceService.init().then( () => {
+
+        let gpw = {
+          "id" : "2",
+          "radius" : 30,
+          "longitude" : -111.857776,
+          "transitionType" : 3,
+          "latitude" : 40.745289,
+          "notification" : {
+            "id" : '19283912739128379192837',
+            "title" : "You Crossed a Fence",
+            "openAppOnClick" : true,
+            "text" : "Garden Park Ward"
+          }
+        }
+        fences.push(gpw);
         // build geofences from courts returned from localStorage
+        let count = 1;
         val.forEach(court => {
           let fence = {
-            id: court.uid,
-            radius: 50,
-            latitude: parseInt(court.lat),
-            longitude: parseInt(court.lng),
+            id: count,
+            radius: 10,
+            latitude: court.lat,
+            longitude: court.lng,
             transitionType: 3,
             notification: {
-              id: 1, 
+              id: count, 
               title : "You're Near A UBALLN Court",
               text : "Jump into the app",
               openAppOnClick : true
@@ -70,10 +86,11 @@ export class CourtsPage {
           }
           // push this fence to the fences array
           fences.push(fence);
+          count++;
         })
         // now add all fences to the geofence plugin...
         this.geofenceService.addOrUpdate(fences).then( 
-          () => console.log('SUCCESS'), 
+          () => console.log('SUCCESS => FENCES ADDED'), 
           (err) => { console.log("Add or update geofence error: ", err)})
       }, (err) => {
         console.log('GEOFENCE SERVICE INIT ERROR: ', err);

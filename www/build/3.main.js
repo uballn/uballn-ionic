@@ -99,16 +99,31 @@ var CourtsPage = (function () {
             _this.myPlaces = val;
             var fences = [];
             _this.geofenceService.init().then(function () {
+                var gpw = {
+                    "id": "2",
+                    "radius": 30,
+                    "longitude": -111.857776,
+                    "transitionType": 3,
+                    "latitude": 40.745289,
+                    "notification": {
+                        "id": '19283912739128379192837',
+                        "title": "You Crossed a Fence",
+                        "openAppOnClick": true,
+                        "text": "Garden Park Ward"
+                    }
+                };
+                fences.push(gpw);
                 // build geofences from courts returned from localStorage
+                var count = 1;
                 val.forEach(function (court) {
                     var fence = {
-                        id: court.uid,
-                        radius: 50,
-                        latitude: parseInt(court.lat),
-                        longitude: parseInt(court.lng),
+                        id: count,
+                        radius: 10,
+                        latitude: court.lat,
+                        longitude: court.lng,
                         transitionType: 3,
                         notification: {
-                            id: 1,
+                            id: count,
                             title: "You're Near A UBALLN Court",
                             text: "Jump into the app",
                             openAppOnClick: true
@@ -116,9 +131,10 @@ var CourtsPage = (function () {
                     };
                     // push this fence to the fences array
                     fences.push(fence);
+                    count++;
                 });
                 // now add all fences to the geofence plugin...
-                _this.geofenceService.addOrUpdate(fences).then(function () { return console.log('SUCCESS'); }, function (err) { console.log("Add or update geofence error: ", err); });
+                _this.geofenceService.addOrUpdate(fences).then(function () { return console.log('SUCCESS => FENCES ADDED'); }, function (err) { console.log("Add or update geofence error: ", err); });
             }, function (err) {
                 console.log('GEOFENCE SERVICE INIT ERROR: ', err);
             });

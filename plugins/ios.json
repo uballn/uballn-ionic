@@ -30,13 +30,13 @@
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.uballn"
     },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.uballn"
-    },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.uballn"
     },
     "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.uballn"
     }
   },
