@@ -13,7 +13,7 @@
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
 
     <ion-item>
-      <ion-label>Email</ion-label>
+      <ion-label>Email Address</ion-label>
       <ion-input formControlName="email" type="email"
         [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
     </ion-item>
@@ -35,7 +35,7 @@
     <p class="formText small" (click)="resetPassword()">forgot your password?</p>
 
     <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">
-      Login
+      Log In
     </button>
     <p class="formText small">By logging in, you agree to UBALLN’s <a href="#" (click)="showTerms()">Terms of Use</a> and <a href="#" (click)="showPrivacyPolicy()">Privacy Policy</a>.</p>
 

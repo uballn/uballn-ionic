@@ -67,26 +67,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import { Contacts, ContactFieldType, ContactFindOptions } from 'ionic-native';
 
 var ConnectPage = (function () {
     // contactlist: any;
     function ConnectPage(navCtrl, storage, afd, navParams, FirebaseService, platform) {
-        //   this.platform.ready().then(() => {
-        //     var opts = {   
-        //        filter : "M",                                
-        //        multiple: true,        
-        //        hasPhoneNumber:true,                             
-        //        fields:  [ 'name.givenName' ]
-        //      };
-        //      Contacts.find([ 'displayName', 'name' ],opts).then((contacts) => {
-        //       alert('Found ' + contacts.length + ' contacts.');
-        //        this.contactlist=contacts;
-        //        console.log(this.contactlist);
-        //      }, (error) => {
-        //        console.log(error);
-        //      })
-        //  })
         var _this = this;
         this.navCtrl = navCtrl;
         this.storage = storage;

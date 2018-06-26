@@ -74,24 +74,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CourtsPage = (function () {
-    function CourtsPage(navCtrl, geo, storage, firebaseService, afd, geofenceService, loadingCtrl, geolocationService) {
+    function CourtsPage(navCtrl, geo, storage, firebaseService, afd, geofenceService, geolocationService) {
         this.navCtrl = navCtrl;
         this.geo = geo;
         this.storage = storage;
         this.firebaseService = firebaseService;
         this.afd = afd;
         this.geofenceService = geofenceService;
-        this.loadingCtrl = loadingCtrl;
         this.geolocationService = geolocationService;
     }
-    CourtsPage.prototype.ionViewWillEnter = function () {
+    CourtsPage.prototype.ionViewDidLoad = function () {
         this.loadMap();
+    };
+    CourtsPage.prototype.ionViewWillEnter = function () {
         var uid = localStorage.getItem('uid');
         this.firebaseService.checkMessages(uid);
         this.avatar = localStorage.getItem('img');
-    };
-    CourtsPage.prototype.goToProfile = function () {
-        this.navCtrl.push('ProfilePage');
     };
     CourtsPage.prototype.loadMap = function () {
         var _this = this;
@@ -99,33 +97,19 @@ var CourtsPage = (function () {
             _this.myPlaces = val;
             var fences = [];
             _this.geofenceService.init().then(function () {
-                var gpw = {
-                    "id": "2",
-                    "radius": 30,
-                    "longitude": -111.857776,
-                    "transitionType": 3,
-                    "latitude": 40.745289,
-                    "notification": {
-                        "id": '19283912739128379192837',
-                        "title": "You Crossed a Fence",
-                        "openAppOnClick": true,
-                        "text": "Garden Park Ward"
-                    }
-                };
-                fences.push(gpw);
                 // build geofences from courts returned from localStorage
                 var count = 1;
                 val.forEach(function (court) {
                     var fence = {
                         id: count,
-                        radius: 10,
+                        radius: 50,
                         latitude: court.lat,
                         longitude: court.lng,
                         transitionType: 3,
                         notification: {
                             id: count,
-                            title: "You're Near A UBALLN Court",
-                            text: "Jump into the app",
+                            title: "Court Nearby",
+                            text: "Court Nearby: " + court.name,
                             openAppOnClick: true
                         }
                     };
@@ -185,9 +169,6 @@ var CourtsPage = (function () {
             infoWindow.open(_this.map, marker);
         });
     };
-    CourtsPage.prototype.seeMessages = function () {
-        this.navCtrl.push('MessagesPage');
-    };
     CourtsPage.prototype.plotPositionOnMap = function (position) {
         var markerIcon = {
             url: 'assets/img/location-marker.svg',
@@ -210,6 +191,12 @@ var CourtsPage = (function () {
             console.log('initial attempt to plotPositionOnMap');
         }
     };
+    CourtsPage.prototype.seeMessages = function () {
+        this.navCtrl.push('MessagesPage');
+    };
+    CourtsPage.prototype.goToProfile = function () {
+        this.navCtrl.push('ProfilePage');
+    };
     return CourtsPage;
 }());
 __decorate([
@@ -227,7 +214,6 @@ CourtsPage = __decorate([
         __WEBPACK_IMPORTED_MODULE_4__providers_firebase_service__["a" /* FirebaseService */],
         __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_7__geofence_module_providers_geofence_service__["a" /* GeofenceService */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* LoadingController */],
         __WEBPACK_IMPORTED_MODULE_8__geofence_module_providers_geolocation_service__["a" /* GeolocationService */]])
 ], CourtsPage);
 

@@ -17,11 +17,11 @@
       <h5>{{gameData.data.address}}</h5>
       <ion-grid>
         <ion-row>
-          <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players
-            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col>
-          <ion-col col-4><span><img src="assets/img/icons-id.svg"/></span>Average <br>Age
+          <!-- <ion-col col-4><span><img src="assets/img/icons-players.svg"/></span>Number of <br>Players
+            <span class="data">{{gameData.data.stats.playerTotal}}</span></ion-col> -->
+          <ion-col col-4 class="avgAge"><span class="desc">Average <br>Age</span><span><img src="assets/img/icons-id.svg"/></span>
             <span class="data">{{gameData.data.stats.avgAge}}</span></ion-col>
-          <ion-col col-4><span><img src="assets/img/icons-chart.svg"/></span>Level of <br>Play
+          <ion-col col-4 class="avgExp"><span class="desc">Level of <br>Play</span><span><img src="assets/img/icons-chart.svg"/></span>
             <span class="data">{{gameData.data.stats.avgExp}}</span></ion-col>
         </ion-row>
       </ion-grid>

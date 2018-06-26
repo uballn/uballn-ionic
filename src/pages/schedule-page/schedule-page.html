@@ -12,7 +12,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content block>
+<ion-content block class="form">
   <div padding>
     <p class="scheduleIntro">Take control of the court and schedule your next game.</p>
   </div>
@@ -20,23 +20,23 @@
   <div>
     <ion-list>
       <ion-item class="gamedate">
-        <ion-label>when are you hoopin?</ion-label>
+        <ion-label>When are you hoopin?</ion-label>
         <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="gameDate"></ion-datetime>
       </ion-item>
 
       <ion-item class="gameStart">
-        <ion-label>at what time?</ion-label>
+        <ion-label>At what time?</ion-label>
         <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="gameStart"></ion-datetime>
+      </ion-item>
+
+      <ion-item class="location">
+        <ion-label>On what court?</ion-label>
+        <ion-input type="text" [(ngModel)]="location"></ion-input>
       </ion-item>
 
       <div padding (click)="getCourt()" style="padding-top: 10px;">
         <button ion-button block class="secondaryButton">Find a Court</button>
       </div>
-
-      <ion-item class="location">
-        <ion-label>on what court?</ion-label>
-        <ion-input type="text" [(ngModel)]="location"></ion-input>
-      </ion-item>
 
       <!-- <ion-item class="noBG private">
         <ion-label>Private Game?</ion-label>

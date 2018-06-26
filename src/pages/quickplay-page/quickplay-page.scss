@@ -1,9 +1,16 @@
 page-quickplay-page {
   .creator {
-    background-color: #000;
-    border-radius: 30px;
+    width: 30px;
+    height: 30px;
     overflow: hidden;
     border: 1px solid #fff;
+    border-radius: 30px;
+    display: block;
+    background-color: #000;
+    img {
+      min-width: 30px;
+      min-height: 40px;
+    }
   }
   ion-list-header, ion-item.item.item-block {
     background-color: transparent;

@@ -1,7 +1,6 @@
 import { FirebaseService } from './../../providers/firebase-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { IonicPage, NavController, AlertController, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 
 @IonicPage()

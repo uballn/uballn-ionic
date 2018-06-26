@@ -25108,8 +25108,9 @@ ion-navbar.toolbar {
   }
 }
 
-ion-app .scroll-content {
-  padding-top: 0;
+ion-app ion-label {
+  font-size: 11px;
+  color: #fff;
 }
 
 ion-app .toast-container {
@@ -25119,8 +25120,8 @@ ion-app .toast-container {
 }
 
 ion-app .avatarContainer {
-  width: 40px;
-  height: 40px;
+  max-width: 35px;
+  max-height: 35px;
   border-radius: 30px;
   overflow: hidden;
   border: 1px solid #fff;
@@ -25191,6 +25192,7 @@ ion-app .imgWrapper {
 ion-app .toolbar-title {
   color: #fff;
   text-transform: uppercase;
+  margin-top: 30px;
 }
 
 ion-app .back-button.show-back-button {
@@ -25208,6 +25210,7 @@ ion-app ion-title.title {
 
 ion-app ion-navbar .toolbar-background {
   background: #000;
+  border-bottom: none !important;
 }
 
 ion-app button[end] {
@@ -25251,6 +25254,7 @@ ion-app .header-ios .toolbar-background-ios,
 ion-app .footer-ios .toolbar-background-ios {
   background: #000;
   color: #fff;
+  border-bottom: none !important;
 }
 
 ion-app .primaryButton,
@@ -25325,14 +25329,15 @@ ion-app .navIcon {
 }
 
 ion-app .notify {
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   position: absolute;
   bottom: 5px;
-  right: 15px;
-  background-color: red;
+  right: 12px;
+  background-color: #76A5FF;
   display: block;
   border-radius: 10px;
+  border: 2px solid #000;
 }
 
 ion-app .formText {
@@ -25342,7 +25347,8 @@ ion-app .formText {
 }
 
 ion-app .formText.small {
-  font-size: 0.9em;
+  font-size: 11px;
+  line-height: 1.75em;
 }
 
 ion-app .imageContainer {
@@ -25655,6 +25661,28 @@ page-game .gameDetails h5 {
   margin: 5px auto 25px;
 }
 
+page-game .avgAge, page-game .avgExp {
+  float: left;
+}
+
+page-game .avgAge .desc, page-game .avgExp .desc {
+  text-align: left;
+  font-size: 12px;
+}
+
+page-game .avgAge img, page-game .avgExp img {
+  clear: left;
+  display: block;
+  float: left;
+  margin-top: 10px;
+  max-width: 30px;
+}
+
+page-game .avgExp {
+  border-left: 1px solid #fff;
+  padding-left: 20px;
+}
+
 page-game .players {
   z-index: 2;
   margin-top: 50px;
@@ -25671,15 +25699,16 @@ page-game .player {
   font-size: 3em;
   width: calc(20% - 10px);
   margin-right: 10px;
+  border-radius: 100px;
+  overflow: hidden;
+  border: 2px solid #fff;
+  max-height: 70px;
 }
 
 page-game .player img {
-  overflow: hidden;
   background: #000;
-  border-radius: 100px;
-  border: 2px solid #fff;
-  width: 60px;
-  height: 60px;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 page-game .primaryButton,
@@ -25696,6 +25725,7 @@ page-game .secondaryButton {
 page-game ion-col[col-4] {
   text-align: center;
   font-size: 1em;
+  min-width: calc(50% - 10px);
 }
 
 page-game ion-col[col-4] img {
@@ -25704,7 +25734,7 @@ page-game ion-col[col-4] img {
 }
 
 page-game ion-col[col-4] span {
-  font-size: 2em;
+  font-size: 3em;
   display: block;
 }
 
@@ -25777,6 +25807,10 @@ page-login-page .error-message {
 page-login-page ion-title img {
   margin: 0 auto;
   display: block;
+}
+
+page-login-page form {
+  padding: 10px 50px;
 }
 
 page-message-detail .messageheader {
@@ -26265,10 +26299,18 @@ page-profile-settings .appInfo button.item-block .item-inner {
 }
 
 page-quickplay-page .creator {
-  background-color: #000;
-  border-radius: 30px;
+  width: 30px;
+  height: 30px;
   overflow: hidden;
   border: 1px solid #fff;
+  border-radius: 30px;
+  display: block;
+  background-color: #000;
+}
+
+page-quickplay-page .creator img {
+  min-width: 30px;
+  min-height: 40px;
 }
 
 page-quickplay-page ion-list-header, page-quickplay-page ion-item.item.item-block {
@@ -26346,12 +26388,12 @@ page-register-page .primaryButton {
 }
 
 page-schedule .scroll-content {
-  padding: 0 20px;
+  padding: 0 50px;
 }
 
 page-schedule .scheduleIntro {
   text-align: center;
-  font-size: 1.25em;
+  font-size: 13px;
   padding: 10px 20px;
 }
 
@@ -26441,6 +26483,10 @@ page-terms .modalContent ol {
   padding-left: 20px;
 }
 
+page-welcome .scroll-content {
+  padding-top: 0 !important;
+}
+
 page-welcome .overlay {
   width: 100%;
   height: 100%;
@@ -26462,6 +26508,10 @@ page-welcome ion-slides {
   max-height: 30%;
   position: absolute;
   bottom: 200px;
+}
+
+page-welcome ion-slides ion-slide {
+  width: 100% !important;
 }
 
 page-welcome ion-slides .slide-zoom {

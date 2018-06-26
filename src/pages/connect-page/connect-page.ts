@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FirebaseService } from './../../providers/firebase-service';
-import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
-// import { Contacts, ContactFieldType, ContactFindOptions } from 'ionic-native';
+import { AngularFireDatabase, } from 'angularfire2/database';
 import * as $ from 'jquery';
 
 @IonicPage()
@@ -35,22 +34,6 @@ export class ConnectPage {
     public FirebaseService: FirebaseService,
     public platform: Platform) {
 
-    //   this.platform.ready().then(() => {
-    //     var opts = {   
-    //        filter : "M",                                
-    //        multiple: true,        
-    //        hasPhoneNumber:true,                             
-    //        fields:  [ 'name.givenName' ]
-    //      };
-    //      Contacts.find([ 'displayName', 'name' ],opts).then((contacts) => {
-    //       alert('Found ' + contacts.length + ' contacts.');
-    //        this.contactlist=contacts;
-    //        console.log(this.contactlist);
-    //      }, (error) => {
-    //        console.log(error);
-    //      })
-    //  })
-  
       this.connect = 'friends';
 
       this.storage.get('friendData').then((val) => {

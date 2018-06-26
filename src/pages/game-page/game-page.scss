@@ -37,6 +37,24 @@ page-game {
       margin: 5px auto 25px;
     }
   }
+  .avgAge, .avgExp {
+    float:left;
+    .desc {
+      text-align: left;
+      font-size: 12px;
+    }
+    img {
+      clear: left;
+      display: block;
+      float: left;  
+      margin-top: 10px;
+      max-width: 30px;
+    }
+  }
+  .avgExp {
+    border-left: 1px solid #fff;
+    padding-left: 20px;
+  }
   .players {
     z-index:2;
     margin-top: 50px;
@@ -47,17 +65,18 @@ page-game {
       }
   }
   .player {
-    float:left;
+    float: left;
     font-size: 3em;
     width: calc(20% - 10px);
-    margin-right:10px;
+    margin-right: 10px;
+    border-radius: 100px;
+    overflow: hidden;
+    border: 2px solid #fff;
+    max-height: 70px;
     img {
-      overflow: hidden;
       background:#000;
-      border-radius: 100px;
-      border: 2px solid #fff;
-      width: 60px;
-      height: 60px; 
+      min-width: 100%;
+      min-height: 100%;
     }
   }
   .primaryButton, 
@@ -72,12 +91,13 @@ page-game {
   ion-col[col-4]{
     text-align:center;
     font-size: 1em;
+    min-width: calc(50% - 10px);
     img {
       max-width:40px;
       max-height:40px;
     }
     span {
-      font-size: 2em;
+      font-size: 3em;
       display:block;
     }
   }

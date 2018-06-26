@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FirebaseService } from './../../providers/firebase-service';
 import { Settings } from '../../providers/providers';
-import { ModalPage } from './modal-page';
 import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -18,7 +16,6 @@ export class SchedulePage {
   options: any;
   chosenCourt: string;
   settingsReady = false;
-  form: FormGroup;
   avatar: string;
   location: string;
   gameDate: string;
@@ -109,7 +106,7 @@ export class SchedulePage {
             gameDate: this.gameDate,
             gameStart: this.gameStart,
             img: this.selectedLocation.img,
-            location: this.location
+            name: this.location
           })                   
           .then(() => {
             this.firebaseService.joinGame()

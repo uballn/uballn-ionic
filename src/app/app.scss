@@ -1,8 +1,9 @@
 // App Global Sass
 // --------------------------------------------------
 ion-app{
-  .scroll-content {
-    padding-top: 0;
+  ion-label {
+    font-size: 11px;
+    color: #fff;
   }
   .toast-container{
     background: linear-gradient(135deg, #5c0a5f 0%, #8d0338 42%, #c50000 100%);
@@ -10,8 +11,8 @@ ion-app{
     padding-left: 20px;
   }
   .avatarContainer {
-    width: 40px;
-    height: 40px;
+    max-width: 35px;
+    max-height: 35px;
     border-radius: 30px;
     overflow: hidden;
     border: 1px solid #fff;
@@ -72,6 +73,7 @@ ion-app{
   .toolbar-title {
     color:#fff;
     text-transform: uppercase;
+    margin-top: 30px;
   }
   .back-button.show-back-button {
     margin-left: 10px;
@@ -85,6 +87,7 @@ ion-app{
   }
   ion-navbar .toolbar-background {
     background: #000;
+    border-bottom: none !important;
   }
   button[end] {
         float: right;
@@ -120,6 +123,7 @@ ion-app{
   .footer-ios .toolbar-background-ios {
     background: #000;
     color: #fff;
+    border-bottom: none !important;
   }
   .primaryButton,
   .secondaryButton,
@@ -180,21 +184,23 @@ ion-app{
     margin-top: 15px;
   }
   .notify {
-    width: 10px;
-    height: 10px;
+    width: 13px;
+    height: 13px;
     position: absolute;
     bottom: 5px;
-    right: 15px;
-    background-color: red;
+    right: 12px;
+    background-color: #76A5FF;
     display: block;
     border-radius: 10px;
+    border: 2px solid #000;
   }
   .formText {
     text-align: center;
     font-size: 1.25em;
     margin: 20px auto;
       &.small {
-        font-size: 0.9em;
+        font-size: 11px;
+        line-height: 1.75em;
       }
   }
   .imageContainer {

@@ -1,9 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { mapStyle } from './mapStyle';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FirebaseService } from './../../providers/firebase-service';
-import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { GeofenceService } from '../../geofence-module/providers/geofence-service';
 import { GeolocationService } from '../../geofence-module/providers/geolocation-service';
@@ -32,19 +32,17 @@ export class CourtsPage {
     public firebaseService: FirebaseService,
     public afd: AngularFireDatabase,
     public geofenceService: GeofenceService,
-    private loadingCtrl: LoadingController,
     public geolocationService: GeolocationService) {
     }
 
-    ionViewWillEnter(){
+    ionViewDidLoad(){
       this.loadMap();
+    }
+
+    ionViewWillEnter(){
         let uid = localStorage.getItem('uid');
         this.firebaseService.checkMessages(uid); 
         this.avatar = localStorage.getItem('img');
-    }
-
-    goToProfile() {
-      this.navCtrl.push('ProfilePage');
     }
   
   loadMap(){
@@ -54,33 +52,19 @@ export class CourtsPage {
 
       this.geofenceService.init().then( () => {
 
-        let gpw = {
-          "id" : "2",
-          "radius" : 30,
-          "longitude" : -111.857776,
-          "transitionType" : 3,
-          "latitude" : 40.745289,
-          "notification" : {
-            "id" : '19283912739128379192837',
-            "title" : "You Crossed a Fence",
-            "openAppOnClick" : true,
-            "text" : "Garden Park Ward"
-          }
-        }
-        fences.push(gpw);
         // build geofences from courts returned from localStorage
         let count = 1;
         val.forEach(court => {
           let fence = {
             id: count,
-            radius: 10,
+            radius: 50,
             latitude: court.lat,
             longitude: court.lng,
             transitionType: 3,
             notification: {
               id: count, 
-              title : "You're Near A UBALLN Court",
-              text : "Jump into the app",
+              title : "Court Nearby",
+              text : "Court Nearby: " + court.name,
               openAppOnClick : true
               }
           }
@@ -152,10 +136,6 @@ export class CourtsPage {
     });
   }
 
-  seeMessages(){
-    this.navCtrl.push('MessagesPage');
-  }
-
   plotPositionOnMap(position){
     let markerIcon = {
       url: 'assets/img/location-marker.svg', // url
@@ -176,6 +156,14 @@ export class CourtsPage {
         });
         console.log('initial attempt to plotPositionOnMap')
     }
+  }
+
+  seeMessages(){
+    this.navCtrl.push('MessagesPage');
+  }
+
+  goToProfile() {
+    this.navCtrl.push('ProfilePage');
   }
 
 }

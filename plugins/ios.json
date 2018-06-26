@@ -21,16 +21,19 @@
       "GEOFENCE_IN_USE_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use.",
       "PACKAGE_NAME": "com.uballn"
     },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.uballn"
+    },
     "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "com.uballn"
     },
     "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "com.uballn"
     },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "com.uballn"
     },
-    "cordova-plugin-geolocation": {
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.uballn"
     },
     "cordova-plugin-statusbar": {
@@ -48,6 +51,9 @@
       "PACKAGE_NAME": "com.uballn"
     },
     "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.uballn"
+    },
+    "cordova-plugin-badge": {
       "PACKAGE_NAME": "com.uballn"
     }
   }

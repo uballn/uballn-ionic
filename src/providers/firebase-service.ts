@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { Storage } from '@ionic/storage';
@@ -32,8 +32,6 @@ export class FirebaseService {
   userDOB: any;
   Date: any;
 
-
-
   constructor(
     private afAuth: AngularFireAuth,
     public afd: AngularFireDatabase,
@@ -53,7 +51,8 @@ export class FirebaseService {
   }
 
   loginUser(email, password) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+       .catch(error => alert(error));
   }
 
   logoutUser() {

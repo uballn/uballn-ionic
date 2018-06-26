@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { Storage } from '@ionic/storage';
 import { FirebaseService } from './../../providers/firebase-service';
 import { ActionSheetController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
 import * as $ from 'jquery';
 
 @IonicPage()

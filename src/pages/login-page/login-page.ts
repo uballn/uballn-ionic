@@ -3,12 +3,9 @@ import { Component } from '@angular/core';
 import { IonicPage, Loading, LoadingController, NavController, AlertController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
-import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase/app';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
-import { ModalPage } from './modal-page';
 import 'rxjs/add/operator/map';
 
 
@@ -43,8 +40,8 @@ export class LoginPage {
 
   loginUser(): void {
     if (this.loginForm.valid) {
-      this.loading = this.loadingCtrl.create();
-      this.loading.present();
+      // this.loading = this.loadingCtrl.create();
+      // this.loading.present();
 
       let currUserFriends;
 
@@ -88,8 +85,7 @@ export class LoginPage {
           };
 
           this.firebaseService.getCourts();
-          
-          this.loading.dismiss().then(() => {
+        
             if (localStorage.getItem('setupNeeded') == 'true'){
               let modal = this.modalCtrl.create('SetupProfilePage');
               modal.present();
@@ -97,7 +93,6 @@ export class LoginPage {
               this.navCtrl.setRoot('TabsPage', currUserFriends);
             }
         }, error => {
-          this.loading.dismiss().then(() => {
             let alert = this.alertCtrl.create({
               title: 'Error',
               message: error.message,
@@ -109,8 +104,6 @@ export class LoginPage {
               ]
             });
             alert.present();
-          });
-        });
       })
     }
   }

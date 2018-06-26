@@ -36,10 +36,6 @@ export class MyApp {
       geofenceService.init().then(
         () => {
           console.log('GEOFENCE SERVICE INITIALIZED');
-          // geofenceService.addAll().then(
-          //   () => console.log("added all fences..."),
-          //   (err) => "An error was encountered when adding fences..."
-          // );
           geofenceService.removeAll().then( response => {
             console.log("GEOFENCES CLEARED...");
           })
@@ -62,7 +58,7 @@ export class MyApp {
   private presentToast(transitionType, transition){
    
     let strings:any = [
-      null, 'ENTERED', 'EXITED', ''
+      null, 'Approaching a UBALLN Court', 'Leaving a UBALLN Court', ''
     ]
 
     alert(strings[transitionType]);
@@ -70,7 +66,7 @@ export class MyApp {
     let cssClassStr = transitionType == 1 ? "transition-enter" : "transition-exit"
 
     let toast = this.toastCtrl.create({
-      message : strings[transitionType] + ' - ID: ' + transition.id,
+      message : strings[transitionType],
       duration: 5000,
       showCloseButton: true,
       closeButtonText: 'X',

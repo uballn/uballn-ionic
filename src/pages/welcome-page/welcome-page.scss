@@ -1,4 +1,7 @@
 page-welcome {
+    .scroll-content {
+        padding-top: 0 !important;
+      }
     .overlay {
         width: 100%;
         height: 100%;
@@ -17,6 +20,9 @@ page-welcome {
         max-height: 30%;
         position: absolute;
         bottom:200px;
+        ion-slide {
+            width:100% !important;
+        }
         .slide-zoom {
             padding: 0 40px;
         }

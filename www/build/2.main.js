@@ -114,8 +114,8 @@ var LoginPage = (function () {
     LoginPage.prototype.loginUser = function () {
         var _this = this;
         if (this.loginForm.valid) {
-            this.loading = this.loadingCtrl.create();
-            this.loading.present();
+            // this.loading = this.loadingCtrl.create();
+            // this.loading.present();
             var currUserFriends_1;
             this.firebaseService.loginUser(this.loginForm.value.email, this.loginForm.value.password)
                 .then(function (authData) {
@@ -153,29 +153,25 @@ var LoginPage = (function () {
                 }
                 ;
                 _this.firebaseService.getCourts();
-                _this.loading.dismiss().then(function () {
-                    if (localStorage.getItem('setupNeeded') == 'true') {
-                        var modal = _this.modalCtrl.create('SetupProfilePage');
-                        modal.present();
-                    }
-                    else {
-                        _this.navCtrl.setRoot('TabsPage', currUserFriends_1);
-                    }
-                }, function (error) {
-                    _this.loading.dismiss().then(function () {
-                        var alert = _this.alertCtrl.create({
-                            title: 'Error',
-                            message: error.message,
-                            buttons: [
-                                {
-                                    text: "Ok",
-                                    role: 'cancel'
-                                }
-                            ]
-                        });
-                        alert.present();
-                    });
+                if (localStorage.getItem('setupNeeded') == 'true') {
+                    var modal = _this.modalCtrl.create('SetupProfilePage');
+                    modal.present();
+                }
+                else {
+                    _this.navCtrl.setRoot('TabsPage', currUserFriends_1);
+                }
+            }, function (error) {
+                var alert = _this.alertCtrl.create({
+                    title: 'Error',
+                    message: error.message,
+                    buttons: [
+                        {
+                            text: "Ok",
+                            role: 'cancel'
+                        }
+                    ]
                 });
+                alert.present();
             });
         }
     };
@@ -237,7 +233,7 @@ var LoginPage = (function () {
 LoginPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
-        selector: 'page-login-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic/src/pages/login-page/login-page.html"*/'<ion-header>\n  <ion-navbar>\n      <button ion-button start (click)="back()">\n          <ion-icon name="arrow-back"></ion-icon>\n        </button>\n      <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>\n\n    <ion-item>\n      <ion-label>Email</ion-label>\n      <ion-input formControlName="email" type="email"\n        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines>\n      <p>Please enter a valid email.</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Password</ion-label>\n      <ion-input formControlName="password" type="password"\n        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines>\n      <p>Your password needs more than 6 characters.</p>\n    </ion-item>\n\n    <p class="formText small" (click)="resetPassword()">forgot your password?</p>\n\n    <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">\n      Login\n    </button>\n    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#" (click)="showTerms()">Terms of Use</a> and <a href="#" (click)="showPrivacyPolicy()">Privacy Policy</a>.</p>\n\n    <p class="formText small" (click)="goToSignup()">don\'t have an account? <a href="#">Sign Up!</a></p>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic/src/pages/login-page/login-page.html"*/,
+        selector: 'page-login-page',template:/*ion-inline-start:"/Users/justinnash/sites/uballn-ionic/src/pages/login-page/login-page.html"*/'<ion-header>\n  <ion-navbar>\n      <button ion-button start (click)="back()">\n          <ion-icon name="arrow-back"></ion-icon>\n        </button>\n      <ion-title>\n      <img src="assets/img/uballn-logo.png" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>\n\n    <ion-item>\n      <ion-label>Email Address</ion-label>\n      <ion-input formControlName="email" type="email"\n        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines>\n      <p>Please enter a valid email.</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Password</ion-label>\n      <ion-input formControlName="password" type="password"\n        [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>\n    </ion-item>\n    <ion-item class="error-message"\n      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines>\n      <p>Your password needs more than 6 characters.</p>\n    </ion-item>\n\n    <p class="formText small" (click)="resetPassword()">forgot your password?</p>\n\n    <button ion-button block class="primaryButton" type="submit" [disabled]="!loginForm.valid">\n      Log In\n    </button>\n    <p class="formText small">By logging in, you agree to UBALLN’s <a href="#" (click)="showTerms()">Terms of Use</a> and <a href="#" (click)="showPrivacyPolicy()">Privacy Policy</a>.</p>\n\n    <p class="formText small" (click)="goToSignup()">don\'t have an account? <a href="#">Sign Up!</a></p>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/justinnash/sites/uballn-ionic/src/pages/login-page/login-page.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service__["a" /* FirebaseService */],
